@@ -1,0 +1,1131 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ATTACHMENT_COLOR	platform/opengl/openGLRenderDevice.hpp	/^		ATTACHMENT_COLOR = GL_COLOR_ATTACHMENT0,$/;"	e	enum:OpenGLRenderDevice::FramebufferAttachment
+ATTACHMENT_DEPTH	platform/opengl/openGLRenderDevice.hpp	/^		ATTACHMENT_DEPTH = GL_DEPTH_ATTACHMENT,$/;"	e	enum:OpenGLRenderDevice::FramebufferAttachment
+ATTACHMENT_STENCIL	platform/opengl/openGLRenderDevice.hpp	/^		ATTACHMENT_STENCIL = GL_STENCIL_ATTACHMENT,$/;"	e	enum:OpenGLRenderDevice::FramebufferAttachment
+Application	core/application.hpp	/^typedef PlatformApplication Application;$/;"	t
+Array	dataStructures/array.hpp	5;"	d
+ArrayBitmap	rendering/arrayBitmap.cpp	/^ArrayBitmap::ArrayBitmap(int32 widthIn, int32 heightIn) :$/;"	f	class:ArrayBitmap
+ArrayBitmap	rendering/arrayBitmap.cpp	/^ArrayBitmap::ArrayBitmap(int32 widthIn, int32 heightIn, int32* pixelsIn) :$/;"	f	class:ArrayBitmap
+ArrayBitmap	rendering/arrayBitmap.cpp	/^ArrayBitmap::ArrayBitmap(int32 widthIn, int32 heightIn, int32* pixelsIn, int32 offsetX,$/;"	f	class:ArrayBitmap
+ArrayBitmap	rendering/arrayBitmap.hpp	/^class ArrayBitmap$/;"	c
+BLACK	math/color.hpp	/^	static const Color BLACK;$/;"	m	class:Color
+BLUE	math/color.hpp	/^	static const Color BLUE;$/;"	m	class:Color
+BufferUsage	platform/opengl/openGLRenderDevice.hpp	/^	enum BufferUsage$/;"	g	class:OpenGLRenderDevice
+CASE	rendering/staticLibs/stb_image.c	2226;"	d	file:
+CASE	rendering/staticLibs/stb_image.c	2239;"	d	file:
+CASE	rendering/staticLibs/stb_image.c	2242;"	d	file:
+CASE	rendering/staticLibs/stb_image.c	2255;"	d	file:
+CASE	rendering/staticLibs/stb_image.c	594;"	d	file:
+CASE	rendering/staticLibs/stb_image.c	612;"	d	file:
+CHART	core/common.hpp	/^typedef uint8_t CHART;$/;"	t
+COMBO	rendering/staticLibs/stb_image.c	593;"	d	file:
+CONSTEXPR	core/common.hpp	77;"	d
+CONSTEXPR	core/common.hpp	79;"	d
+CYAN	math/color.hpp	/^	static const Color CYAN;$/;"	m	class:Color
+Color	math/color.hpp	/^FORCEINLINE Color::Color(const Vector& colorVector) :$/;"	f	class:Color
+Color	math/color.hpp	/^FORCEINLINE Color::Color(float red, float green, float blue, float alpha) :$/;"	f	class:Color
+Color	math/color.hpp	/^class Color$/;"	c
+DEBUG_LOG	core/common.hpp	89;"	d
+DEBUG_LOG_TEMP	core/common.hpp	94;"	d
+DEBUG_LOG_TEMP2	core/common.hpp	95;"	d
+DEFAULT_ALIGNMENT	core/memory.hpp	/^		DEFAULT_ALIGNMENT = 0,$/;"	e	enum:Memory::__anon15
+DEG_TO_RAD_CONV	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float DEG_TO_RAD_CONV = 0.0174532925199433f; \/\/ PI\/180.0f;$/;"	m	struct:GenericMath
+DNL	rendering/staticLibs/stb_image.c	1335;"	d	file:
+DeviceContext	platform/opengl/openGLRenderDevice.hpp	/^typedef SDL_GLContext DeviceContext;$/;"	t
+E	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float E = 2.71828182845904523536f;$/;"	m	struct:GenericMath
+EOI	rendering/staticLibs/stb_image.c	1337;"	d	file:
+FAST_BITS	rendering/staticLibs/stb_image.c	692;"	d	file:
+FBOData	platform/opengl/openGLRenderDevice.hpp	/^	struct FBOData$/;"	s	class:OpenGLRenderDevice
+FILTER_LINEAR	platform/opengl/openGLRenderDevice.hpp	/^		FILTER_LINEAR = GL_LINEAR,$/;"	e	enum:OpenGLRenderDevice::SamplerFilter
+FILTER_LINEAR_MIPMAP_LINEAR	platform/opengl/openGLRenderDevice.hpp	/^		FILTER_LINEAR_MIPMAP_LINEAR = GL_LINEAR_MIPMAP_LINEAR,$/;"	e	enum:OpenGLRenderDevice::SamplerFilter
+FILTER_LINEAR_MIPMAP_NEAREST	platform/opengl/openGLRenderDevice.hpp	/^		FILTER_LINEAR_MIPMAP_NEAREST = GL_LINEAR_MIPMAP_NEAREST,$/;"	e	enum:OpenGLRenderDevice::SamplerFilter
+FILTER_NEAREST	platform/opengl/openGLRenderDevice.hpp	/^		FILTER_NEAREST = GL_NEAREST,$/;"	e	enum:OpenGLRenderDevice::SamplerFilter
+FILTER_NEAREST_MIPMAP_LINEAR	platform/opengl/openGLRenderDevice.hpp	/^		FILTER_NEAREST_MIPMAP_LINEAR = GL_NEAREST_MIPMAP_LINEAR,$/;"	e	enum:OpenGLRenderDevice::SamplerFilter
+FILTER_NEAREST_MIPMAP_NEAREST	platform/opengl/openGLRenderDevice.hpp	/^		FILTER_NEAREST_MIPMAP_NEAREST = GL_NEAREST_MIPMAP_NEAREST,$/;"	e	enum:OpenGLRenderDevice::SamplerFilter
+FORCEINLINE	core/common.hpp	73;"	d
+FORMAT_DEPTH	platform/opengl/openGLRenderDevice.hpp	/^		FORMAT_DEPTH,$/;"	e	enum:OpenGLRenderDevice::PixelFormat
+FORMAT_DEPTH_AND_STENCIL	platform/opengl/openGLRenderDevice.hpp	/^		FORMAT_DEPTH_AND_STENCIL,$/;"	e	enum:OpenGLRenderDevice::PixelFormat
+FORMAT_R	platform/opengl/openGLRenderDevice.hpp	/^		FORMAT_R,$/;"	e	enum:OpenGLRenderDevice::PixelFormat
+FORMAT_RG	platform/opengl/openGLRenderDevice.hpp	/^		FORMAT_RG,$/;"	e	enum:OpenGLRenderDevice::PixelFormat
+FORMAT_RGB	platform/opengl/openGLRenderDevice.hpp	/^		FORMAT_RGB,$/;"	e	enum:OpenGLRenderDevice::PixelFormat
+FORMAT_RGBA	platform/opengl/openGLRenderDevice.hpp	/^		FORMAT_RGBA,$/;"	e	enum:OpenGLRenderDevice::PixelFormat
+F_avg	rendering/staticLibs/stb_image.c	/^   F_none=0, F_sub=1, F_up=2, F_avg=3, F_paeth=4,$/;"	e	enum:__anon13	file:
+F_avg_first	rendering/staticLibs/stb_image.c	/^   F_avg_first, F_paeth_first$/;"	e	enum:__anon13	file:
+F_none	rendering/staticLibs/stb_image.c	/^   F_none=0, F_sub=1, F_up=2, F_avg=3, F_paeth=4,$/;"	e	enum:__anon13	file:
+F_paeth	rendering/staticLibs/stb_image.c	/^   F_none=0, F_sub=1, F_up=2, F_avg=3, F_paeth=4,$/;"	e	enum:__anon13	file:
+F_paeth_first	rendering/staticLibs/stb_image.c	/^   F_avg_first, F_paeth_first$/;"	e	enum:__anon13	file:
+F_sub	rendering/staticLibs/stb_image.c	/^   F_none=0, F_sub=1, F_up=2, F_avg=3, F_paeth=4,$/;"	e	enum:__anon13	file:
+F_up	rendering/staticLibs/stb_image.c	/^   F_none=0, F_sub=1, F_up=2, F_avg=3, F_paeth=4,$/;"	e	enum:__anon13	file:
+FramebufferAttachment	platform/opengl/openGLRenderDevice.hpp	/^	enum FramebufferAttachment$/;"	g	class:OpenGLRenderDevice
+GREEN	math/color.hpp	/^	static const Color GREEN;$/;"	m	class:Color
+GenericMath	platform/generic/genericMath.hpp	/^struct GenericMath$/;"	s
+GenericMemory	platform/generic/genericMemory.hpp	/^struct GenericMemory$/;"	s
+GenericVector	platform/generic/genericVecmath.hpp	/^struct GenericVector$/;"	s
+HALF	math/vecmath.hpp	/^	static const Vector HALF;$/;"	m	struct:VectorConstants
+HALF_PI	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float HALF_PI = 1.57079632679f;$/;"	m	struct:GenericMath
+HDR_BUFLEN	rendering/staticLibs/stb_image.c	3957;"	d	file:
+IDCT_1D	rendering/staticLibs/stb_image.c	949;"	d	file:
+IndexedModel	rendering/indexedModel.hpp	/^	IndexedModel() :$/;"	f	class:IndexedModel
+IndexedModel	rendering/indexedModel.hpp	/^class IndexedModel$/;"	c
+LOG_ERROR	core/common.hpp	86;"	d
+LOG_TYPE_RENDERER	core/common.hpp	88;"	d
+LOG_WARNING	core/common.hpp	87;"	d
+MAGENTA	math/color.hpp	/^	static const Color MAGENTA;$/;"	m	class:Color
+MARKER_none	rendering/staticLibs/stb_image.c	1063;"	d	file:
+MASK_W	math/vecmath.hpp	/^	static const Vector MASK_W;$/;"	m	struct:VectorConstants
+MASK_X	math/vecmath.hpp	/^	static const Vector MASK_X;$/;"	m	struct:VectorConstants
+MASK_Y	math/vecmath.hpp	/^	static const Vector MASK_Y;$/;"	m	struct:VectorConstants
+MASK_Z	math/vecmath.hpp	/^	static const Vector MASK_Z;$/;"	m	struct:VectorConstants
+MIN_ALIGNMENT	core/memory.hpp	/^		MIN_ALIGNMENT = 8$/;"	e	enum:Memory::__anon15
+Map	dataStructures/map.hpp	5;"	d
+Math	math/math.hpp	/^typedef PlatformMath Math;$/;"	t
+Matrix	math/matrix.hpp	/^FORCEINLINE Matrix::Matrix() {}$/;"	f	class:Matrix
+Matrix	math/matrix.hpp	/^FORCEINLINE Matrix::Matrix(const Vector& vecX, const Vector& vecY,$/;"	f	class:Matrix
+Matrix	math/matrix.hpp	/^class Matrix$/;"	c
+Memory	core/memory.hpp	/^struct Memory$/;"	s
+NANOSECONDS_PER_SECOND	timing.cpp	/^	static const long NANOSECONDS_PER_SECOND = 1000000000L;$/;"	v	file:
+NULL_COPY_AND_ASSIGN	core/common.hpp	82;"	d
+ONE	math/vecmath.hpp	/^	static const Vector ONE;$/;"	m	struct:VectorConstants
+OS_LINUX	timing.cpp	7;"	d	file:
+OS_OTHER	timing.cpp	11;"	d	file:
+OS_OTHER_CPP11	timing.cpp	9;"	d	file:
+OS_WINDOWS	timing.cpp	5;"	d	file:
+OpenGLRenderDevice	platform/opengl/openGLRenderDevice.cpp	/^OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :$/;"	f	class:OpenGLRenderDevice
+OpenGLRenderDevice	platform/opengl/openGLRenderDevice.hpp	/^class OpenGLRenderDevice$/;"	c
+PI	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float PI = 3.1415926535897932f;$/;"	m	struct:GenericMath
+PNG_TYPE	rendering/staticLibs/stb_image.c	2136;"	d	file:
+PRIMITIVE_LINES	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_LINES = GL_LINES,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_LINES_ADJACENCY	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_LINES_ADJACENCY = GL_LINES_ADJACENCY,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_LINE_LOOP	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_LINE_LOOP = GL_LINE_LOOP,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_LINE_STRIP	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_LINE_STRIP = GL_LINE_STRIP,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_LINE_STRIP_ADJACENCY	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_LINE_STRIP_ADJACENCY = GL_LINE_STRIP_ADJACENCY,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_PATCHES	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_PATCHES = GL_PATCHES,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_POINTS	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_POINTS = GL_POINTS,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_TRAINGLE_STRIP_ADJACENCY	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_TRAINGLE_STRIP_ADJACENCY = GL_TRIANGLE_STRIP_ADJACENCY,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_TRIANGLES	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_TRIANGLES = GL_TRIANGLES,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_TRIANGLES_ADJACENCY	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_TRIANGLES_ADJACENCY = GL_TRIANGLES_ADJACENCY,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_TRIANGLE_FAN	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_TRIANGLE_FAN = GL_TRIANGLE_FAN,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PRIMITIVE_TRIANGLE_STRIP	platform/opengl/openGLRenderDevice.hpp	/^		PRIMITIVE_TRIANGLE_STRIP = GL_TRIANGLE_STRIP,$/;"	e	enum:OpenGLRenderDevice::PrimitiveType
+PixelFormat	platform/opengl/openGLRenderDevice.hpp	/^	enum PixelFormat$/;"	g	class:OpenGLRenderDevice
+Plane	math/plane.hpp	/^FORCEINLINE Plane::Plane() {}$/;"	f	class:Plane
+Plane	math/plane.hpp	/^FORCEINLINE Plane::Plane(const Vector& plane) :$/;"	f	class:Plane
+Plane	math/plane.hpp	/^FORCEINLINE Plane::Plane(const Vector3f& normal, float w) :$/;"	f	class:Plane
+Plane	math/plane.hpp	/^FORCEINLINE Plane::Plane(float x, float y, float z, float w) :$/;"	f	class:Plane
+Plane	math/plane.hpp	/^class Plane$/;"	c
+PlatformApplication	platform/platformApplication.hpp	/^typedef SDLApplication PlatformApplication;$/;"	t
+PlatformMath	platform/platformMath.hpp	/^typedef GenericMath PlatformMath;$/;"	t
+PlatformMemory	platform/platformMemory.hpp	/^typedef GenericMemory PlatformMemory;$/;"	t
+PlatformRenderDevice	platform/platformRenderDevice.hpp	/^typedef OpenGLRenderDevice PlatformRenderDevice;$/;"	t
+PlatformVector	platform/platformVecmath.hpp	/^	typedef GenericVector PlatformVector;$/;"	t
+PlatformVector	platform/platformVecmath.hpp	/^	typedef SSEVector PlatformVector;$/;"	t
+PlatformWindow	platform/platformWindow.hpp	/^typedef SDLWindow PlatformWindow;$/;"	t
+PrimitiveType	platform/opengl/openGLRenderDevice.hpp	/^	enum PrimitiveType$/;"	g	class:OpenGLRenderDevice
+Quaternion	math/quaternion.hpp	/^	FORCEINLINE Quaternion() {}$/;"	f	class:Quaternion
+Quaternion	math/quaternion.hpp	/^FORCEINLINE Quaternion::Quaternion(const Vector& quat) :$/;"	f	class:Quaternion
+Quaternion	math/quaternion.hpp	/^FORCEINLINE Quaternion::Quaternion(const Vector3f& axis, float angle)$/;"	f	class:Quaternion
+Quaternion	math/quaternion.hpp	/^FORCEINLINE Quaternion::Quaternion(float x, float y, float z, float w) :$/;"	f	class:Quaternion
+Quaternion	math/quaternion.hpp	/^class Quaternion$/;"	c
+RAD_TO_DEG_CONV	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float RAD_TO_DEG_CONV = 57.2957795130823f; \/\/ 180.0f\/PI;$/;"	m	struct:GenericMath
+RED	math/color.hpp	/^	static const Color RED;$/;"	m	class:Color
+RESTART	rendering/staticLibs/stb_image.c	1080;"	d	file:
+R_HALF_PI	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float R_HALF_PI = 0.636619772367581f;$/;"	m	struct:GenericMath
+R_LN_2	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float R_LN_2 = 1.44269504088896f;$/;"	m	struct:GenericMath
+R_PI	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float R_PI = 0.31830988618f;$/;"	m	struct:GenericMath
+R_TWO_PI	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float R_TWO_PI = 0.159154943091895f;$/;"	m	struct:GenericMath
+RenderContext	rendering/renderContext.hpp	/^	FORCEINLINE RenderContext(RenderDevice& deviceIn, RenderTarget& targetIn) :$/;"	f	class:RenderContext
+RenderContext	rendering/renderContext.hpp	/^class RenderContext$/;"	c
+RenderDevice	rendering/renderDevice.hpp	/^typedef PlatformRenderDevice RenderDevice;$/;"	t
+RenderTarget	rendering/renderTarget.hpp	/^	FORCEINLINE RenderTarget(RenderDevice& deviceIn,$/;"	f	class:RenderTarget
+RenderTarget	rendering/renderTarget.hpp	/^	RenderTarget(RenderDevice& deviceIn) :$/;"	f	class:RenderTarget
+RenderTarget	rendering/renderTarget.hpp	/^class RenderTarget$/;"	c
+SCAN_header	rendering/staticLibs/stb_image.c	/^   SCAN_header$/;"	e	enum:__anon4	file:
+SCAN_load	rendering/staticLibs/stb_image.c	/^   SCAN_load=0,$/;"	e	enum:__anon4	file:
+SCAN_type	rendering/staticLibs/stb_image.c	/^   SCAN_type,$/;"	e	enum:__anon4	file:
+SDLApplication	platform/sdl/sdlApplication.cpp	/^SDLApplication::SDLApplication()$/;"	f	class:SDLApplication
+SDLApplication	platform/sdl/sdlApplication.hpp	/^class SDLApplication$/;"	c
+SDLWindow	platform/sdl/sdlWindow.cpp	/^SDLWindow::SDLWindow(const Application& app,$/;"	f	class:SDLWindow
+SDLWindow	platform/sdl/sdlWindow.hpp	/^class SDLWindow$/;"	c
+SIGN_MASK	math/vecmath.hpp	/^	static const Vector SIGN_MASK;$/;"	m	struct:VectorConstants
+SIMD_CPU_ARCH	platform/platform.hpp	21;"	d
+SIMD_CPU_ARCH	platform/platform.hpp	23;"	d
+SIMD_CPU_ARCH	platform/platform.hpp	25;"	d
+SIMD_CPU_ARCH_OTHER	platform/platform.hpp	5;"	d
+SIMD_CPU_ARCH_x86	platform/platform.hpp	6;"	d
+SIMD_CPU_ARCH_x86_64	platform/platform.hpp	7;"	d
+SIMD_LEVEL_NONE	platform/platform.hpp	9;"	d
+SIMD_LEVEL_x86_AVX	platform/platform.hpp	16;"	d
+SIMD_LEVEL_x86_AVX2	platform/platform.hpp	17;"	d
+SIMD_LEVEL_x86_SSE	platform/platform.hpp	10;"	d
+SIMD_LEVEL_x86_SSE2	platform/platform.hpp	11;"	d
+SIMD_LEVEL_x86_SSE3	platform/platform.hpp	12;"	d
+SIMD_LEVEL_x86_SSE4_1	platform/platform.hpp	14;"	d
+SIMD_LEVEL_x86_SSE4_2	platform/platform.hpp	15;"	d
+SIMD_LEVEL_x86_SSSE3	platform/platform.hpp	13;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	31;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	33;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	35;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	37;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	39;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	41;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	43;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	45;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	47;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	49;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	51;"	d
+SIMD_SUPPORTED_LEVEL	platform/platform.hpp	54;"	d
+SOF	rendering/staticLibs/stb_image.c	1338;"	d	file:
+SOI	rendering/staticLibs/stb_image.c	1336;"	d	file:
+SOS	rendering/staticLibs/stb_image.c	1339;"	d	file:
+SSEVector	platform/sse/sseVecmath.hpp	/^struct SSEVector$/;"	s
+SSEVector_SHUFFLEMASK	platform/sse/sseVecmath.hpp	7;"	d
+STBI_HAS_LROTL	rendering/staticLibs/stb_image.c	119;"	d	file:
+STBI_INCLUDE_STB_IMAGE_H	rendering/staticLibs/stb_image.c	65;"	d	file:
+STBI_NOTUSED	rendering/staticLibs/stb_image.c	116;"	d	file:
+STBI_NO_WRITE	rendering/staticLibs/stb_image.c	113;"	d	file:
+STBI_VERSION	rendering/staticLibs/stb_image.h	126;"	d
+STBI_default	rendering/staticLibs/stb_image.h	/^   STBI_default = 0, \/\/ only used for req_comp$/;"	e	enum:__anon1
+STBI_grey	rendering/staticLibs/stb_image.h	/^   STBI_grey       = 1,$/;"	e	enum:__anon1
+STBI_grey_alpha	rendering/staticLibs/stb_image.h	/^   STBI_grey_alpha = 2,$/;"	e	enum:__anon1
+STBI_rgb	rendering/staticLibs/stb_image.h	/^   STBI_rgb        = 3,$/;"	e	enum:__anon1
+STBI_rgb_alpha	rendering/staticLibs/stb_image.h	/^   STBI_rgb_alpha  = 4$/;"	e	enum:__anon1
+Sampler	rendering/sampler.hpp	/^	FORCEINLINE Sampler(RenderDevice& deviceIn,$/;"	f	class:Sampler
+Sampler	rendering/sampler.hpp	/^class Sampler$/;"	c
+SamplerFilter	platform/opengl/openGLRenderDevice.hpp	/^	enum SamplerFilter$/;"	g	class:OpenGLRenderDevice
+SamplerWrapMode	platform/opengl/openGLRenderDevice.hpp	/^	enum SamplerWrapMode$/;"	g	class:OpenGLRenderDevice
+Shader	rendering/shader.hpp	/^	FORCEINLINE Shader(RenderDevice& deviceIn, const String& text) :$/;"	f	class:Shader
+Shader	rendering/shader.hpp	/^class Shader$/;"	c
+ShaderProgram	platform/opengl/openGLRenderDevice.hpp	/^	struct ShaderProgram$/;"	s	class:OpenGLRenderDevice
+String	dataStructures/string.hpp	8;"	d
+StringFuncs	dataStructures/string.hpp	/^struct StringFuncs$/;"	s
+TIMING_HPP	timing.hpp	2;"	d
+TRANSPARENT	math/color.hpp	/^	static const Color TRANSPARENT;$/;"	m	class:Color
+TWO	math/vecmath.hpp	/^	static const Vector TWO;$/;"	m	struct:VectorConstants
+TWO_PI	platform/generic/genericMath.hpp	/^	static CONSTEXPR const float TWO_PI = 6.28318530717959f;$/;"	m	struct:GenericMath
+Texture	rendering/texture.hpp	/^	FORCEINLINE Texture(RenderDevice& deviceIn, const ArrayBitmap& texData,$/;"	f	class:Texture
+Texture	rendering/texture.hpp	/^class Texture$/;"	c
+Time	timing.hpp	/^namespace Time$/;"	n
+Transform	math/transform.hpp	/^	FORCEINLINE Transform() :$/;"	f	class:Transform
+Transform	math/transform.hpp	/^	FORCEINLINE Transform(const Quaternion& rotationIn) :$/;"	f	class:Transform
+Transform	math/transform.hpp	/^	FORCEINLINE Transform(const Vector3f& translationIn) :$/;"	f	class:Transform
+Transform	math/transform.hpp	/^	FORCEINLINE Transform(const Vector3f& translationIn, const Quaternion& rotationIn,$/;"	f	class:Transform
+Transform	math/transform.hpp	/^class Transform$/;"	c
+USAGE_DYNAMIC_COPY	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_DYNAMIC_COPY = GL_DYNAMIC_COPY,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_DYNAMIC_DRAW	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_DYNAMIC_DRAW = GL_DYNAMIC_DRAW,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_DYNAMIC_READ	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_DYNAMIC_READ = GL_DYNAMIC_READ,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_STATIC_COPY	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_STATIC_COPY = GL_STATIC_COPY,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_STATIC_DRAW	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_STATIC_DRAW = GL_STATIC_DRAW,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_STATIC_READ	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_STATIC_READ = GL_STATIC_READ,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_STREAM_COPY	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_STREAM_COPY = GL_STREAM_COPY,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_STREAM_DRAW	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_STREAM_DRAW = GL_STREAM_DRAW,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+USAGE_STREAM_READ	platform/opengl/openGLRenderDevice.hpp	/^		USAGE_STREAM_READ = GL_STREAM_READ,$/;"	e	enum:OpenGLRenderDevice::BufferUsage
+UniformBuffer	rendering/uniformBuffer.hpp	/^	FORCEINLINE UniformBuffer(RenderDevice& deviceIn, uintptr dataSize,$/;"	f	class:UniformBuffer
+UniformBuffer	rendering/uniformBuffer.hpp	/^class UniformBuffer$/;"	c
+Vector	math/vecmath.hpp	/^typedef PlatformVector Vector;$/;"	t
+Vector3f	math/vector.hpp	/^FORCEINLINE Vector3f::Vector3f() :$/;"	f	class:Vector3f
+Vector3f	math/vector.hpp	/^FORCEINLINE Vector3f::Vector3f(const Vector& vecIn) :$/;"	f	class:Vector3f
+Vector3f	math/vector.hpp	/^FORCEINLINE Vector3f::Vector3f(float val) :$/;"	f	class:Vector3f
+Vector3f	math/vector.hpp	/^FORCEINLINE Vector3f::Vector3f(float xIn, float yIn, float zIn) :$/;"	f	class:Vector3f
+Vector3f	math/vector.hpp	/^class Vector3f$/;"	c
+VectorConstants	math/vecmath.hpp	/^struct VectorConstants$/;"	s
+VertexArray	platform/opengl/openGLRenderDevice.hpp	/^	struct VertexArray$/;"	s	class:OpenGLRenderDevice
+VertexArray	rendering/vertexArray.hpp	/^	FORCEINLINE VertexArray(RenderDevice& deviceIn, const IndexedModel& model,$/;"	f	class:VertexArray
+VertexArray	rendering/vertexArray.hpp	/^class VertexArray$/;"	c
+WHITE	math/color.hpp	/^	static const Color WHITE;$/;"	m	class:Color
+WRAP_CLAMP	platform/opengl/openGLRenderDevice.hpp	/^		WRAP_CLAMP = GL_CLAMP_TO_EDGE,$/;"	e	enum:OpenGLRenderDevice::SamplerWrapMode
+WRAP_CLAMP_MIRROR	platform/opengl/openGLRenderDevice.hpp	/^		WRAP_CLAMP_MIRROR = GL_MIRROR_CLAMP_TO_EDGE,$/;"	e	enum:OpenGLRenderDevice::SamplerWrapMode
+WRAP_REPEAT	platform/opengl/openGLRenderDevice.hpp	/^		WRAP_REPEAT = GL_REPEAT,$/;"	e	enum:OpenGLRenderDevice::SamplerWrapMode
+WRAP_REPEAT_MIRROR	platform/opengl/openGLRenderDevice.hpp	/^		WRAP_REPEAT_MIRROR = GL_MIRRORED_REPEAT,$/;"	e	enum:OpenGLRenderDevice::SamplerWrapMode
+Window	core/window.hpp	/^typedef PlatformWindow Window;$/;"	t
+WindowHandle	platform/sdl/sdlWindow.hpp	/^typedef SDL_Window* WindowHandle;$/;"	t
+YCbCr_to_RGB_row	rendering/staticLibs/stb_image.c	/^static void YCbCr_to_RGB_row(uint8 *out, const uint8 *y, const uint8 *pcb, const uint8 *pcr, int count, int step)$/;"	f	file:
+YELLOW	math/color.hpp	/^	static const Color YELLOW;$/;"	m	class:Color
+ZERO	math/vecmath.hpp	/^	static const Vector ZERO;$/;"	m	struct:VectorConstants
+ZFAST_BITS	rendering/staticLibs/stb_image.c	1693;"	d	file:
+ZFAST_MASK	rendering/staticLibs/stb_image.c	1694;"	d	file:
+_CRT_SECURE_NO_WARNINGS	rendering/staticLibs/stb_image.h	120;"	d
+abs	math/vector.cpp	/^Vector3f Vector3f::abs() const$/;"	f	class:Vector3f
+abs	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE T abs(const T& val)$/;"	f	struct:GenericMath
+abs	platform/generic/genericMath.hpp	/^FORCEINLINE float GenericMath::abs(const float& val)$/;"	f	class:GenericMath
+abs	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector abs() const$/;"	f	struct:GenericVector
+abs	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector abs() const$/;"	f	struct:SSEVector
+absMax	math/vector.cpp	/^float Vector3f::absMax() const$/;"	f	class:Vector3f
+absMin	math/vector.cpp	/^float Vector3f::absMin() const$/;"	f	class:Vector3f
+acos	platform/generic/genericMath.hpp	/^	static FORCEINLINE float acos(float val) { return acosf(val); }$/;"	f	struct:GenericMath
+addAllAttributes	platform/opengl/openGLRenderDevice.cpp	/^static void addAllAttributes(GLuint program, const String& vertexShaderText,$/;"	f	file:
+addElement1f	rendering/indexedModel.cpp	/^void IndexedModel::addElement1f(uint32 elementIndex, float e0)$/;"	f	class:IndexedModel
+addElement2f	rendering/indexedModel.cpp	/^void IndexedModel::addElement2f(uint32 elementIndex, float e0, float e1)$/;"	f	class:IndexedModel
+addElement3f	rendering/indexedModel.cpp	/^void IndexedModel::addElement3f(uint32 elementIndex, float e0, float e1, float e2)$/;"	f	class:IndexedModel
+addElement4f	rendering/indexedModel.cpp	/^void IndexedModel::addElement4f(uint32 elementIndex, float e0, float e1, float e2, float e3)$/;"	f	class:IndexedModel
+addIndices1i	rendering/indexedModel.cpp	/^void IndexedModel::addIndices1i(uint32 i0)$/;"	f	class:IndexedModel
+addIndices2i	rendering/indexedModel.cpp	/^void IndexedModel::addIndices2i(uint32 i0, uint32 i1)$/;"	f	class:IndexedModel
+addIndices3i	rendering/indexedModel.cpp	/^void IndexedModel::addIndices3i(uint32 i0, uint32 i1, uint32 i2)$/;"	f	class:IndexedModel
+addIndices4i	rendering/indexedModel.cpp	/^void IndexedModel::addIndices4i(uint32 i0, uint32 i1, uint32 i2, uint32 i3)$/;"	f	class:IndexedModel
+addShader	platform/opengl/openGLRenderDevice.cpp	/^static bool addShader(GLuint shaderProgram, const String& text, GLenum type,$/;"	f	file:
+addShaderUniforms	platform/opengl/openGLRenderDevice.cpp	/^static void addShaderUniforms(GLuint shaderProgram, const String& shaderText,$/;"	f	file:
+align	core/memory.hpp	/^	static inline CONSTEXPR T align(const T ptr, uintptr alignment)$/;"	f	struct:Memory
+align	platform/generic/genericMemory.hpp	/^	static inline CONSTEXPR T align(const T ptr, uintptr alignment)$/;"	f	struct:GenericMemory
+allocateElement	rendering/indexedModel.cpp	/^void IndexedModel::allocateElement(uint32 elementSize)$/;"	f	class:IndexedModel
+asin	platform/generic/genericMath.hpp	/^	static FORCEINLINE float asin(float val) { return asinf(val); }$/;"	f	struct:GenericMath
+assertCheck	core/common.hpp	68;"	d
+assertCheck	core/common.hpp	70;"	d
+at_eof	rendering/staticLibs/stb_image.c	/^stbi_inline static int at_eof(stbi *s)$/;"	f	file:
+atan	platform/generic/genericMath.hpp	/^	static FORCEINLINE float atan(float val) { return atanf(val); }$/;"	f	struct:GenericMath
+atan	platform/generic/genericMath.hpp	/^	static FORCEINLINE float atan(float val, float val2) { return atan2f(val, val2); }$/;"	f	struct:GenericMath
+axisAndAngle	math/quaternion.cpp	/^void Quaternion::axisAndAngle(Vector3f& axis, float& angle) const$/;"	f	class:Quaternion
+bgindex	rendering/staticLibs/stb_image.c	/^   int flags, bgindex, ratio, transparent, eflags;$/;"	m	struct:stbi_gif_struct	file:
+bilerp	platform/generic/genericMath.hpp	/^	static FORCEINLINE T bilerp(const T& val00, const T& val10,$/;"	f	struct:GenericMath
+bit_reverse	rendering/staticLibs/stb_image.c	/^stbi_inline static int bit_reverse(int v, int bits)$/;"	f	file:
+bitcount	rendering/staticLibs/stb_image.c	/^static int bitcount(unsigned int a)$/;"	f	file:
+bitreverse16	rendering/staticLibs/stb_image.c	/^stbi_inline static int bitreverse16(int n)$/;"	f	file:
+bmask	rendering/staticLibs/stb_image.c	/^static uint32 bmask[17]={0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,32767,65535};$/;"	v	file:
+bmp_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *bmp_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+bmp_test	rendering/staticLibs/stb_image.c	/^static int bmp_test(stbi *s)$/;"	f	file:
+boundFBO	platform/opengl/openGLRenderDevice.hpp	/^	uint32 boundFBO;$/;"	m	class:OpenGLRenderDevice
+boundShader	platform/opengl/openGLRenderDevice.hpp	/^	uint32 boundShader;$/;"	m	class:OpenGLRenderDevice
+boundVAO	platform/opengl/openGLRenderDevice.hpp	/^	uint32 boundVAO;$/;"	m	class:OpenGLRenderDevice
+bufferSizes	platform/opengl/openGLRenderDevice.hpp	/^		uintptr* bufferSizes;$/;"	m	struct:OpenGLRenderDevice::VertexArray
+buffer_start	rendering/staticLibs/stb_image.c	/^   uint8 buffer_start[128];$/;"	m	struct:__anon3	file:
+buffers	platform/opengl/openGLRenderDevice.hpp	/^		uint32* buffers;$/;"	m	struct:OpenGLRenderDevice::VertexArray
+buflen	rendering/staticLibs/stb_image.c	/^   int buflen;$/;"	m	struct:__anon3	file:
+build_huffman	rendering/staticLibs/stb_image.c	/^static int build_huffman(huffman *h, int *count)$/;"	f	file:
+ceilLog2	platform/generic/genericMath.hpp	/^	static FORCEINLINE uint32 ceilLog2(uint32 val)$/;"	f	struct:GenericMath
+ceilToDouble	platform/generic/genericMath.hpp	/^	static FORCEINLINE double ceilToDouble(double val)$/;"	f	struct:GenericMath
+ceilToFloat	platform/generic/genericMath.hpp	/^	static FORCEINLINE float ceilToFloat(float val)$/;"	f	struct:GenericMath
+ceilToInt	platform/generic/genericMath.hpp	/^	static FORCEINLINE int32 ceilToInt(float val)$/;"	f	struct:GenericMath
+changeSize	platform/sdl/sdlWindow.cpp	/^void SDLWindow::changeSize(int32 width, int32 height)$/;"	f	class:SDLWindow
+channel	rendering/staticLibs/stb_image.c	/^   stbi_uc size,type,channel;$/;"	m	struct:__anon14	file:
+checkShaderError	platform/opengl/openGLRenderDevice.cpp	/^static bool checkShaderError(GLuint shader, int flag,$/;"	f	file:
+check_png_header	rendering/staticLibs/stb_image.c	/^static int check_png_header(stbi *s)$/;"	f	file:
+chunk	rendering/staticLibs/stb_image.c	/^} chunk;$/;"	t	typeref:struct:__anon11	file:
+clamp	platform/generic/genericMath.hpp	/^	static FORCEINLINE T clamp(const T& val, const T& min, const T& max)$/;"	f	struct:GenericMath
+clamp	rendering/staticLibs/stb_image.c	/^stbi_inline static uint8 clamp(int x)$/;"	f	file:
+cleanup_jpeg	rendering/staticLibs/stb_image.c	/^static void cleanup_jpeg(jpeg *j)$/;"	f	file:
+clear	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::clear(uint32 fbo, bool shouldClearColor, bool shouldClearDepth,$/;"	f	class:OpenGLRenderDevice
+clear	rendering/arrayBitmap.cpp	/^void ArrayBitmap::clear(int32 color)$/;"	f	class:ArrayBitmap
+clear	rendering/renderContext.hpp	/^FORCEINLINE void RenderContext::clear(bool shouldClearColor, bool shouldClearDepth,$/;"	f	class:RenderContext
+clear	rendering/renderContext.hpp	/^FORCEINLINE void RenderContext::clear(const Color& color, bool shouldClearDepth)$/;"	f	class:RenderContext
+code	rendering/staticLibs/stb_image.c	/^   uint16 code[256];$/;"	m	struct:__anon5	file:
+code_bits	rendering/staticLibs/stb_image.c	/^   int            code_bits;   \/\/ number of valid bits$/;"	m	struct:__anon6	file:
+code_buffer	rendering/staticLibs/stb_image.c	/^   uint32         code_buffer; \/\/ jpeg entropy-coded buffer$/;"	m	struct:__anon6	file:
+code_buffer	rendering/staticLibs/stb_image.c	/^   uint32 code_buffer;$/;"	m	struct:__anon10	file:
+codes	rendering/staticLibs/stb_image.c	/^   stbi_gif_lzw codes[4096];$/;"	m	struct:stbi_gif_struct	file:
+color_table	rendering/staticLibs/stb_image.c	/^   uint8 *color_table;$/;"	m	struct:stbi_gif_struct	file:
+compute_huffman_codes	rendering/staticLibs/stb_image.c	/^static int compute_huffman_codes(zbuf *a)$/;"	f	file:
+compute_transparency	rendering/staticLibs/stb_image.c	/^static int compute_transparency(png *z, uint8 tc[3], int out_n)$/;"	f	file:
+compute_y	rendering/staticLibs/stb_image.c	/^static uint8 compute_y(int r, int g, int b)$/;"	f	file:
+conjugate	math/quaternion.cpp	/^Quaternion Quaternion::conjugate() const$/;"	f	class:Quaternion
+context	platform/opengl/openGLRenderDevice.hpp	/^	DeviceContext context;$/;"	m	class:OpenGLRenderDevice
+contrastAdjust	math/color.hpp	/^FORCEINLINE Color Color::contrastAdjust(float contrast) const$/;"	f	class:Color
+convert_format	rendering/staticLibs/stb_image.c	/^static unsigned char *convert_format(unsigned char *data, int img_n, int req_comp, uint x, uint y)$/;"	f	file:
+cos	platform/generic/genericMath.hpp	/^	static FORCEINLINE float cos(float val) { return cosf(val); }$/;"	f	struct:GenericMath
+create	platform/sdl/sdlApplication.cpp	/^SDLApplication* SDLApplication::create()$/;"	f	class:SDLApplication
+createRenderTarget	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::createRenderTarget(uint32 texture,$/;"	f	class:OpenGLRenderDevice
+createSampler	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::createSampler(enum SamplerFilter minFilter, enum SamplerFilter magFilter,$/;"	f	class:OpenGLRenderDevice
+createShaderProgram	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::createShaderProgram(const String& shaderText)$/;"	f	class:OpenGLRenderDevice
+createTexture2D	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::createTexture2D(int32 width, int32 height, const void* data,$/;"	f	class:OpenGLRenderDevice
+createUniformBuffer	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::createUniformBuffer(const void* data, uintptr dataSize,$/;"	f	class:OpenGLRenderDevice
+createVertexArray	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::createVertexArray(const float** vertexData,$/;"	f	class:OpenGLRenderDevice
+createVertexArray	rendering/indexedModel.cpp	/^uint32 IndexedModel::createVertexArray(RenderDevice& device,$/;"	f	class:IndexedModel
+create_png_image	rendering/staticLibs/stb_image.c	/^static int create_png_image(png *a, uint8 *raw, uint32 raw_len, int out_n, int interlaced)$/;"	f	file:
+create_png_image_raw	rendering/staticLibs/stb_image.c	/^static int create_png_image_raw(png *a, uint8 *raw, uint32 raw_len, int out_n, uint32 x, uint32 y)$/;"	f	file:
+cross	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::cross(const Vector3f& other) const$/;"	f	class:Vector3f
+cross3	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector cross3(const GenericVector& other) const$/;"	f	struct:GenericVector
+cross3	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector cross3(const SSEVector& other) const$/;"	f	struct:SSEVector
+cur_x	rendering/staticLibs/stb_image.c	/^   int cur_x, cur_y;$/;"	m	struct:stbi_gif_struct	file:
+cur_y	rendering/staticLibs/stb_image.c	/^   int cur_x, cur_y;$/;"	m	struct:stbi_gif_struct	file:
+data	math/color.hpp	/^	Vector data;$/;"	m	class:Color
+data	math/plane.hpp	/^	Vector data;$/;"	m	class:Plane
+data	platform/sse/sseVecmath.hpp	/^	__m128 data;$/;"	m	struct:SSEVector
+data	rendering/staticLibs/stb_image.c	/^      uint8 *data;$/;"	m	struct:__anon6::__anon7	file:
+dc_pred	rendering/staticLibs/stb_image.c	/^      int dc_pred;$/;"	m	struct:__anon6::__anon7	file:
+decode	rendering/staticLibs/stb_image.c	/^stbi_inline static int decode(jpeg *j, huffman *h)$/;"	f	file:
+decode_block	rendering/staticLibs/stb_image.c	/^static int decode_block(jpeg *j, short data[64], huffman *hdc, huffman *hac, int b)$/;"	f	file:
+decode_jpeg_header	rendering/staticLibs/stb_image.c	/^static int decode_jpeg_header(jpeg *z, int scan)$/;"	f	file:
+decode_jpeg_image	rendering/staticLibs/stb_image.c	/^static int decode_jpeg_image(jpeg *j)$/;"	f	file:
+default_distance	rendering/staticLibs/stb_image.c	/^static uint8 default_length[288], default_distance[32];$/;"	v	file:
+default_length	rendering/staticLibs/stb_image.c	/^static uint8 default_length[288], default_distance[32];$/;"	v	file:
+delta	rendering/staticLibs/stb_image.c	/^   int    delta[17];   \/\/ old 'firstsymbol' - old 'firstcode'$/;"	m	struct:__anon5	file:
+dequant	rendering/staticLibs/stb_image.c	/^   uint8 dequant[4][64];$/;"	m	struct:__anon6	file:
+dequant2	rendering/staticLibs/stb_image.c	/^   unsigned short dequant2[4][64];$/;"	m	struct:__anon6	file:
+determinant3x3	math/matrix.hpp	/^FORCEINLINE float Matrix::determinant3x3() const$/;"	f	class:Matrix
+determinant4x4	math/matrix.hpp	/^FORCEINLINE float Matrix::determinant4x4() const$/;"	f	class:Matrix
+device	rendering/renderContext.hpp	/^	RenderDevice* device;$/;"	m	class:RenderContext
+device	rendering/renderTarget.hpp	/^	RenderDevice* device;$/;"	m	class:RenderTarget
+device	rendering/sampler.hpp	/^	RenderDevice* device;$/;"	m	class:Sampler
+device	rendering/shader.hpp	/^	RenderDevice* device;$/;"	m	class:Shader
+device	rendering/texture.hpp	/^	RenderDevice* device;$/;"	m	class:Texture
+device	rendering/uniformBuffer.hpp	/^	RenderDevice* device;$/;"	m	class:UniformBuffer
+device	rendering/vertexArray.hpp	/^	RenderDevice* device;$/;"	m	class:VertexArray
+deviceId	rendering/renderTarget.hpp	/^	uint32 deviceId;$/;"	m	class:RenderTarget
+deviceId	rendering/sampler.hpp	/^	uint32 deviceId;$/;"	m	class:Sampler
+deviceId	rendering/shader.hpp	/^	uint32 deviceId;$/;"	m	class:Shader
+deviceId	rendering/uniformBuffer.hpp	/^	uint32 deviceId;$/;"	m	class:UniformBuffer
+deviceId	rendering/vertexArray.hpp	/^	uint32 deviceId;$/;"	m	class:VertexArray
+dezigzag	rendering/staticLibs/stb_image.c	/^static uint8 dezigzag[64+15] =$/;"	v	file:
+dirAndLength	math/vector.cpp	/^void Vector3f::dirAndLength(Vector3f& dir, float& length) const$/;"	f	class:Vector3f
+dist	math/vector.hpp	/^FORCEINLINE float Vector3f::dist(const Vector3f& other) const$/;"	f	class:Vector3f
+distSquared	math/vector.hpp	/^FORCEINLINE float Vector3f::distSquared(const Vector3f& other) const$/;"	f	class:Vector3f
+dist_base	rendering/staticLibs/stb_image.c	/^static int dist_base[32] = { 1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,$/;"	v	file:
+dist_extra	rendering/staticLibs/stb_image.c	/^static int dist_extra[32] =$/;"	v	file:
+div16	rendering/staticLibs/stb_image.c	1447;"	d	file:
+div4	rendering/staticLibs/stb_image.c	1398;"	d	file:
+do_png	rendering/staticLibs/stb_image.c	/^static unsigned char *do_png(png *p, int *x, int *y, int *n, int req_comp)$/;"	f	file:
+do_zlib	rendering/staticLibs/stb_image.c	/^static int do_zlib(zbuf *a, char *obuf, int olen, int exp, int parse_header)$/;"	f	file:
+dot	math/plane.hpp	/^FORCEINLINE float Plane::dot(const Vector3f& other) const$/;"	f	class:Plane
+dot	math/quaternion.hpp	/^FORCEINLINE float Quaternion::dot(const Quaternion& other) const$/;"	f	class:Quaternion
+dot	math/vector.hpp	/^FORCEINLINE float Vector3f::dot(const Vector3f& other) const$/;"	f	class:Vector3f
+dot3	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector dot3(const GenericVector& other) const$/;"	f	struct:GenericVector
+dot3	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector dot3(const SSEVector& other) const$/;"	f	struct:SSEVector
+dot4	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector dot4(const GenericVector& other) const$/;"	f	struct:GenericVector
+dot4	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector dot4(const SSEVector& other) const$/;"	f	struct:SSEVector
+draw	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::draw(uint32 fbo, uint32 shader, uint32 vao,$/;"	f	class:OpenGLRenderDevice
+draw	rendering/renderContext.hpp	/^FORCEINLINE void RenderContext::draw(Shader& shader, VertexArray& vertexArray, $/;"	f	class:RenderContext
+e	rendering/staticLibs/stb_image.c	/^static int e(const char *str)$/;"	f	file:
+e	rendering/staticLibs/stb_image.c	255;"	d	file:
+e	rendering/staticLibs/stb_image.c	257;"	d	file:
+e	rendering/staticLibs/stb_image.c	259;"	d	file:
+eflags	rendering/staticLibs/stb_image.c	/^   int flags, bgindex, ratio, transparent, eflags;$/;"	m	struct:stbi_gif_struct	file:
+elementSizes	rendering/indexedModel.hpp	/^	Array<uint32> elementSizes;$/;"	m	class:IndexedModel
+elements	rendering/indexedModel.hpp	/^	Array<Array<float> > elements;$/;"	m	class:IndexedModel
+eof	rendering/staticLibs/stb_image.h	/^   int      (*eof)   (void *user);                       \/\/ returns nonzero if we are at end of file\/data$/;"	m	struct:__anon2
+epf	rendering/staticLibs/stb_image.c	262;"	d	file:
+epuc	rendering/staticLibs/stb_image.c	263;"	d	file:
+equals	math/color.hpp	/^FORCEINLINE bool Color::equals(const Color& other, float errorMargin) const$/;"	f	class:Color
+equals	math/matrix.hpp	/^FORCEINLINE bool Matrix::equals(const Matrix& other, float errorMargin) const$/;"	f	class:Matrix
+equals	math/plane.hpp	/^FORCEINLINE bool Plane::equals(const Plane& other, float errorMargin) const$/;"	f	class:Plane
+equals	math/quaternion.hpp	/^FORCEINLINE bool Quaternion::equals(const Quaternion& other, float errorMargin) const$/;"	f	class:Quaternion
+equals	math/vector.cpp	/^bool Vector3f::equals(const Vector3f& other, float errorMargin) const$/;"	f	class:Vector3f
+equals	math/vector.cpp	/^bool Vector3f::equals(float val, float errorMargin) const$/;"	f	class:Vector3f
+equals	platform/generic/genericMath.hpp	/^	static FORCEINLINE bool equals(const T& val1, const T& val2, const T& errorMargin)$/;"	f	struct:GenericMath
+equals	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector equals(const GenericVector& other, float errorMargin) const$/;"	f	struct:GenericVector
+equals	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector equals(const SSEVector& other, float errorMargin) const$/;"	f	struct:SSEVector
+exp	platform/generic/genericMath.hpp	/^	static FORCEINLINE float exp(float val) { return expf(val); }$/;"	f	struct:GenericMath
+expand	rendering/staticLibs/stb_image.c	/^static int expand(zbuf *z, int n)  \/\/ need to make room for n bytes$/;"	f	file:
+expand_palette	rendering/staticLibs/stb_image.c	/^static int expand_palette(png *a, uint8 *palette, int len, int pal_img_n)$/;"	f	file:
+expanded	rendering/staticLibs/stb_image.c	/^   uint8 *idata, *expanded, *out;$/;"	m	struct:__anon12	file:
+extend_receive	rendering/staticLibs/stb_image.c	/^stbi_inline static int extend_receive(jpeg *j, int n)$/;"	f	file:
+f2f	rendering/staticLibs/stb_image.c	945;"	d	file:
+failure_reason	rendering/staticLibs/stb_image.c	/^static const char *failure_reason;$/;"	v	file:
+fast	rendering/staticLibs/stb_image.c	/^   uint16 fast[1 << ZFAST_BITS];$/;"	m	struct:__anon9	file:
+fast	rendering/staticLibs/stb_image.c	/^   uint8  fast[1 << FAST_BITS];$/;"	m	struct:__anon5	file:
+fboMap	platform/opengl/openGLRenderDevice.hpp	/^	Map<uint32, FBOData> fboMap;$/;"	m	class:OpenGLRenderDevice
+fill_bits	rendering/staticLibs/stb_image.c	/^static void fill_bits(zbuf *z)$/;"	f	file:
+first	rendering/staticLibs/stb_image.c	/^   uint8 first;$/;"	m	struct:stbi_gif_lzw_struct	file:
+first_row_filter	rendering/staticLibs/stb_image.c	/^static uint8 first_row_filter[5] =$/;"	v	file:
+firstcode	rendering/staticLibs/stb_image.c	/^   uint16 firstcode[16];$/;"	m	struct:__anon9	file:
+firstsymbol	rendering/staticLibs/stb_image.c	/^   uint16 firstsymbol[16];$/;"	m	struct:__anon9	file:
+flags	rendering/staticLibs/stb_image.c	/^   int flags, bgindex, ratio, transparent, eflags;$/;"	m	struct:stbi_gif_struct	file:
+float2fixed	rendering/staticLibs/stb_image.c	1484;"	d	file:
+float2int	rendering/staticLibs/stb_image.c	637;"	d	file:
+floorLog2	platform/generic/genericMath.hpp	/^	static FORCEINLINE uint32 floorLog2(uint32 val)$/;"	f	struct:GenericMath
+floorToDouble	platform/generic/genericMath.hpp	/^	static FORCEINLINE double floorToDouble(double val)$/;"	f	struct:GenericMath
+floorToFloat	platform/generic/genericMath.hpp	/^	static FORCEINLINE float floorToFloat(float val)$/;"	f	struct:GenericMath
+floorToInt	platform/generic/genericMath.hpp	/^	static FORCEINLINE int32 floorToInt(float val)$/;"	f	struct:GenericMath
+fmod	platform/generic/genericMath.hpp	/^	static FORCEINLINE float fmod(float num, float den) { return fmodf(num, den); }$/;"	f	struct:GenericMath
+fractional	platform/generic/genericMath.hpp	/^	static FORCEINLINE float fractional(float val)$/;"	f	struct:GenericMath
+free	core/memory.hpp	/^	static FORCEINLINE void* free(void* ptr)$/;"	f	struct:Memory
+free	platform/generic/genericMemory.cpp	/^void* GenericMemory::free(void* ptr)$/;"	f	class:GenericMemory
+fsh	rendering/staticLibs/stb_image.c	946;"	d	file:
+g_freq	timing.cpp	/^	static double g_freq;$/;"	v	file:
+g_timerInitialized	timing.cpp	/^	static bool g_timerInitialized = false;$/;"	v	file:
+get	rendering/arrayBitmap.hpp	/^FORCEINLINE int32 ArrayBitmap::get(int32 x, int32 y) const$/;"	f	class:ArrayBitmap
+get16	rendering/staticLibs/stb_image.c	/^static int get16(stbi *s)$/;"	f	file:
+get16le	rendering/staticLibs/stb_image.c	/^static int get16le(stbi *s)$/;"	f	file:
+get32	rendering/staticLibs/stb_image.c	/^static uint32 get32(stbi *s)$/;"	f	file:
+get32le	rendering/staticLibs/stb_image.c	/^static uint32 get32le(stbi *s)$/;"	f	file:
+get8	rendering/staticLibs/stb_image.c	/^stbi_inline static int get8(stbi *s)$/;"	f	file:
+get8u	rendering/staticLibs/stb_image.c	/^stbi_inline static uint8 get8u(stbi *s)$/;"	f	file:
+getAllocSize	core/memory.hpp	/^	static FORCEINLINE uintptr getAllocSize(void* ptr)$/;"	f	struct:Memory
+getAllocSize	platform/generic/genericMemory.cpp	/^uintptr GenericMemory::getAllocSize(void* ptr)$/;"	f	class:GenericMemory
+getAngle	math/quaternion.cpp	/^float Quaternion::getAngle() const$/;"	f	class:Quaternion
+getAxis	math/quaternion.cpp	/^Vector3f Quaternion::getAxis() const$/;"	f	class:Quaternion
+getAxisX	math/quaternion.hpp	/^FORCEINLINE Vector3f Quaternion::getAxisX() const$/;"	f	class:Quaternion
+getAxisY	math/quaternion.hpp	/^FORCEINLINE Vector3f Quaternion::getAxisY() const$/;"	f	class:Quaternion
+getAxisZ	math/quaternion.hpp	/^FORCEINLINE Vector3f Quaternion::getAxisZ() const$/;"	f	class:Quaternion
+getHeight	platform/sdl/sdlWindow.cpp	/^int32 SDLWindow::getHeight() const$/;"	f	class:SDLWindow
+getHeight	rendering/arrayBitmap.hpp	/^FORCEINLINE int32 ArrayBitmap::getHeight() const$/;"	f	class:ArrayBitmap
+getHeight	rendering/texture.hpp	/^FORCEINLINE uint32 Texture::getHeight()$/;"	f	class:Texture
+getId	rendering/renderTarget.hpp	/^FORCEINLINE uint32 RenderTarget::getId()$/;"	f	class:RenderTarget
+getId	rendering/sampler.hpp	/^FORCEINLINE uint32 Sampler::getId()$/;"	f	class:Sampler
+getId	rendering/shader.hpp	/^FORCEINLINE uint32 Shader::getId()$/;"	f	class:Shader
+getId	rendering/texture.hpp	/^FORCEINLINE uint32 Texture::getId()$/;"	f	class:Texture
+getId	rendering/uniformBuffer.hpp	/^FORCEINLINE uint32 UniformBuffer::getId()$/;"	f	class:UniformBuffer
+getId	rendering/vertexArray.hpp	/^FORCEINLINE uint32 VertexArray::getId()$/;"	f	class:VertexArray
+getLuminance	math/color.hpp	/^FORCEINLINE float Color::getLuminance() const$/;"	f	class:Color
+getNormal	math/plane.hpp	/^FORCEINLINE Vector3f Plane::getNormal() const$/;"	f	class:Plane
+getNumIndices	rendering/indexedModel.cpp	/^uint32 IndexedModel::getNumIndices() const$/;"	f	class:IndexedModel
+getNumIndices	rendering/vertexArray.hpp	/^FORCEINLINE uint32 VertexArray::getNumIndices()$/;"	f	class:VertexArray
+getNumLeadingZeroes	platform/generic/genericMath.hpp	/^	static FORCEINLINE uint32 getNumLeadingZeroes(uint32 val)$/;"	f	struct:GenericMath
+getOpenGLFormat	platform/opengl/openGLRenderDevice.cpp	/^static GLint getOpenGLFormat(enum OpenGLRenderDevice::PixelFormat format, bool compress)$/;"	f	file:
+getPixelArray	rendering/arrayBitmap.hpp	/^FORCEINLINE const int32* ArrayBitmap::getPixelArray() const$/;"	f	class:ArrayBitmap
+getPixelArray	rendering/arrayBitmap.hpp	/^FORCEINLINE int32* ArrayBitmap::getPixelArray()$/;"	f	class:ArrayBitmap
+getPixelsSize	rendering/arrayBitmap.hpp	/^FORCEINLINE uintptr ArrayBitmap::getPixelsSize() const$/;"	f	class:ArrayBitmap
+getRotation	math/transform.hpp	/^FORCEINLINE Quaternion Transform::getRotation() const$/;"	f	class:Transform
+getScale	math/transform.hpp	/^FORCEINLINE Vector3f Transform::getScale() const$/;"	f	class:Transform
+getShaderVersion	platform/opengl/openGLRenderDevice.cpp	/^String OpenGLRenderDevice::getShaderVersion()$/;"	f	class:OpenGLRenderDevice
+getTime	timing.cpp	/^double Time::getTime()$/;"	f	class:Time
+getTranslation	math/transform.hpp	/^FORCEINLINE Vector3f Transform::getTranslation() const$/;"	f	class:Transform
+getVersion	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::getVersion()$/;"	f	class:OpenGLRenderDevice
+getWidth	platform/sdl/sdlWindow.cpp	/^int32 SDLWindow::getWidth() const$/;"	f	class:SDLWindow
+getWidth	rendering/arrayBitmap.hpp	/^FORCEINLINE int32 ArrayBitmap::getWidth() const$/;"	f	class:ArrayBitmap
+getWidth	rendering/texture.hpp	/^FORCEINLINE uint32 Texture::getWidth()$/;"	f	class:Texture
+getWindowHandle	platform/sdl/sdlWindow.cpp	/^WindowHandle SDLWindow::getWindowHandle()$/;"	f	class:SDLWindow
+get_chunk_header	rendering/staticLibs/stb_image.c	/^static chunk get_chunk_header(stbi *s)$/;"	f	file:
+get_marker	rendering/staticLibs/stb_image.c	/^static uint8 get_marker(jpeg *j)$/;"	f	file:
+getn	rendering/staticLibs/stb_image.c	/^static int getn(stbi *s, stbi_uc *buffer, int n)$/;"	f	file:
+gif_test	rendering/staticLibs/stb_image.c	/^static int gif_test(stbi *s)$/;"	f	file:
+globalInit	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::globalInit()$/;"	f	class:OpenGLRenderDevice
+grow_buffer_unsafe	rendering/staticLibs/stb_image.c	/^static void grow_buffer_unsafe(jpeg *j)$/;"	f	file:
+h	rendering/staticLibs/stb_image.c	/^      int h,v;$/;"	m	struct:__anon6::__anon7	file:
+h	rendering/staticLibs/stb_image.c	/^   int w,h;$/;"	m	struct:stbi_gif_struct	file:
+h2	rendering/staticLibs/stb_image.c	/^      int x,y,w2,h2;$/;"	m	struct:__anon6::__anon7	file:
+h2l_gamma_i	rendering/staticLibs/stb_image.c	/^static float h2l_gamma_i=1.0f\/2.2f, h2l_scale_i=1.0f;$/;"	v	file:
+h2l_scale_i	rendering/staticLibs/stb_image.c	/^static float h2l_gamma_i=1.0f\/2.2f, h2l_scale_i=1.0f;$/;"	v	file:
+ha	rendering/staticLibs/stb_image.c	/^      int hd,ha;$/;"	m	struct:__anon6::__anon7	file:
+hd	rendering/staticLibs/stb_image.c	/^      int hd,ha;$/;"	m	struct:__anon6::__anon7	file:
+hdr_convert	rendering/staticLibs/stb_image.c	/^static void hdr_convert(float *output, stbi_uc *input, int req_comp)$/;"	f	file:
+hdr_gettoken	rendering/staticLibs/stb_image.c	/^static char *hdr_gettoken(stbi *z, char *buffer)$/;"	f	file:
+hdr_load	rendering/staticLibs/stb_image.c	/^static float *hdr_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+hdr_test	rendering/staticLibs/stb_image.c	/^static int hdr_test(stbi *s)$/;"	f	file:
+hdr_to_ldr	rendering/staticLibs/stb_image.c	/^static stbi_uc *hdr_to_ldr(float   *data, int x, int y, int comp)$/;"	f	file:
+height	platform/opengl/openGLRenderDevice.hpp	/^		int32 height;$/;"	m	struct:OpenGLRenderDevice::FBOData
+height	platform/sdl/sdlWindow.hpp	/^	int32 height;$/;"	m	class:SDLWindow
+height	rendering/arrayBitmap.hpp	/^	int32 height;$/;"	m	class:ArrayBitmap
+height	rendering/texture.hpp	/^	uint32 height;$/;"	m	class:Texture
+high_bit	rendering/staticLibs/stb_image.c	/^static int high_bit(unsigned int z)$/;"	f	file:
+horizontalAdd	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE __m128 horizontalAdd(__m128 t0)$/;"	f	struct:SSEVector
+hs	rendering/staticLibs/stb_image.c	/^   int hs,vs;   \/\/ expansion factor in each axis$/;"	m	struct:__anon8	file:
+huff_ac	rendering/staticLibs/stb_image.c	/^   huffman huff_ac[4];$/;"	m	struct:__anon6	file:
+huff_dc	rendering/staticLibs/stb_image.c	/^   huffman huff_dc[4];$/;"	m	struct:__anon6	file:
+huffman	rendering/staticLibs/stb_image.c	/^} huffman;$/;"	t	typeref:struct:__anon5	file:
+id	rendering/staticLibs/stb_image.c	/^      int id;$/;"	m	struct:__anon6::__anon7	file:
+idata	rendering/staticLibs/stb_image.c	/^   uint8 *idata, *expanded, *out;$/;"	m	struct:__anon12	file:
+idct_block	rendering/staticLibs/stb_image.c	/^static void idct_block(uint8 *out, int out_stride, short data[64], stbi_dequantize_t *dequantize)$/;"	f	file:
+identity	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::identity()$/;"	f	class:Matrix
+img_buffer	rendering/staticLibs/stb_image.c	/^   uint8 *img_buffer, *img_buffer_end;$/;"	m	struct:__anon3	file:
+img_buffer_end	rendering/staticLibs/stb_image.c	/^   uint8 *img_buffer, *img_buffer_end;$/;"	m	struct:__anon3	file:
+img_buffer_original	rendering/staticLibs/stb_image.c	/^   uint8 *img_buffer_original;$/;"	m	struct:__anon3	file:
+img_comp	rendering/staticLibs/stb_image.c	/^   } img_comp[4];$/;"	m	struct:__anon6	typeref:struct:__anon6::__anon7	file:
+img_h_max	rendering/staticLibs/stb_image.c	/^   int img_h_max, img_v_max;$/;"	m	struct:__anon6	file:
+img_mcu_h	rendering/staticLibs/stb_image.c	/^   int img_mcu_w, img_mcu_h;$/;"	m	struct:__anon6	file:
+img_mcu_w	rendering/staticLibs/stb_image.c	/^   int img_mcu_w, img_mcu_h;$/;"	m	struct:__anon6	file:
+img_mcu_x	rendering/staticLibs/stb_image.c	/^   int img_mcu_x, img_mcu_y;$/;"	m	struct:__anon6	file:
+img_mcu_y	rendering/staticLibs/stb_image.c	/^   int img_mcu_x, img_mcu_y;$/;"	m	struct:__anon6	file:
+img_n	rendering/staticLibs/stb_image.c	/^   int img_n, img_out_n;$/;"	m	struct:__anon3	file:
+img_out_n	rendering/staticLibs/stb_image.c	/^   int img_n, img_out_n;$/;"	m	struct:__anon3	file:
+img_v_max	rendering/staticLibs/stb_image.c	/^   int img_h_max, img_v_max;$/;"	m	struct:__anon6	file:
+img_x	rendering/staticLibs/stb_image.c	/^   uint32 img_x, img_y;$/;"	m	struct:__anon3	file:
+img_y	rendering/staticLibs/stb_image.c	/^   uint32 img_x, img_y;$/;"	m	struct:__anon3	file:
+indices	rendering/indexedModel.hpp	/^	Array<uint32> indices;$/;"	m	class:IndexedModel
+init_defaults	rendering/staticLibs/stb_image.c	/^static void init_defaults(void)$/;"	f	file:
+instanceComponentsStartIndex	platform/opengl/openGLRenderDevice.hpp	/^		uint32  instanceComponentsStartIndex;$/;"	m	struct:OpenGLRenderDevice::VertexArray
+instancedElementsStartIndex	rendering/indexedModel.hpp	/^	uint32 instancedElementsStartIndex;$/;"	m	class:IndexedModel
+int16	core/common.hpp	/^typedef int16_t int16;$/;"	t
+int16	rendering/staticLibs/stb_image.c	/^typedef   signed short  int16;$/;"	t	file:
+int16_t	core/common.hpp	/^	typedef signed   __int16 int16_t;$/;"	t
+int16_t	core/common.hpp	/^	typedef signed   short int int16_t;$/;"	t
+int32	core/common.hpp	/^typedef int32_t int32;$/;"	t
+int32	rendering/staticLibs/stb_image.c	/^typedef   signed int    int32;$/;"	t	file:
+int32_t	core/common.hpp	/^	typedef signed   __int32 int32_t;$/;"	t
+int32_t	core/common.hpp	/^	typedef signed   int       int32_t;$/;"	t
+int64	core/common.hpp	/^typedef int64_t int64;$/;"	t
+int64_t	core/common.hpp	/^	typedef long long          int64_t;$/;"	t
+int64_t	core/common.hpp	/^	typedef signed   __int64 int64_t;$/;"	t
+int8	core/common.hpp	/^typedef int8_t int8;$/;"	t
+int8_t	core/common.hpp	/^	typedef signed   __int8  int8_t;$/;"	t
+int8_t	core/common.hpp	/^	typedef signed   char      int8_t;$/;"	t
+intptr	core/common.hpp	/^typedef intptr_t intptr;$/;"	t
+intptr_t	core/common.hpp	/^	typedef int64_t intptr_t;$/;"	t
+inverse	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::inverse() const$/;"	f	class:Matrix
+inverse	math/quaternion.cpp	/^Quaternion Quaternion::inverse() const$/;"	f	class:Quaternion
+inverse	math/transform.hpp	/^FORCEINLINE Transform Transform::inverse() const$/;"	f	class:Transform
+io	rendering/staticLibs/stb_image.c	/^   stbi_io_callbacks io;$/;"	m	struct:__anon3	file:
+io_user_data	rendering/staticLibs/stb_image.c	/^   void *io_user_data;$/;"	m	struct:__anon3	file:
+isAppRunning	platform/sdl/sdlApplication.hpp	/^	bool isAppRunning;$/;"	m	class:SDLApplication
+isFinite	platform/generic/genericMath.hpp	/^	static FORCEINLINE bool isFinite(float val)$/;"	f	struct:GenericMath
+isInitialized	platform/opengl/openGLRenderDevice.cpp	/^bool OpenGLRenderDevice::isInitialized = false;$/;"	m	class:OpenGLRenderDevice	file:
+isInitialized	platform/opengl/openGLRenderDevice.hpp	/^	static bool isInitialized;$/;"	m	class:OpenGLRenderDevice
+isNaN	platform/generic/genericMath.hpp	/^	static FORCEINLINE bool isNaN(float val)$/;"	f	struct:GenericMath
+isNormalized	math/plane.hpp	/^FORCEINLINE bool Plane::isNormalized(float errorMargin) const$/;"	f	class:Plane
+isNormalized	math/quaternion.cpp	/^bool Quaternion::isNormalized(float errorMargin) const$/;"	f	class:Quaternion
+isNormalized	math/vector.cpp	/^bool Vector3f::isNormalized(float errorMargin) const$/;"	f	class:Vector3f
+isRotationNormalized	math/transform.hpp	/^FORCEINLINE bool Transform::isRotationNormalized()$/;"	f	class:Transform
+isRunning	platform/sdl/sdlApplication.cpp	/^bool SDLApplication::isRunning()$/;"	f	class:SDLApplication
+isZero3f	platform/generic/genericVecmath.hpp	/^	FORCEINLINE bool isZero3f() const$/;"	f	struct:GenericVector
+isZero3f	platform/sse/sseVecmath.hpp	/^	FORCEINLINE bool isZero3f() const$/;"	f	struct:SSEVector
+isZero4f	platform/generic/genericVecmath.hpp	/^	FORCEINLINE bool isZero4f() const$/;"	f	struct:GenericVector
+isZero4f	platform/sse/sseVecmath.hpp	/^	FORCEINLINE bool isZero4f() const$/;"	f	struct:SSEVector
+jpeg	rendering/staticLibs/stb_image.c	/^} jpeg;$/;"	t	typeref:struct:__anon6	file:
+l2h_gamma	rendering/staticLibs/stb_image.c	/^static float l2h_gamma=2.2f, l2h_scale=1.0f;$/;"	v	file:
+l2h_scale	rendering/staticLibs/stb_image.c	/^static float l2h_gamma=2.2f, l2h_scale=1.0f;$/;"	v	file:
+ldr_to_hdr	rendering/staticLibs/stb_image.c	/^static float   *ldr_to_hdr(stbi_uc *data, int x, int y, int comp)$/;"	f	file:
+length	math/quaternion.hpp	/^FORCEINLINE float Quaternion::length() const$/;"	f	class:Quaternion
+length	math/vector.hpp	/^FORCEINLINE float Vector3f::length() const$/;"	f	class:Vector3f
+length	rendering/staticLibs/stb_image.c	/^   uint32 length;$/;"	m	struct:__anon11	file:
+lengthSquared	math/quaternion.hpp	/^FORCEINLINE float Quaternion::lengthSquared() const$/;"	f	class:Quaternion
+lengthSquared	math/vector.hpp	/^FORCEINLINE float Vector3f::lengthSquared() const$/;"	f	class:Vector3f
+length_base	rendering/staticLibs/stb_image.c	/^static int length_base[31] = {$/;"	v	file:
+length_extra	rendering/staticLibs/stb_image.c	/^static int length_extra[31]= $/;"	v	file:
+lerp	math/quaternion.hpp	/^FORCEINLINE Quaternion Math::lerp(const Quaternion& val1, const Quaternion& val2,$/;"	f	class:Math
+lerp	math/vecmath.hpp	/^FORCEINLINE Vector Math::lerp(const Vector& val1, const Vector& val2,$/;"	f	class:Math
+lerp	platform/generic/genericMath.hpp	/^	static FORCEINLINE T lerp(const T& val1, const T& val2, const U& amt)$/;"	f	struct:GenericMath
+lflags	rendering/staticLibs/stb_image.c	/^   int lflags;$/;"	m	struct:stbi_gif_struct	file:
+line0	rendering/staticLibs/stb_image.c	/^   uint8 *line0,*line1;$/;"	m	struct:__anon8	file:
+line1	rendering/staticLibs/stb_image.c	/^   uint8 *line0,*line1;$/;"	m	struct:__anon8	file:
+line_size	rendering/staticLibs/stb_image.c	/^   int line_size;$/;"	m	struct:stbi_gif_struct	file:
+linebuf	rendering/staticLibs/stb_image.c	/^      uint8 *linebuf;$/;"	m	struct:__anon6::__anon7	file:
+ln	platform/generic/genericMath.hpp	/^	static FORCEINLINE float ln(float val) { return logf(val); }$/;"	f	struct:GenericMath
+load	rendering/arrayBitmap.cpp	/^bool ArrayBitmap::load(const String& fileName)$/;"	f	class:ArrayBitmap
+load1f	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector load1f(float val)$/;"	f	struct:GenericVector
+load1f	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector load1f(float val)$/;"	f	struct:SSEVector
+load3f	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector load3f(const float* vals, float w)$/;"	f	struct:GenericVector
+load3f	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector load3f(const float* vals, float w)$/;"	f	struct:SSEVector
+load4f	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector load4f(const float* vals)$/;"	f	struct:GenericVector
+load4f	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector load4f(const float* vals)$/;"	f	struct:SSEVector
+loadAligned	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector loadAligned(const float* vals)$/;"	f	struct:GenericVector
+loadAligned	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector loadAligned(const float* vals)$/;"	f	struct:SSEVector
+load_jpeg_image	rendering/staticLibs/stb_image.c	/^static uint8 *load_jpeg_image(jpeg *z, int *out_x, int *out_y, int *comp, int req_comp)$/;"	f	file:
+log2	platform/generic/genericMath.hpp	/^	static FORCEINLINE float log2(float val) { return ln(val) * R_LN_2; }$/;"	f	struct:GenericMath
+logx	platform/generic/genericMath.hpp	/^	static FORCEINLINE float logx(float base, float val) { return ln(val)\/ln(base); }$/;"	f	struct:GenericMath
+lpal	rendering/staticLibs/stb_image.c	/^   uint8 lpal[256][4];$/;"	m	struct:stbi_gif_struct	file:
+luminanceVector	math/color.hpp	/^	static const Vector luminanceVector;$/;"	m	class:Color
+m	math/matrix.hpp	/^	Vector m[4];$/;"	m	class:Matrix
+m_epoch	timing.cpp	/^	static std::chrono::system_clock::time_point m_epoch = std::chrono::high_resolution_clock::now();$/;"	v	file:
+mad	platform/generic/genericMath.hpp	/^	static FORCEINLINE T mad(const T& val1, const T& val2, const T& val3)$/;"	f	struct:GenericMath
+mad	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector mad(const GenericVector& mul, const GenericVector& add) const$/;"	f	struct:GenericVector
+mad	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector mad(const SSEVector& mul, const SSEVector& add) const$/;"	f	struct:SSEVector
+main	main.cpp	/^int main(int argc, char** argv)$/;"	f
+make	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector make(float x, float y, float z, float w)$/;"	f	struct:GenericVector
+make	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector make(uint32 x, uint32 y, uint32 z, uint32 w)$/;"	f	struct:GenericVector
+make	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector make(float x, float y, float z, float w)$/;"	f	struct:SSEVector
+make	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector make(uint32 x, uint32 y, uint32 z, uint32 w)$/;"	f	struct:SSEVector
+malloc	core/memory.hpp	/^	static FORCEINLINE void* malloc(uintptr amt, uint32 alignment=DEFAULT_ALIGNMENT)$/;"	f	struct:Memory
+malloc	platform/generic/genericMemory.cpp	/^void* GenericMemory::malloc(uintptr amt, uint32 alignment)$/;"	f	class:GenericMemory
+marker	rendering/staticLibs/stb_image.c	/^   unsigned char  marker;      \/\/ marker seen while filling entropy buffer$/;"	m	struct:__anon6	file:
+mask	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE const GenericVector mask(uint32 index)$/;"	f	struct:GenericVector
+mask	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE const SSEVector mask(uint32 index)$/;"	f	struct:SSEVector
+matrixDeterminant3x3Vector	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE float matrixDeterminant3x3Vector(const GenericVector* m)$/;"	f	struct:GenericVector
+matrixDeterminant3x3Vector	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE float matrixDeterminant3x3Vector(const SSEVector* m)$/;"	f	struct:SSEVector
+matrixDeterminant4x4	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE float matrixDeterminant4x4(float* outDets,$/;"	f	struct:GenericVector
+matrixDeterminant4x4	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE float matrixDeterminant4x4(float* outDets,$/;"	f	struct:SSEVector
+matrixInverse	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE void matrixInverse(void* dest, const void* src)$/;"	f	struct:GenericVector
+matrixInverse	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE void matrixInverse(void* dest, const void* src)$/;"	f	struct:SSEVector
+matrixMul	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE void matrixMul(void* result, const void* mat1, const void* mat2)$/;"	f	struct:GenericVector
+matrixMul	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE void matrixMul(void* result, const void* mat1, const void* mat2)$/;"	f	struct:SSEVector
+max	math/vector.cpp	/^Vector3f Vector3f::max(const Vector3f& other) const$/;"	f	class:Vector3f
+max	math/vector.cpp	/^float Vector3f::max() const$/;"	f	class:Vector3f
+max	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE T max(const T& val1, const T& val2)$/;"	f	struct:GenericMath
+max	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector max(const GenericVector& other) const$/;"	f	struct:GenericVector
+max	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector max(const SSEVector& other) const$/;"	f	struct:SSEVector
+max3	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE T max3(const T& val1, const T& val2, const T& val3)$/;"	f	struct:GenericMath
+max_x	rendering/staticLibs/stb_image.c	/^   int max_x, max_y;$/;"	m	struct:stbi_gif_struct	file:
+max_y	rendering/staticLibs/stb_image.c	/^   int max_x, max_y;$/;"	m	struct:stbi_gif_struct	file:
+maxcode	rendering/staticLibs/stb_image.c	/^   int maxcode[17];$/;"	m	struct:__anon9	file:
+maxcode	rendering/staticLibs/stb_image.c	/^   unsigned int maxcode[18];$/;"	m	struct:__anon5	file:
+memcmp	core/memory.hpp	/^	static FORCEINLINE int32 memcmp(const void* dest, const void* src, uintptr amt)$/;"	f	struct:Memory
+memcmp	platform/generic/genericMemory.hpp	/^	static FORCEINLINE int32 memcmp(const void* dest, const void* src, uintptr amt)$/;"	f	struct:GenericMemory
+memcpy	core/memory.hpp	/^	static FORCEINLINE void* memcpy(void* dest, const void* src, uintptr amt)$/;"	f	struct:Memory
+memcpy	platform/generic/genericMemory.hpp	/^	static FORCEINLINE void* memcpy(void* dest, const void* src, uintptr amt)$/;"	f	struct:GenericMemory
+memmove	core/memory.hpp	/^	static FORCEINLINE void* memmove(void* dest, const void* src, uintptr amt)$/;"	f	struct:Memory
+memmove	platform/generic/genericMemory.hpp	/^	static FORCEINLINE void* memmove(void* dest, const void* src, uintptr amt)$/;"	f	struct:GenericMemory
+memset	core/memory.hpp	/^	static FORCEINLINE void* memset(void* dest, T val, uintptr amt)$/;"	f	struct:Memory
+memset	platform/generic/genericMemory.hpp	/^	static FORCEINLINE void* memset(void* destIn, T val, uintptr amt)$/;"	f	struct:GenericMemory
+memset	platform/generic/genericMemory.hpp	/^FORCEINLINE void* GenericMemory::memset(void* dest, uint8 val, uintptr amt)$/;"	f	class:GenericMemory
+memswap	core/memory.hpp	/^	static FORCEINLINE void memswap(void* a, void* b, uintptr size)$/;"	f	struct:Memory
+memswap	platform/generic/genericMemory.hpp	/^	static void memswap(void* a, void* b, uintptr size)$/;"	f	struct:GenericMemory
+memzero	core/memory.hpp	/^	static FORCEINLINE void* memzero(void* dest, uintptr amt)$/;"	f	struct:Memory
+memzero	platform/generic/genericMemory.hpp	/^	static FORCEINLINE void* memzero(void* dest, uintptr amt)$/;"	f	struct:GenericMemory
+min	math/vector.cpp	/^Vector3f Vector3f::min(const Vector3f& other) const$/;"	f	class:Vector3f
+min	math/vector.cpp	/^float Vector3f::min() const$/;"	f	class:Vector3f
+min	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE T min(const T& val1, const T& val2)$/;"	f	struct:GenericMath
+min	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector min(const GenericVector& other) const$/;"	f	struct:GenericVector
+min	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector min(const SSEVector& other) const$/;"	f	struct:SSEVector
+min3	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE T min3(const T& val1, const T& val2, const T& val3)$/;"	f	struct:GenericMath
+neg	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector neg() const$/;"	f	struct:GenericVector
+neg	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector neg() const$/;"	f	struct:SSEVector
+nomore	rendering/staticLibs/stb_image.c	/^   int            nomore;      \/\/ flag if we saw a marker so must stop$/;"	m	struct:__anon6	file:
+normalize3	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector normalize3() const$/;"	f	struct:GenericVector
+normalize3	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector normalize3() const$/;"	f	struct:SSEVector
+normalize4	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector normalize4() const$/;"	f	struct:GenericVector
+normalize4	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector normalize4() const$/;"	f	struct:SSEVector
+normalizeRotation	math/transform.hpp	/^FORCEINLINE void Transform::normalizeRotation()$/;"	f	class:Transform
+normalized	math/plane.hpp	/^FORCEINLINE Plane Plane::normalized(float errorMargin) const$/;"	f	class:Plane
+normalized	math/quaternion.cpp	/^Quaternion Quaternion::normalized(float errorMargin) const$/;"	f	class:Quaternion
+normalized	math/vector.cpp	/^Vector3f Vector3f::normalized(float errorMargin) const$/;"	f	class:Vector3f
+notEquals	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector notEquals(const GenericVector& other, float errorMargin) const$/;"	f	struct:GenericVector
+notEquals	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector notEquals(const SSEVector& other, float errorMargin) const$/;"	f	struct:SSEVector
+nullptr	core/common.hpp	76;"	d
+numBuffers	platform/opengl/openGLRenderDevice.hpp	/^		uint32  numBuffers;$/;"	m	struct:OpenGLRenderDevice::VertexArray
+numElements	platform/opengl/openGLRenderDevice.hpp	/^		uint32  numElements;$/;"	m	struct:OpenGLRenderDevice::VertexArray
+numIndices	rendering/vertexArray.hpp	/^	uint32 numIndices;$/;"	m	class:VertexArray
+numInstances	platform/sdl/sdlApplication.cpp	/^uint32 SDLApplication::numInstances = 0;$/;"	m	class:SDLApplication	file:
+numInstances	platform/sdl/sdlApplication.hpp	/^	static uint32 numInstances;$/;"	m	class:SDLApplication
+num_bits	rendering/staticLibs/stb_image.c	/^   int num_bits;$/;"	m	struct:__anon10	file:
+operator !=	math/color.hpp	/^FORCEINLINE bool Color::operator!=(const Color& other) const$/;"	f	class:Color
+operator !=	math/matrix.hpp	/^FORCEINLINE bool Matrix::operator!=(const Matrix& other) const$/;"	f	class:Matrix
+operator !=	math/plane.hpp	/^FORCEINLINE bool Plane::operator!=(const Plane& other) const$/;"	f	class:Plane
+operator !=	math/quaternion.hpp	/^FORCEINLINE bool Quaternion::operator!=(const Quaternion& other) const$/;"	f	class:Quaternion
+operator !=	math/vector.cpp	/^bool Vector3f::operator!=(const Vector3f& other) const$/;"	f	class:Vector3f
+operator !=	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator!=(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator !=	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator!=(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator &	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator&(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator &	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator&(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator *	math/color.hpp	/^FORCEINLINE Color Color::operator*(const Color& other) const$/;"	f	class:Color
+operator *	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::operator* (const Matrix& other) const$/;"	f	class:Matrix
+operator *	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::operator* (float amt) const$/;"	f	class:Matrix
+operator *	math/plane.hpp	/^FORCEINLINE Plane Plane::operator*(const Plane& other) const$/;"	f	class:Plane
+operator *	math/plane.hpp	/^FORCEINLINE Plane Plane::operator*(float amt) const$/;"	f	class:Plane
+operator *	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator*(const Quaternion& other) const$/;"	f	class:Quaternion
+operator *	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator*(float amt) const$/;"	f	class:Quaternion
+operator *	math/quaternion.hpp	/^FORCEINLINE Vector3f Quaternion::operator*(const Vector3f& other) const$/;"	f	class:Quaternion
+operator *	math/transform.hpp	/^FORCEINLINE Transform Transform::operator*(const Transform& other) const$/;"	f	class:Transform
+operator *	math/transform.hpp	/^FORCEINLINE Transform Transform::operator*(float other) const$/;"	f	class:Transform
+operator *	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator*(const Vector3f& other) const$/;"	f	class:Vector3f
+operator *	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator*(float amt) const$/;"	f	class:Vector3f
+operator *	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator*(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator *	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator*(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator *=	math/color.hpp	/^FORCEINLINE Color Color::operator*=(const Color& other)$/;"	f	class:Color
+operator *=	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::operator*= (const Matrix& other)$/;"	f	class:Matrix
+operator *=	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::operator*= (float amt)$/;"	f	class:Matrix
+operator *=	math/plane.hpp	/^FORCEINLINE Plane Plane::operator*=(const Plane& other)$/;"	f	class:Plane
+operator *=	math/plane.hpp	/^FORCEINLINE Plane Plane::operator*=(float val)$/;"	f	class:Plane
+operator *=	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator*=(const Quaternion& other)$/;"	f	class:Quaternion
+operator *=	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator*=(float amt) $/;"	f	class:Quaternion
+operator *=	math/transform.hpp	/^FORCEINLINE Transform Transform::operator*=(const Transform& other)$/;"	f	class:Transform
+operator *=	math/transform.hpp	/^FORCEINLINE Transform Transform::operator*=(float other)$/;"	f	class:Transform
+operator *=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator*=(const Vector3f& other)$/;"	f	class:Vector3f
+operator *=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator*=(float val)$/;"	f	class:Vector3f
+operator +	math/color.hpp	/^FORCEINLINE Color Color::operator+(const Color& other) const$/;"	f	class:Color
+operator +	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::operator+ (const Matrix& other) const$/;"	f	class:Matrix
+operator +	math/plane.hpp	/^FORCEINLINE Plane Plane::operator+(const Plane& other) const$/;"	f	class:Plane
+operator +	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator+(const Quaternion& other) const$/;"	f	class:Quaternion
+operator +	math/transform.hpp	/^FORCEINLINE Transform Transform::operator+(const Transform& other) const$/;"	f	class:Transform
+operator +	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator+(const Vector3f& other) const$/;"	f	class:Vector3f
+operator +	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator+(float amt) const$/;"	f	class:Vector3f
+operator +	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator+(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator +	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator+(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator +=	math/color.hpp	/^FORCEINLINE Color Color::operator+=(const Color& other)$/;"	f	class:Color
+operator +=	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::operator+= (const Matrix& other)$/;"	f	class:Matrix
+operator +=	math/plane.hpp	/^FORCEINLINE Plane Plane::operator+=(const Plane& other)$/;"	f	class:Plane
+operator +=	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator+=(const Quaternion& other)$/;"	f	class:Quaternion
+operator +=	math/transform.hpp	/^FORCEINLINE Transform Transform::operator+=(const Transform& other)$/;"	f	class:Transform
+operator +=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator+=(const Vector3f& other)$/;"	f	class:Vector3f
+operator +=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator+=(float val)$/;"	f	class:Vector3f
+operator -	math/color.hpp	/^FORCEINLINE Color Color::operator-() const$/;"	f	class:Color
+operator -	math/color.hpp	/^FORCEINLINE Color Color::operator-(const Color& other) const$/;"	f	class:Color
+operator -	math/plane.hpp	/^FORCEINLINE Plane Plane::operator-() const$/;"	f	class:Plane
+operator -	math/plane.hpp	/^FORCEINLINE Plane Plane::operator-(const Plane& other) const$/;"	f	class:Plane
+operator -	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator-(const Quaternion& other) const$/;"	f	class:Quaternion
+operator -	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator-() const$/;"	f	class:Vector3f
+operator -	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator-(const Vector3f& other) const$/;"	f	class:Vector3f
+operator -	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator-(float amt) const$/;"	f	class:Vector3f
+operator -	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator-() const$/;"	f	struct:GenericVector
+operator -	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator-(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator -	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator-() const$/;"	f	struct:SSEVector
+operator -	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator-(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator -=	math/color.hpp	/^FORCEINLINE Color Color::operator-=(const Color& other)$/;"	f	class:Color
+operator -=	math/plane.hpp	/^FORCEINLINE Plane Plane::operator-=(const Plane& other)$/;"	f	class:Plane
+operator -=	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator-=(const Quaternion& other)$/;"	f	class:Quaternion
+operator -=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator-=(const Vector3f& other)$/;"	f	class:Vector3f
+operator -=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator-=(float val)$/;"	f	class:Vector3f
+operator /	math/color.hpp	/^FORCEINLINE Color Color::operator\/(const Color& other) const$/;"	f	class:Color
+operator /	math/plane.hpp	/^FORCEINLINE Plane Plane::operator\/(const Plane& other) const$/;"	f	class:Plane
+operator /	math/plane.hpp	/^FORCEINLINE Plane Plane::operator\/(float amt) const$/;"	f	class:Plane
+operator /	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator\/(float amt) const$/;"	f	class:Quaternion
+operator /	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator\/(const Vector3f& other) const$/;"	f	class:Vector3f
+operator /	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator\/(float amt) const$/;"	f	class:Vector3f
+operator /	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator\/(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator /	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator\/(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator /=	math/color.hpp	/^FORCEINLINE Color Color::operator\/=(const Color& other)$/;"	f	class:Color
+operator /=	math/plane.hpp	/^FORCEINLINE Plane Plane::operator\/=(const Plane& other)$/;"	f	class:Plane
+operator /=	math/plane.hpp	/^FORCEINLINE Plane Plane::operator\/=(float val)$/;"	f	class:Plane
+operator /=	math/quaternion.hpp	/^FORCEINLINE Quaternion Quaternion::operator\/=(float amt)$/;"	f	class:Quaternion
+operator /=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator\/=(const Vector3f& other)$/;"	f	class:Vector3f
+operator /=	math/vector.hpp	/^FORCEINLINE Vector3f Vector3f::operator\/=(float val)$/;"	f	class:Vector3f
+operator <	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator<(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator <	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator<(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator <=	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator<=(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator <=	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator<=(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator ==	math/color.hpp	/^FORCEINLINE bool Color::operator==(const Color& other) const$/;"	f	class:Color
+operator ==	math/matrix.hpp	/^FORCEINLINE bool Matrix::operator==(const Matrix& other) const$/;"	f	class:Matrix
+operator ==	math/plane.hpp	/^FORCEINLINE bool Plane::operator==(const Plane& other) const$/;"	f	class:Plane
+operator ==	math/quaternion.hpp	/^FORCEINLINE bool Quaternion::operator==(const Quaternion& other) const$/;"	f	class:Quaternion
+operator ==	math/vector.cpp	/^bool Vector3f::operator==(const Vector3f& other) const$/;"	f	class:Vector3f
+operator ==	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator==(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator ==	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator==(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator >	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator>(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator >	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator>(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator >=	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator>=(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator >=	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator>=(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator []	math/color.hpp	/^FORCEINLINE float Color::operator[](uint32 index) const$/;"	f	class:Color
+operator []	math/matrix.hpp	/^	FORCEINLINE Vector operator[](uint32 index) const {$/;"	f	class:Matrix
+operator []	math/quaternion.hpp	/^FORCEINLINE float Quaternion::operator[](uint32 index) const$/;"	f	class:Quaternion
+operator []	math/vector.cpp	/^float Vector3f::operator[](uint32 index) const$/;"	f	class:Vector3f
+operator []	platform/generic/genericVecmath.hpp	/^	FORCEINLINE float operator[](uint32 index) const$/;"	f	struct:GenericVector
+operator []	platform/sse/sseVecmath.hpp	/^	FORCEINLINE float operator[](uint32 index) const$/;"	f	struct:SSEVector
+operator ^	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator^(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator ^	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator^(const SSEVector& other) const$/;"	f	struct:SSEVector
+operator |	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector operator|(const GenericVector& other) const$/;"	f	struct:GenericVector
+operator |	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector operator|(const SSEVector& other) const$/;"	f	struct:SSEVector
+order	rendering/staticLibs/stb_image.c	/^   int scan_n, order[4];$/;"	m	struct:__anon6	file:
+ortho	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::ortho(float left, float right,$/;"	f	class:Matrix
+out	rendering/staticLibs/stb_image.c	/^   stbi_uc *out;                 \/\/ output buffer (always 4 components)$/;"	m	struct:stbi_gif_struct	file:
+out	rendering/staticLibs/stb_image.c	/^   uint8 *idata, *expanded, *out;$/;"	m	struct:__anon12	file:
+paeth	rendering/staticLibs/stb_image.c	/^static int paeth(int a, int b, int c)$/;"	f	file:
+pal	rendering/staticLibs/stb_image.c	/^   uint8  pal[256][4];$/;"	m	struct:stbi_gif_struct	file:
+parse	rendering/staticLibs/stb_image.c	/^   int parse, step;$/;"	m	struct:stbi_gif_struct	file:
+parse_entropy_coded_data	rendering/staticLibs/stb_image.c	/^static int parse_entropy_coded_data(jpeg *z)$/;"	f	file:
+parse_huffman_block	rendering/staticLibs/stb_image.c	/^static int parse_huffman_block(zbuf *a)$/;"	f	file:
+parse_png_file	rendering/staticLibs/stb_image.c	/^static int parse_png_file(png *z, int scan, int req_comp)$/;"	f	file:
+parse_uncompressed_block	rendering/staticLibs/stb_image.c	/^static int parse_uncompressed_block(zbuf *a)$/;"	f	file:
+parse_zlib	rendering/staticLibs/stb_image.c	/^static int parse_zlib(zbuf *a, int parse_header)$/;"	f	file:
+parse_zlib_header	rendering/staticLibs/stb_image.c	/^static int parse_zlib_header(zbuf *a)$/;"	f	file:
+perspective	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::perspective(float halfFov, float aspect,$/;"	f	class:Matrix
+pic_copyval	rendering/staticLibs/stb_image.c	/^static void pic_copyval(int channel,stbi_uc *dest,const stbi_uc *src)$/;"	f	file:
+pic_is4	rendering/staticLibs/stb_image.c	/^static int pic_is4(stbi *s,const char *str)$/;"	f	file:
+pic_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *pic_load(stbi *s,int *px,int *py,int *comp,int req_comp)$/;"	f	file:
+pic_load2	rendering/staticLibs/stb_image.c	/^static stbi_uc *pic_load2(stbi *s,int width,int height,int *comp, stbi_uc *result)$/;"	f	file:
+pic_packet_t	rendering/staticLibs/stb_image.c	/^} pic_packet_t;$/;"	t	typeref:struct:__anon14	file:
+pic_readval	rendering/staticLibs/stb_image.c	/^static stbi_uc *pic_readval(stbi *s, int channel, stbi_uc *dest)$/;"	f	file:
+pic_test	rendering/staticLibs/stb_image.c	/^static int pic_test(stbi *s)$/;"	f	file:
+pixels	rendering/arrayBitmap.hpp	/^	int32* pixels;$/;"	m	class:ArrayBitmap
+png	rendering/staticLibs/stb_image.c	/^} png;$/;"	t	typeref:struct:__anon12	file:
+pow	platform/generic/genericMath.hpp	/^	static FORCEINLINE float pow(float val, float power) { return powf(val, power); }$/;"	f	struct:GenericMath
+pow	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector pow(const GenericVector& exp) const$/;"	f	struct:GenericVector
+pow	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector pow(const SSEVector& exp) const$/;"	f	struct:SSEVector
+prefix	rendering/staticLibs/stb_image.c	/^   int16 prefix;$/;"	m	struct:stbi_gif_lzw_struct	file:
+present	platform/sdl/sdlWindow.cpp	/^void SDLWindow::present()$/;"	f	class:SDLWindow
+processMessages	platform/sdl/sdlApplication.cpp	/^void SDLApplication::processMessages(double delta)$/;"	f	class:SDLApplication
+process_frame_header	rendering/staticLibs/stb_image.c	/^static int process_frame_header(jpeg *z, int scan)$/;"	f	file:
+process_marker	rendering/staticLibs/stb_image.c	/^static int process_marker(jpeg *z, int m)$/;"	f	file:
+process_scan_header	rendering/staticLibs/stb_image.c	/^static int process_scan_header(jpeg *z)$/;"	f	file:
+project	math/vector.cpp	/^Vector3f Vector3f::project() const$/;"	f	class:Vector3f
+psd_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *psd_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+psd_test	rendering/staticLibs/stb_image.c	/^static int psd_test(stbi *s)$/;"	f	file:
+quantized	math/color.hpp	/^FORCEINLINE Color Color::quantized() const$/;"	f	class:Color
+quatMul	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector quatMul(const GenericVector& other) const$/;"	f	struct:GenericVector
+quatMul	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector quatMul(const SSEVector& other) const$/;"	f	struct:SSEVector
+quatRotateVec	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector quatRotateVec(const GenericVector& vec) const$/;"	f	struct:GenericVector
+quatRotateVec	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector quatRotateVec(const SSEVector& vec) const$/;"	f	struct:SSEVector
+rand	platform/generic/genericMath.hpp	/^	static FORCEINLINE int32 rand() { return ::rand(); }$/;"	f	struct:GenericMath
+randf	platform/generic/genericMath.hpp	/^	static FORCEINLINE float randf() { return ::rand()\/(float)RAND_MAX; }$/;"	f	struct:GenericMath
+ratio	rendering/staticLibs/stb_image.c	/^   int flags, bgindex, ratio, transparent, eflags;$/;"	m	struct:stbi_gif_struct	file:
+raw_data	rendering/staticLibs/stb_image.c	/^      void *raw_data;$/;"	m	struct:__anon6::__anon7	file:
+read	rendering/staticLibs/stb_image.h	/^   int      (*read)  (void *user,char *data,int size);   \/\/ fill 'data' with 'size' bytes.  return number of bytes actually read $/;"	m	struct:__anon2
+read_from_callbacks	rendering/staticLibs/stb_image.c	/^   int read_from_callbacks;$/;"	m	struct:__anon3	file:
+realloc	core/memory.hpp	/^	static FORCEINLINE void* realloc(void* ptr, uintptr amt, uint32 alignment=DEFAULT_ALIGNMENT)$/;"	f	struct:Memory
+realloc	platform/generic/genericMemory.cpp	/^void* GenericMemory::realloc(void* ptr, uintptr amt, uint32 alignment)$/;"	f	class:GenericMemory
+reciprocal	math/vector.cpp	/^Vector3f Vector3f::reciprocal() const$/;"	f	class:Vector3f
+reciprocal	platform/generic/genericMath.hpp	/^	static FORCEINLINE float reciprocal(float val)$/;"	f	struct:GenericMath
+reciprocal	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector reciprocal() const$/;"	f	struct:GenericVector
+reciprocal	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector reciprocal() const$/;"	f	struct:SSEVector
+refill_buffer	rendering/staticLibs/stb_image.c	/^static void refill_buffer(stbi *s)$/;"	f	file:
+reflect	math/vector.cpp	/^Vector3f Vector3f::reflect(const Vector3f& normal) const$/;"	f	class:Vector3f
+refract	math/vector.cpp	/^Vector3f Vector3f::refract(const Vector3f& normal, float indexOfRefraction) const$/;"	f	class:Vector3f
+releaseRenderTarget	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::releaseRenderTarget(uint32 fbo)$/;"	f	class:OpenGLRenderDevice
+releaseSampler	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::releaseSampler(uint32 sampler)$/;"	f	class:OpenGLRenderDevice
+releaseShaderProgram	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::releaseShaderProgram(uint32 shader)$/;"	f	class:OpenGLRenderDevice
+releaseTexture2D	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::releaseTexture2D(uint32 texture2D)$/;"	f	class:OpenGLRenderDevice
+releaseUniformBuffer	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::releaseUniformBuffer(uint32 buffer)$/;"	f	class:OpenGLRenderDevice
+releaseVertexArray	platform/opengl/openGLRenderDevice.cpp	/^uint32 OpenGLRenderDevice::releaseVertexArray(uint32 vao)$/;"	f	class:OpenGLRenderDevice
+replicate	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector replicate(uint32 index) const$/;"	f	struct:GenericVector
+replicate	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector replicate(uint32 index) const$/;"	f	struct:SSEVector
+resample	rendering/staticLibs/stb_image.c	/^   resample_row_func resample;$/;"	m	struct:__anon8	file:
+resample_row_1	rendering/staticLibs/stb_image.c	/^static uint8 *resample_row_1(uint8 *out, uint8 *in_near, uint8 *in_far, int w, int hs)$/;"	f	file:
+resample_row_func	rendering/staticLibs/stb_image.c	/^typedef uint8 *(*resample_row_func)(uint8 *out, uint8 *in0, uint8 *in1,$/;"	t	file:
+resample_row_generic	rendering/staticLibs/stb_image.c	/^static uint8 *resample_row_generic(uint8 *out, uint8 *in_near, uint8 *in_far, int w, int hs)$/;"	f	file:
+resample_row_h_2	rendering/staticLibs/stb_image.c	/^static uint8*  resample_row_h_2(uint8 *out, uint8 *in_near, uint8 *in_far, int w, int hs)$/;"	f	file:
+resample_row_hv_2	rendering/staticLibs/stb_image.c	/^static uint8 *resample_row_hv_2(uint8 *out, uint8 *in_near, uint8 *in_far, int w, int hs)$/;"	f	file:
+resample_row_v_2	rendering/staticLibs/stb_image.c	/^static uint8* resample_row_v_2(uint8 *out, uint8 *in_near, uint8 *in_far, int w, int hs)$/;"	f	file:
+reset	rendering/staticLibs/stb_image.c	/^static void reset(jpeg *j)$/;"	f	file:
+restart_interval	rendering/staticLibs/stb_image.c	/^   int restart_interval, todo;$/;"	m	struct:__anon6	file:
+rlen3	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector rlen3() const$/;"	f	struct:GenericVector
+rlen3	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector rlen3() const$/;"	f	struct:SSEVector
+rlen4	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector rlen4() const$/;"	f	struct:GenericVector
+rlen4	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector rlen4() const$/;"	f	struct:SSEVector
+rotate	math/quaternion.cpp	/^Vector3f Quaternion::rotate(const Vector3f& other) const$/;"	f	class:Quaternion
+rotate	math/vector.cpp	/^Vector3f Vector3f::rotate(const Vector3f& axis, float angle) const$/;"	f	class:Vector3f
+rotation	math/transform.hpp	/^	Quaternion rotation;$/;"	m	class:Transform
+roundToFloat	platform/generic/genericMath.hpp	/^	static FORCEINLINE float roundToFloat(float val)$/;"	f	struct:GenericMath
+roundToInt	platform/generic/genericMath.hpp	/^	static FORCEINLINE int32 roundToInt(float val)$/;"	f	struct:GenericMath
+roundUpToNextPowerOf2	platform/generic/genericMath.hpp	/^	static FORCEINLINE uint32 roundUpToNextPowerOf2(uint32 val)$/;"	f	struct:GenericMath
+rsqrt	platform/generic/genericMath.hpp	/^	static FORCEINLINE float rsqrt(float val)$/;"	f	struct:GenericMath
+rsqrt	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector rsqrt() const$/;"	f	struct:GenericVector
+rsqrt	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector rsqrt() const$/;"	f	struct:SSEVector
+runApp	main.cpp	/^static int runApp(Application* app)$/;"	f	file:
+s	rendering/staticLibs/stb_image.c	/^   stbi *s;$/;"	m	struct:__anon12	file:
+s	rendering/staticLibs/stb_image.c	/^   stbi *s;$/;"	m	struct:__anon6	file:
+samplerMap	platform/opengl/openGLRenderDevice.hpp	/^		Map<String, int32> samplerMap;$/;"	m	struct:OpenGLRenderDevice::ShaderProgram
+saturate	platform/generic/genericMath.hpp	/^	static FORCEINLINE T saturate(const T& val)$/;"	f	struct:GenericMath
+saturationAdjust	math/color.hpp	/^FORCEINLINE Color Color::saturationAdjust(float saturation) const$/;"	f	class:Color
+save	rendering/arrayBitmap.cpp	/^bool ArrayBitmap::save(const String& fileName) const$/;"	f	class:ArrayBitmap
+scale	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::scale(const Vector3f& amt)$/;"	f	class:Matrix
+scale	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::scale(float amt)$/;"	f	class:Matrix
+scale	math/transform.hpp	/^	Vector3f scale;$/;"	m	class:Transform
+scan_n	rendering/staticLibs/stb_image.c	/^   int scan_n, order[4];$/;"	m	struct:__anon6	file:
+seedRand	platform/generic/genericMath.hpp	/^	static FORCEINLINE void seedRand(int32 seed) { srand((uint32)seed); }$/;"	f	struct:GenericMath
+select	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE T select(const T& cmp,$/;"	f	struct:GenericMath
+select	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector select(const GenericVector& mask, const GenericVector& other) const$/;"	f	struct:GenericVector
+select	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector select(const SSEVector& mask, const SSEVector& other) const$/;"	f	struct:SSEVector
+set	math/transform.hpp	/^FORCEINLINE void Transform::set(const Vector3f& translationIn,$/;"	f	class:Transform
+set	math/vector.cpp	/^void Vector3f::set(float x, float y, float z)$/;"	f	class:Vector3f
+set	math/vector.cpp	/^void Vector3f::set(uint32 index, float val)$/;"	f	class:Vector3f
+set	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector set(float x, float y, float z)$/;"	f	struct:GenericVector
+set	platform/generic/genericVecmath.hpp	/^	static FORCEINLINE GenericVector set(float x, float y, float z, float w)$/;"	f	struct:GenericVector
+set	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector set(float x, float y, float z)$/;"	f	struct:SSEVector
+set	platform/sse/sseVecmath.hpp	/^	static FORCEINLINE SSEVector set(float x, float y, float z, float w)$/;"	f	struct:SSEVector
+set	rendering/arrayBitmap.hpp	/^FORCEINLINE void ArrayBitmap::set(int32 x, int32 y, int32 pixel)$/;"	f	class:ArrayBitmap
+setFBO	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::setFBO(uint32 fbo)$/;"	f	class:OpenGLRenderDevice
+setInstancedElementStartIndex	rendering/indexedModel.cpp	/^void IndexedModel::setInstancedElementStartIndex(uint32 elementIndex)$/;"	f	class:IndexedModel
+setRotation	math/transform.hpp	/^FORCEINLINE void Transform::setRotation(const Quaternion& val)$/;"	f	class:Transform
+setSampler	rendering/shader.hpp	/^FORCEINLINE void Shader::setSampler(const String& name, Texture& texture, Sampler& sampler,$/;"	f	class:Shader
+setScale	math/transform.hpp	/^FORCEINLINE void Transform::setScale(const Vector3f& val)$/;"	f	class:Transform
+setShader	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::setShader(uint32 shader)$/;"	f	class:OpenGLRenderDevice
+setShaderSampler	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::setShaderSampler(uint32 shader, const String& samplerName,$/;"	f	class:OpenGLRenderDevice
+setShaderUniformBuffer	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::setShaderUniformBuffer(uint32 shader, const String& uniformBufferName,$/;"	f	class:OpenGLRenderDevice
+setTranslation	math/transform.hpp	/^FORCEINLINE void Transform::setTranslation(const Vector3f& val)$/;"	f	class:Transform
+setUniformBuffer	rendering/shader.hpp	/^FORCEINLINE void Shader::setUniformBuffer(const String& name, UniformBuffer& buffer)$/;"	f	class:Shader
+setVAO	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::setVAO(uint32 vao)$/;"	f	class:OpenGLRenderDevice
+setViewport	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::setViewport(uint32 fbo)$/;"	f	class:OpenGLRenderDevice
+shaderProgramMap	platform/opengl/openGLRenderDevice.hpp	/^	Map<uint32, ShaderProgram> shaderProgramMap;$/;"	m	class:OpenGLRenderDevice
+shaderText	main.cpp	/^static String shaderText = String("#if defined(VS_BUILD)\\n\\$/;"	v	file:
+shaderVersion	platform/opengl/openGLRenderDevice.hpp	/^	String shaderVersion;$/;"	m	class:OpenGLRenderDevice
+shaders	platform/opengl/openGLRenderDevice.hpp	/^		Array<uint32>      shaders;$/;"	m	struct:OpenGLRenderDevice::ShaderProgram
+shiftsigned	rendering/staticLibs/stb_image.c	/^static int shiftsigned(int v, int shift, int bits)$/;"	f	file:
+sin	platform/generic/genericMath.hpp	/^	static FORCEINLINE float sin(float val) { return sinf(val); }$/;"	f	struct:GenericMath
+sincos	platform/generic/genericMath.hpp	/^	static FORCEINLINE void sincos(float* outSin, float* outCos, float angle)$/;"	f	struct:GenericMath
+sincos	platform/generic/genericVecmath.hpp	/^	FORCEINLINE void sincos(GenericVector* outSin, GenericVector* outCos) const$/;"	f	struct:GenericVector
+sincos	platform/sse/sseVecmath.hpp	/^	FORCEINLINE void sincos(SSEVector* outSin, SSEVector* outCos) const$/;"	f	struct:SSEVector
+size	rendering/staticLibs/stb_image.c	/^   stbi_uc size,type,channel;$/;"	m	struct:__anon14	file:
+size	rendering/staticLibs/stb_image.c	/^   uint8  size[257];$/;"	m	struct:__anon5	file:
+size	rendering/staticLibs/stb_image.c	/^   uint8  size[288];$/;"	m	struct:__anon9	file:
+size	rendering/uniformBuffer.hpp	/^	uintptr size;$/;"	m	class:UniformBuffer
+skip	rendering/staticLibs/stb_image.c	/^static void skip(stbi *s, int n)$/;"	f	file:
+skip	rendering/staticLibs/stb_image.h	/^   void     (*skip)  (void *user,unsigned n);            \/\/ skip the next 'n' bytes$/;"	m	struct:__anon2
+slerp	math/quaternion.cpp	/^Quaternion Quaternion::slerp(const Quaternion& dest, float amt, float errorMargin) const$/;"	f	class:Quaternion
+split	dataStructures/string.cpp	/^Array<String> StringFuncs::split(const String& s, char delim)$/;"	f	class:StringFuncs
+sqrt	platform/generic/genericMath.hpp	/^	static FORCEINLINE float sqrt(float val) { return sqrtf(val); }$/;"	f	struct:GenericMath
+start_callbacks	rendering/staticLibs/stb_image.c	/^static void start_callbacks(stbi *s, stbi_io_callbacks *c, void *user)$/;"	f	file:
+start_file	rendering/staticLibs/stb_image.c	/^static void start_file(stbi *s, FILE *f)$/;"	f	file:
+start_mem	rendering/staticLibs/stb_image.c	/^static void start_mem(stbi *s, uint8 const *buffer, int len)$/;"	f	file:
+start_x	rendering/staticLibs/stb_image.c	/^   int start_x, start_y;$/;"	m	struct:stbi_gif_struct	file:
+start_y	rendering/staticLibs/stb_image.c	/^   int start_x, start_y;$/;"	m	struct:stbi_gif_struct	file:
+stbi	rendering/staticLibs/stb_image.c	/^} stbi;$/;"	t	typeref:struct:__anon3	file:
+stbi_YCbCr_installed	rendering/staticLibs/stb_image.c	/^static stbi_YCbCr_to_RGB_run stbi_YCbCr_installed = YCbCr_to_RGB_row;$/;"	v	file:
+stbi_YCbCr_to_RGB_run	rendering/staticLibs/stb_image.h	/^typedef void (*stbi_YCbCr_to_RGB_run)(stbi_uc *output, stbi_uc const  *y, stbi_uc const *cb, stbi_uc const *cr, int count, int step);$/;"	t
+stbi_bmp_info	rendering/staticLibs/stb_image.c	/^static int stbi_bmp_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_bmp_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *stbi_bmp_load(stbi *s,int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_bmp_test	rendering/staticLibs/stb_image.c	/^static int stbi_bmp_test(stbi *s)$/;"	f	file:
+stbi_convert_iphone_png_to_rgb	rendering/staticLibs/stb_image.c	/^void stbi_convert_iphone_png_to_rgb(int flag_true_if_should_convert)$/;"	f
+stbi_de_iphone	rendering/staticLibs/stb_image.c	/^static void stbi_de_iphone(png *z)$/;"	f	file:
+stbi_de_iphone_flag	rendering/staticLibs/stb_image.c	/^static int stbi_de_iphone_flag = 0;$/;"	v	file:
+stbi_dequantize_t	rendering/staticLibs/stb_image.c	/^typedef uint8 stbi_dequantize_t;$/;"	t	file:
+stbi_dequantize_t	rendering/staticLibs/stb_image.c	/^typedef unsigned short stbi_dequantize_t;$/;"	t	file:
+stbi_failure_reason	rendering/staticLibs/stb_image.c	/^const char *stbi_failure_reason(void)$/;"	f
+stbi_fill_gif_background	rendering/staticLibs/stb_image.c	/^static void stbi_fill_gif_background(stbi_gif *g)$/;"	f	file:
+stbi_gif	rendering/staticLibs/stb_image.c	/^} stbi_gif;$/;"	t	typeref:struct:stbi_gif_struct	file:
+stbi_gif_header	rendering/staticLibs/stb_image.c	/^static int stbi_gif_header(stbi *s, stbi_gif *g, int *comp, int is_info)$/;"	f	file:
+stbi_gif_info	rendering/staticLibs/stb_image.c	/^static int stbi_gif_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_gif_info_raw	rendering/staticLibs/stb_image.c	/^static int stbi_gif_info_raw(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_gif_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *stbi_gif_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_gif_load_next	rendering/staticLibs/stb_image.c	/^static uint8 *stbi_gif_load_next(stbi *s, stbi_gif *g, int *comp, int req_comp)$/;"	f	file:
+stbi_gif_lzw	rendering/staticLibs/stb_image.c	/^} stbi_gif_lzw;$/;"	t	typeref:struct:stbi_gif_lzw_struct	file:
+stbi_gif_lzw_struct	rendering/staticLibs/stb_image.c	/^typedef struct stbi_gif_lzw_struct {$/;"	s	file:
+stbi_gif_parse_colortable	rendering/staticLibs/stb_image.c	/^static void stbi_gif_parse_colortable(stbi *s, uint8 pal[256][4], int num_entries, int transp)$/;"	f	file:
+stbi_gif_struct	rendering/staticLibs/stb_image.c	/^typedef struct stbi_gif_struct$/;"	s	file:
+stbi_gif_test	rendering/staticLibs/stb_image.c	/^static int stbi_gif_test(stbi *s)$/;"	f	file:
+stbi_hdr_info	rendering/staticLibs/stb_image.c	/^static int stbi_hdr_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_hdr_load	rendering/staticLibs/stb_image.c	/^static float *stbi_hdr_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_hdr_test	rendering/staticLibs/stb_image.c	/^static int stbi_hdr_test(stbi* s)$/;"	f	file:
+stbi_hdr_to_ldr_gamma	rendering/staticLibs/stb_image.c	/^void   stbi_hdr_to_ldr_gamma(float gamma) { h2l_gamma_i = 1\/gamma; }$/;"	f
+stbi_hdr_to_ldr_scale	rendering/staticLibs/stb_image.c	/^void   stbi_hdr_to_ldr_scale(float scale) { h2l_scale_i = 1\/scale; }$/;"	f
+stbi_idct_8x8	rendering/staticLibs/stb_image.h	/^typedef void (*stbi_idct_8x8)(stbi_uc *out, int out_stride, short data[64], unsigned short *dequantize);$/;"	t
+stbi_idct_installed	rendering/staticLibs/stb_image.c	/^static stbi_idct_8x8 stbi_idct_installed = idct_block;$/;"	v	file:
+stbi_image_free	rendering/staticLibs/stb_image.c	/^void stbi_image_free(void *retval_from_stbi_load)$/;"	f
+stbi_info	rendering/staticLibs/stb_image.c	/^int stbi_info(char const *filename, int *x, int *y, int *comp)$/;"	f
+stbi_info_from_callbacks	rendering/staticLibs/stb_image.c	/^int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int *y, int *comp)$/;"	f
+stbi_info_from_file	rendering/staticLibs/stb_image.c	/^int stbi_info_from_file(FILE *f, int *x, int *y, int *comp)$/;"	f
+stbi_info_from_memory	rendering/staticLibs/stb_image.c	/^int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp)$/;"	f
+stbi_info_main	rendering/staticLibs/stb_image.c	/^static int stbi_info_main(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_inline	rendering/staticLibs/stb_image.c	92;"	d	file:
+stbi_inline	rendering/staticLibs/stb_image.c	94;"	d	file:
+stbi_inline	rendering/staticLibs/stb_image.c	97;"	d	file:
+stbi_install_YCbCr_to_RGB	rendering/staticLibs/stb_image.c	/^void stbi_install_YCbCr_to_RGB(stbi_YCbCr_to_RGB_run func)$/;"	f
+stbi_install_idct	rendering/staticLibs/stb_image.c	/^void stbi_install_idct(stbi_idct_8x8 func)$/;"	f
+stbi_io_callbacks	rendering/staticLibs/stb_image.h	/^} stbi_io_callbacks;$/;"	t	typeref:struct:__anon2
+stbi_is_hdr	rendering/staticLibs/stb_image.c	/^extern int      stbi_is_hdr          (char const *filename)$/;"	f
+stbi_is_hdr_from_callbacks	rendering/staticLibs/stb_image.c	/^extern int      stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user)$/;"	f
+stbi_is_hdr_from_file	rendering/staticLibs/stb_image.c	/^extern int      stbi_is_hdr_from_file(FILE *f)$/;"	f
+stbi_is_hdr_from_memory	rendering/staticLibs/stb_image.c	/^int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len)$/;"	f
+stbi_jpeg_info	rendering/staticLibs/stb_image.c	/^static int stbi_jpeg_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_jpeg_info_raw	rendering/staticLibs/stb_image.c	/^static int stbi_jpeg_info_raw(jpeg *j, int *x, int *y, int *comp)$/;"	f	file:
+stbi_jpeg_load	rendering/staticLibs/stb_image.c	/^static unsigned char *stbi_jpeg_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_jpeg_test	rendering/staticLibs/stb_image.c	/^static int stbi_jpeg_test(stbi *s)$/;"	f	file:
+stbi_ldr_to_hdr_gamma	rendering/staticLibs/stb_image.c	/^void   stbi_ldr_to_hdr_gamma(float gamma) { l2h_gamma = gamma; }$/;"	f
+stbi_ldr_to_hdr_scale	rendering/staticLibs/stb_image.c	/^void   stbi_ldr_to_hdr_scale(float scale) { l2h_scale = scale; }$/;"	f
+stbi_load	rendering/staticLibs/stb_image.c	/^unsigned char *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_load_from_callbacks	rendering/staticLibs/stb_image.c	/^unsigned char *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_load_from_file	rendering/staticLibs/stb_image.c	/^unsigned char *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_load_from_memory	rendering/staticLibs/stb_image.c	/^unsigned char *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_load_main	rendering/staticLibs/stb_image.c	/^static unsigned char *stbi_load_main(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_loadf	rendering/staticLibs/stb_image.c	/^float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_loadf_from_callbacks	rendering/staticLibs/stb_image.c	/^float *stbi_loadf_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_loadf_from_file	rendering/staticLibs/stb_image.c	/^float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_loadf_from_memory	rendering/staticLibs/stb_image.c	/^float *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_loadf_main	rendering/staticLibs/stb_image.c	/^float *stbi_loadf_main(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f
+stbi_lrot	rendering/staticLibs/stb_image.c	123;"	d	file:
+stbi_lrot	rendering/staticLibs/stb_image.c	125;"	d	file:
+stbi_out_gif_code	rendering/staticLibs/stb_image.c	/^static void stbi_out_gif_code(stbi_gif *g, uint16 code)$/;"	f	file:
+stbi_pic_info	rendering/staticLibs/stb_image.c	/^static int stbi_pic_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_pic_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *stbi_pic_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_pic_test	rendering/staticLibs/stb_image.c	/^static int stbi_pic_test(stbi *s)$/;"	f	file:
+stbi_png_info	rendering/staticLibs/stb_image.c	/^static int      stbi_png_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_png_info_raw	rendering/staticLibs/stb_image.c	/^static int stbi_png_info_raw(png *p, int *x, int *y, int *comp)$/;"	f	file:
+stbi_png_load	rendering/staticLibs/stb_image.c	/^static unsigned char *stbi_png_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_png_partial	rendering/staticLibs/stb_image.c	/^int stbi_png_partial; \/\/ a quick hack to only allow decoding some of a PNG... I should implement real streaming support instead$/;"	v
+stbi_png_test	rendering/staticLibs/stb_image.c	/^static int stbi_png_test(stbi *s)$/;"	f	file:
+stbi_process_gif_raster	rendering/staticLibs/stb_image.c	/^static uint8 *stbi_process_gif_raster(stbi *s, stbi_gif *g)$/;"	f	file:
+stbi_psd_info	rendering/staticLibs/stb_image.c	/^static int stbi_psd_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+stbi_psd_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *stbi_psd_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_psd_test	rendering/staticLibs/stb_image.c	/^static int stbi_psd_test(stbi *s)$/;"	f	file:
+stbi_resample	rendering/staticLibs/stb_image.c	/^} stbi_resample;$/;"	t	typeref:struct:__anon8	file:
+stbi_rewind	rendering/staticLibs/stb_image.c	/^static void stbi_rewind(stbi *s)$/;"	f	file:
+stbi_set_unpremultiply_on_load	rendering/staticLibs/stb_image.c	/^void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply)$/;"	f
+stbi_stdio_callbacks	rendering/staticLibs/stb_image.c	/^static stbi_io_callbacks stbi_stdio_callbacks =$/;"	v	file:
+stbi_tga_info	rendering/staticLibs/stb_image.c	/^int stbi_tga_info(stbi *s, int *x, int *y, int *comp)$/;"	f
+stbi_tga_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *stbi_tga_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+stbi_tga_test	rendering/staticLibs/stb_image.c	/^static int stbi_tga_test(stbi *s)$/;"	f	file:
+stbi_uc	rendering/staticLibs/stb_image.h	/^typedef unsigned char stbi_uc;$/;"	t
+stbi_unpremultiply_on_load	rendering/staticLibs/stb_image.c	/^static int stbi_unpremultiply_on_load = 0;$/;"	v	file:
+stbi_zlib_decode_buffer	rendering/staticLibs/stb_image.c	/^int stbi_zlib_decode_buffer(char *obuffer, int olen, char const *ibuffer, int ilen)$/;"	f
+stbi_zlib_decode_malloc	rendering/staticLibs/stb_image.c	/^char *stbi_zlib_decode_malloc(char const *buffer, int len, int *outlen)$/;"	f
+stbi_zlib_decode_malloc_guesssize	rendering/staticLibs/stb_image.c	/^char *stbi_zlib_decode_malloc_guesssize(const char *buffer, int len, int initial_size, int *outlen)$/;"	f
+stbi_zlib_decode_malloc_guesssize_headerflag	rendering/staticLibs/stb_image.c	/^char *stbi_zlib_decode_malloc_guesssize_headerflag(const char *buffer, int len, int initial_size, int *outlen, int parse_header)$/;"	f
+stbi_zlib_decode_noheader_buffer	rendering/staticLibs/stb_image.c	/^int stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const char *ibuffer, int ilen)$/;"	f
+stbi_zlib_decode_noheader_malloc	rendering/staticLibs/stb_image.c	/^char *stbi_zlib_decode_noheader_malloc(char const *buffer, int len, int *outlen)$/;"	f
+stdio_eof	rendering/staticLibs/stb_image.c	/^static int stdio_eof(void *user)$/;"	f	file:
+stdio_read	rendering/staticLibs/stb_image.c	/^static int stdio_read(void *user, char *data, int size)$/;"	f	file:
+stdio_skip	rendering/staticLibs/stb_image.c	/^static void stdio_skip(void *user, unsigned n)$/;"	f	file:
+step	rendering/staticLibs/stb_image.c	/^   int parse, step;$/;"	m	struct:stbi_gif_struct	file:
+store1f	platform/generic/genericVecmath.hpp	/^	FORCEINLINE void store1f(float* result) const$/;"	f	struct:GenericVector
+store1f	platform/sse/sseVecmath.hpp	/^	FORCEINLINE void store1f(float* result) const$/;"	f	struct:SSEVector
+store3f	platform/generic/genericVecmath.hpp	/^	FORCEINLINE void store3f(float* result) const$/;"	f	struct:GenericVector
+store3f	platform/sse/sseVecmath.hpp	/^	FORCEINLINE void store3f(float* result) const$/;"	f	struct:SSEVector
+store4f	platform/generic/genericVecmath.hpp	/^	FORCEINLINE void store4f(float* result) const$/;"	f	struct:GenericVector
+store4f	platform/sse/sseVecmath.hpp	/^	FORCEINLINE void store4f(float* result) const$/;"	f	struct:SSEVector
+storeAligned	platform/generic/genericVecmath.hpp	/^	FORCEINLINE void storeAligned(float* result) const$/;"	f	struct:GenericVector
+storeAligned	platform/sse/sseVecmath.hpp	/^	FORCEINLINE void storeAligned(float* result) const$/;"	f	struct:SSEVector
+storeAlignedStreamed	platform/generic/genericVecmath.hpp	/^	FORCEINLINE void storeAlignedStreamed(float* result) const$/;"	f	struct:GenericVector
+storeAlignedStreamed	platform/sse/sseVecmath.hpp	/^	FORCEINLINE void storeAlignedStreamed(float* result) const$/;"	f	struct:SSEVector
+suffix	rendering/staticLibs/stb_image.c	/^   uint8 suffix;$/;"	m	struct:stbi_gif_lzw_struct	file:
+swizzle	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector swizzle(uint32 x, uint32 y, uint32 z, uint32 w) const$/;"	f	struct:GenericVector
+swizzle	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector swizzle(uint32 x, uint32 y, uint32 z, uint32 w) const$/;"	f	struct:SSEVector
+tan	platform/generic/genericMath.hpp	/^	static FORCEINLINE float tan(float val) { return tanf(val); }$/;"	f	struct:GenericMath
+target	rendering/renderContext.hpp	/^	RenderTarget* target;$/;"	m	class:RenderContext
+texId	rendering/texture.hpp	/^	uint32 texId;$/;"	m	class:Texture
+tga_info	rendering/staticLibs/stb_image.c	/^static int tga_info(stbi *s, int *x, int *y, int *comp)$/;"	f	file:
+tga_load	rendering/staticLibs/stb_image.c	/^static stbi_uc *tga_load(stbi *s, int *x, int *y, int *comp, int req_comp)$/;"	f	file:
+tga_test	rendering/staticLibs/stb_image.c	/^static int tga_test(stbi *s)$/;"	f	file:
+toDegrees	math/vector.cpp	/^Vector3f Vector3f::toDegrees() const$/;"	f	class:Vector3f
+toDegrees	platform/generic/genericMath.hpp	/^	static FORCEINLINE T toDegrees(const T& val)$/;"	f	struct:GenericMath
+toMatrix	math/transform.hpp	/^FORCEINLINE Matrix Transform::toMatrix() const$/;"	f	class:Transform
+toRadians	math/vector.cpp	/^Vector3f Vector3f::toRadians() const$/;"	f	class:Vector3f
+toRadians	platform/generic/genericMath.hpp	/^	static FORCEINLINE T toRadians(const T& val)$/;"	f	struct:GenericMath
+toString	dataStructures/string.hpp	/^	static FORCEINLINE String toString(T val)$/;"	f	struct:StringFuncs
+toVector	math/quaternion.hpp	/^FORCEINLINE Vector Quaternion::toVector() const$/;"	f	class:Quaternion
+toVector	math/vector.cpp	/^Vector Vector3f::toVector(float w) const$/;"	f	class:Vector3f
+toVector	math/vector.hpp	/^FORCEINLINE Vector Vector3f::toVector() const$/;"	f	class:Vector3f
+todo	rendering/staticLibs/stb_image.c	/^   int restart_interval, todo;$/;"	m	struct:__anon6	file:
+tq	rendering/staticLibs/stb_image.c	/^      int tq;$/;"	m	struct:__anon6::__anon7	file:
+transform	math/matrix.hpp	/^FORCEINLINE Vector Matrix::transform(const Vector& vector) const$/;"	f	class:Matrix
+transform	math/transform.hpp	/^FORCEINLINE Vector Transform::transform(const Vector& vector) const$/;"	f	class:Transform
+transform	math/transform.hpp	/^FORCEINLINE Vector Transform::transform(const Vector3f& vector, float w) const$/;"	f	class:Transform
+transform	platform/generic/genericVecmath.hpp	/^	FORCEINLINE GenericVector transform(const void* matrix) const$/;"	f	struct:GenericVector
+transform	platform/sse/sseVecmath.hpp	/^	FORCEINLINE SSEVector transform(const void* matrix) const$/;"	f	struct:SSEVector
+transformMatrix	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::transformMatrix(const Vector3f& translation,$/;"	f	class:Matrix
+translate	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::translate(const Vector3f& amt)$/;"	f	class:Matrix
+translation	math/transform.hpp	/^	Vector3f translation;$/;"	m	class:Transform
+transparent	rendering/staticLibs/stb_image.c	/^   int flags, bgindex, ratio, transparent, eflags;$/;"	m	struct:stbi_gif_struct	file:
+transpose	math/matrix.hpp	/^FORCEINLINE Matrix Matrix::transpose() const$/;"	f	class:Matrix
+truncToFloat	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE float truncToFloat(float val)$/;"	f	struct:GenericMath
+truncToInt	platform/generic/genericMath.hpp	/^	static CONSTEXPR FORCEINLINE int32 truncToInt(float val)$/;"	f	struct:GenericMath
+type	rendering/staticLibs/stb_image.c	/^   stbi_uc size,type,channel;$/;"	m	struct:__anon14	file:
+type	rendering/staticLibs/stb_image.c	/^   uint32 type;$/;"	m	struct:__anon11	file:
+uint	rendering/staticLibs/stb_image.c	/^typedef unsigned int   uint;$/;"	t	file:
+uint16	core/common.hpp	/^typedef uint16_t uint16;$/;"	t
+uint16	rendering/staticLibs/stb_image.c	/^typedef unsigned short uint16;$/;"	t	file:
+uint16_t	core/common.hpp	/^	typedef unsigned __int16 uint16_t;$/;"	t
+uint16_t	core/common.hpp	/^	typedef unsigned short int uint16_t;$/;"	t
+uint32	core/common.hpp	/^typedef uint32_t uint32;$/;"	t
+uint32	rendering/staticLibs/stb_image.c	/^typedef unsigned int   uint32;$/;"	t	file:
+uint32_t	core/common.hpp	/^	typedef unsigned __int32 uint32_t;$/;"	t
+uint32_t	core/common.hpp	/^	typedef unsigned int       uint32_t;$/;"	t
+uint64	core/common.hpp	/^typedef uint64_t uint64;$/;"	t
+uint64_t	core/common.hpp	/^	typedef unsigned __int64 uint64_t;$/;"	t
+uint64_t	core/common.hpp	/^	typedef unsigned long long uint64_t;$/;"	t
+uint8	core/common.hpp	/^typedef uint8_t uint8;$/;"	t
+uint8	rendering/staticLibs/stb_image.c	/^typedef unsigned char  uint8;$/;"	t	file:
+uint8_t	core/common.hpp	/^	typedef unsigned __int8  uint8_t;$/;"	t
+uint8_t	core/common.hpp	/^	typedef unsigned char      uint8_t;$/;"	t
+uintptr	core/common.hpp	/^typedef uintptr_t uintptr;$/;"	t
+uintptr_t	core/common.hpp	/^	typedef uint64_t uintptr_t;$/;"	t
+uniformMap	platform/opengl/openGLRenderDevice.hpp	/^		Map<String, int32> uniformMap;$/;"	m	struct:OpenGLRenderDevice::ShaderProgram
+update	rendering/uniformBuffer.hpp	/^	FORCEINLINE void update(const void* data) { update(data, size); }$/;"	f	class:UniformBuffer
+update	rendering/uniformBuffer.hpp	/^FORCEINLINE void UniformBuffer::update(const void* data, uintptr dataSize)$/;"	f	class:UniformBuffer
+updateBuffer	rendering/vertexArray.hpp	/^FORCEINLINE void VertexArray::updateBuffer(uint32 bufferIndex,$/;"	f	class:VertexArray
+updateUniformBuffer	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::updateUniformBuffer(uint32 buffer, const void* data, uintptr dataSize)$/;"	f	class:OpenGLRenderDevice
+updateVertexArrayBuffer	platform/opengl/openGLRenderDevice.cpp	/^void OpenGLRenderDevice::updateVertexArrayBuffer(uint32 vao, uint32 bufferIndex,$/;"	f	class:OpenGLRenderDevice
+usage	platform/opengl/openGLRenderDevice.hpp	/^		enum BufferUsage usage;$/;"	m	struct:OpenGLRenderDevice::VertexArray	typeref:enum:OpenGLRenderDevice::VertexArray::BufferUsage
+v	platform/generic/genericVecmath.hpp	/^	float v[4];$/;"	m	struct:GenericVector
+v	rendering/staticLibs/stb_image.c	/^      int h,v;$/;"	m	struct:__anon6::__anon7	file:
+validate_uint32	rendering/staticLibs/stb_image.c	/^typedef unsigned char validate_uint32[sizeof(uint32)==4 ? 1 : -1];$/;"	t	file:
+value	rendering/staticLibs/stb_image.c	/^   uint16 value[288]; $/;"	m	struct:__anon9	file:
+values	rendering/staticLibs/stb_image.c	/^   uint8  values[256];$/;"	m	struct:__anon5	file:
+vaoMap	platform/opengl/openGLRenderDevice.hpp	/^	Map<uint32, VertexArray> vaoMap;$/;"	m	class:OpenGLRenderDevice
+varianceAdjust	math/color.hpp	/^FORCEINLINE Color Color::varianceAdjust(float variance) const$/;"	f	class:Color
+vec	math/quaternion.hpp	/^	Vector vec;$/;"	m	class:Quaternion
+vec	math/vector.hpp	/^	Vector vec;$/;"	m	class:Vector3f
+version	platform/opengl/openGLRenderDevice.hpp	/^	uint32 version;$/;"	m	class:OpenGLRenderDevice
+viewportFBO	platform/opengl/openGLRenderDevice.hpp	/^	uint32 viewportFBO;$/;"	m	class:OpenGLRenderDevice
+vs	rendering/staticLibs/stb_image.c	/^   int hs,vs;   \/\/ expansion factor in each axis$/;"	m	struct:__anon8	file:
+w	rendering/staticLibs/stb_image.c	/^   int w,h;$/;"	m	struct:stbi_gif_struct	file:
+w2	rendering/staticLibs/stb_image.c	/^      int x,y,w2,h2;$/;"	m	struct:__anon6::__anon7	file:
+w_lores	rendering/staticLibs/stb_image.c	/^   int w_lores; \/\/ horizontal pixels pre-expansion $/;"	m	struct:__anon8	file:
+width	platform/opengl/openGLRenderDevice.hpp	/^		int32 width;$/;"	m	struct:OpenGLRenderDevice::FBOData
+width	platform/sdl/sdlWindow.hpp	/^	int32 width;$/;"	m	class:SDLWindow
+width	rendering/arrayBitmap.hpp	/^	int32 width;$/;"	m	class:ArrayBitmap
+width	rendering/texture.hpp	/^	uint32 width;$/;"	m	class:Texture
+window	platform/sdl/sdlWindow.hpp	/^	WindowHandle window;$/;"	m	class:SDLWindow
+x	rendering/staticLibs/stb_image.c	/^      int x,y,w2,h2;$/;"	m	struct:__anon6::__anon7	file:
+y	rendering/staticLibs/stb_image.c	/^      int x,y,w2,h2;$/;"	m	struct:__anon6::__anon7	file:
+ypos	rendering/staticLibs/stb_image.c	/^   int ypos;    \/\/ which pre-expansion row we're on$/;"	m	struct:__anon8	file:
+ystep	rendering/staticLibs/stb_image.c	/^   int ystep;   \/\/ how far through vertical expansion we are$/;"	m	struct:__anon8	file:
+z_distance	rendering/staticLibs/stb_image.c	/^   zhuffman z_length, z_distance;$/;"	m	struct:__anon10	file:
+z_expandable	rendering/staticLibs/stb_image.c	/^   int   z_expandable;$/;"	m	struct:__anon10	file:
+z_length	rendering/staticLibs/stb_image.c	/^   zhuffman z_length, z_distance;$/;"	m	struct:__anon10	file:
+zbuf	rendering/staticLibs/stb_image.c	/^} zbuf;$/;"	t	typeref:struct:__anon10	file:
+zbuffer	rendering/staticLibs/stb_image.c	/^   uint8 *zbuffer, *zbuffer_end;$/;"	m	struct:__anon10	file:
+zbuffer_end	rendering/staticLibs/stb_image.c	/^   uint8 *zbuffer, *zbuffer_end;$/;"	m	struct:__anon10	file:
+zbuild_huffman	rendering/staticLibs/stb_image.c	/^static int zbuild_huffman(zhuffman *z, uint8 *sizelist, int num)$/;"	f	file:
+zget8	rendering/staticLibs/stb_image.c	/^stbi_inline static int zget8(zbuf *z)$/;"	f	file:
+zhuffman	rendering/staticLibs/stb_image.c	/^} zhuffman;$/;"	t	typeref:struct:__anon9	file:
+zhuffman_decode	rendering/staticLibs/stb_image.c	/^stbi_inline static int zhuffman_decode(zbuf *a, zhuffman *z)$/;"	f	file:
+zout	rendering/staticLibs/stb_image.c	/^   char *zout;$/;"	m	struct:__anon10	file:
+zout_end	rendering/staticLibs/stb_image.c	/^   char *zout_end;$/;"	m	struct:__anon10	file:
+zout_start	rendering/staticLibs/stb_image.c	/^   char *zout_start;$/;"	m	struct:__anon10	file:
+zreceive	rendering/staticLibs/stb_image.c	/^stbi_inline static unsigned int zreceive(zbuf *z, int n)$/;"	f	file:
+~ArrayBitmap	rendering/arrayBitmap.cpp	/^ArrayBitmap::~ArrayBitmap()$/;"	f	class:ArrayBitmap
+~OpenGLRenderDevice	platform/opengl/openGLRenderDevice.cpp	/^OpenGLRenderDevice::~OpenGLRenderDevice()$/;"	f	class:OpenGLRenderDevice
+~RenderTarget	rendering/renderTarget.hpp	/^	FORCEINLINE ~RenderTarget()$/;"	f	class:RenderTarget
+~SDLApplication	platform/sdl/sdlApplication.cpp	/^SDLApplication::~SDLApplication()$/;"	f	class:SDLApplication
+~SDLWindow	platform/sdl/sdlWindow.cpp	/^SDLWindow::~SDLWindow()$/;"	f	class:SDLWindow
+~Sampler	rendering/sampler.hpp	/^	FORCEINLINE ~Sampler()$/;"	f	class:Sampler
+~Shader	rendering/shader.hpp	/^	FORCEINLINE ~Shader()$/;"	f	class:Shader
+~Texture	rendering/texture.hpp	/^	FORCEINLINE ~Texture()$/;"	f	class:Texture
+~UniformBuffer	rendering/uniformBuffer.hpp	/^	FORCEINLINE ~UniformBuffer()$/;"	f	class:UniformBuffer
+~VertexArray	rendering/vertexArray.hpp	/^	FORCEINLINE ~VertexArray()$/;"	f	class:VertexArray
