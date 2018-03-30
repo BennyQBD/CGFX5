@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILT_TARGET="Debug"
+BUILT_TARGET="Release"
 
 #First parameter, if any, is used as build target.
 #If no parameter is given, then default to Debug
 if [ "$#" == 0 ]; then
-	BUILD_TARGET="Debug"
+	BUILD_TARGET="Release"
 else
 	BUILD_TARGET="$1"
 fi

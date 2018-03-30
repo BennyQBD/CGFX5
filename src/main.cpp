@@ -305,6 +305,195 @@ static void testIntersects()
 	assert(Math::equals(boundingSphere.getRadius(), 1.5f, 1.e-4f));
 }
 
+FORCEINLINE void naiveMatrixMultiply(float* output, float* input, float* other)
+{
+	float* m = (float*)input;
+	float* r = (float*)other;
+	float* ret = (float*)output;
+	for (unsigned int i = 0 ; i < 4; i++) 
+	{
+		for (unsigned int j = 0 ; j < 4; j++) 
+		{
+			ret[i*4+j] = 0.0f;
+			for(unsigned int k = 0; k < 4; k++) {
+				ret[i*4+j] += m[k*4+j] * r[i*4+k];
+			}
+		}
+	}
+}
+
+FORCEINLINE void naiveCrossProduct(float* output, float* v1, float* v2)
+{
+	float out0 = v1[1] * v2[2] - v1[2] * v2[1];
+	float out1 = v1[2] * v2[0] - v1[0] * v2[2];
+	float out2 = v1[0] * v2[1] - v1[1] * v2[0];
+	output[0] = out0;
+	output[1] = out1;
+	output[2] = out2;
+}
+
+FORCEINLINE void naiveQuatMul(float* output, float* a, float* b)
+{
+	const float w = (a[3] * b[3]) - (a[0] * b[0]) - (a[1] * b[1]) - (a[2] * b[2]);
+	const float x = (a[0]* b[3]) + (a[3] * b[0]) + (a[1] * b[2]) - (a[2] * b[1]);
+	const float y = (a[1] * b[3]) + (a[3] * b[1]) + (a[2] * b[0]) - (a[0] * b[2]);
+	const float z = (a[2] * b[3]) + (a[3] * b[2]) + (a[0] * b[1]) - (a[1] * b[0]);
+
+	output[0] = x;
+	output[1] = y;
+	output[2] = z;
+	output[3] = w;
+}
+
+FORCEINLINE void naiveQuatRotate(float* output, float* a, float* b)
+{
+	float conjugate[4];
+	float temp[4];
+	conjugate[0] = -a[0];
+	conjugate[1] = -a[1];
+	conjugate[2] = -a[2];
+	conjugate[3] = a[3];
+	naiveQuatMul(temp, a, b);
+	naiveQuatMul(output, temp, conjugate);
+}
+
+FORCEINLINE void naiveTransformCreate(float* output, float* translation, float* rotation, float* scale)
+{
+	Vector3f translationVec(translation[0],translation[1],translation[2]);
+	Vector3f scaleVec(scale[0],scale[1],scale[2]);
+	Quaternion rotationVec(rotation[0],rotation[1],rotation[2],rotation[3]);
+	Vector3f nullTranslation(0.0f);
+	Vector3f nullScale(1.0f);
+	Matrix translationMatrix = Matrix::translate(translationVec);
+	Matrix rotationMatrix = Matrix::transformMatrix(nullTranslation, rotationVec, nullScale);
+	Matrix scaleMatrix = Matrix::scale(scaleVec);
+	float temp[16];
+	naiveMatrixMultiply(temp, (float*)&scaleMatrix, (float*)&rotationMatrix);
+	naiveMatrixMultiply(output, temp, (float*)&translationMatrix);
+//	Matrix4f translationMatrix;
+//	Matrix4f scaleMatrix;
+//
+//	translationMatrix.InitTranslation(Vector3f(pos.GetX(), pos.GetY(), pos.GetZ()));
+//	scaleMatrix.InitScale(Vector3f(scale, scale, scale));
+//
+//	Matrix4f result = translationMatrix * rot.ToRotationMatrix() * scaleMatrix;
+//
+//	return result;
+
+}
+
+static void performanceTest()
+{
+	double startTime = Time::getTime();
+	Transform transform;
+	Matrix transformMat = transform.toMatrix();
+	// Performance results for release build on AMD Athlon X4 860K
+	// 100M sets of 8 dot3 products = 0.602984 seconds
+	// 100M sets of 8 naive dot3 products = ~0.66 seconds
+	// Vectorized ~ 1.1x faster
+
+	// 100M sets of 8 dot4 products = 0.749585 seconds
+	// 100M sets of 8 naive dot4 products = ~1.15 seconds
+	// Vectorized ~ 1.5x faster
+
+	// 100M sets of 8 cross products = 0.421812 seconds
+	// 100M sets of 8 naive cross products = 1.908947 seconds
+	// Vectorized ~ 4.5x faster
+
+	// 100M sets of 8 quaternion multiplies = 1.981629 seconds
+	// 100M sets of 8 naive quaternion multiplies = 4.489309 seconds
+	// Vectorized ~ 2.27x faster
+
+// NOTE: From this point on, some of the algorithmic improvements
+// could also be applied to the non-vectorized techniques
+
+	// 100M sets of 8 quaternion rotates = 2.076706 seconds
+	// 100M sets of 8 naive quaternion rotates = 7.881377 seconds
+	// Vectorized ~ 3.79x faster
+
+	// 100M sets of 2 matrix multiplies = 1.244078 seconds
+	// 100M sets of 2 naive matrix multiplies = 32.592669 seconds
+	// Vectorized ~ 26.2x faster
+
+	// 100M sets of 2 transform matrix generations = 1.894565 seconds
+	// 100M sets of 2 naive transform matrix generations = 34.912099 seconds
+	// Vectorized ~ 18.4x faster
+
+	Vector vec1s[8] = {
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+	};
+	Vector vec2s[8] = {
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+		Vector::make(1.0f,1.0f,1.0f,1.0f),
+	};
+
+	float point1Floats[8][4];
+	float point2Floats[8][4];
+	float temp = 4.0f;
+	for(uint32 i = 0; i < 8; i++) {
+		vec1s[i] = vec1s[i] / Vector::make(temp,temp,temp,temp);
+		vec2s[i] = vec2s[i] / Vector::make(temp,temp,temp,temp);
+		vec1s[i].store4f(point1Floats[i]);
+		vec2s[i].store4f(point2Floats[i]);
+	}
+	for(uint32 i = 0; i < 100000000; i++) {
+//		naiveQuatRotate(point1Floats[0],point1Floats[0],point2Floats[0]);
+//		naiveQuatRotate(point1Floats[1],point1Floats[1],point2Floats[1]);
+//		naiveQuatRotate(point1Floats[2],point1Floats[2],point2Floats[2]);
+//		naiveQuatRotate(point1Floats[3],point1Floats[3],point2Floats[3]);
+//		naiveQuatRotate(point1Floats[4],point1Floats[4],point2Floats[4]);
+//		naiveQuatRotate(point1Floats[5],point1Floats[5],point2Floats[5]);
+//		naiveQuatRotate(point1Floats[6],point1Floats[6],point2Floats[6]);
+//		naiveQuatRotate(point1Floats[7],point1Floats[7],point2Floats[7]);
+//		naiveMatrixMultiply(point1Floats[0], point1Floats[0], point1Floats[0]);
+//		naiveMatrixMultiply(point2Floats[4], point2Floats[4], point2Floats[4]);
+//		Vector::matrixMul(&vec1s[0], &vec1s[0], &vec1s[0]);
+//		Vector::matrixMul(&vec1s[4], &vec1s[4], &vec1s[4]);
+//		Vector::createTransformMatrix(&vec1s[0], vec1s[0], vec2s[0], vec2s[0]);
+//		Vector::createTransformMatrix(&vec1s[4], vec1s[4], vec2s[4], vec2s[4]);
+//		naiveTransformCreate(point1Floats[0], point1Floats[0], point2Floats[0], point2Floats[0]);
+//		naiveTransformCreate(point1Floats[4], point1Floats[4], point2Floats[4], point2Floats[4]);
+//		vec1s[0] = vec1s[0].quatRotateVec(vec2s[0]);
+//		vec1s[1] = vec1s[1].quatRotateVec(vec2s[1]);
+//		vec1s[2] = vec1s[2].quatRotateVec(vec2s[2]);
+//		vec1s[3] = vec1s[3].quatRotateVec(vec2s[3]);
+//		vec1s[4] = vec1s[4].quatRotateVec(vec2s[4]);
+//		vec1s[5] = vec1s[5].quatRotateVec(vec2s[5]);
+//		vec1s[6] = vec1s[6].quatRotateVec(vec2s[6]);
+//		vec1s[7] = vec1s[7].quatRotateVec(vec2s[7]);
+//		for(uint32 j = 0; j < 8; j++) {
+////			vec1s[j] = vec1s[j].dot3(vec2s[j]);
+////			float dotProduct0 = point1Floats[j][0]*point2Floats[j][0]+point1Floats[j][1]*point2Floats[j][1]+point1Floats[j][2]*point2Floats[j][2];
+////			point1Floats[j][0] = dotProduct0;
+////			point1Floats[j][1] = dotProduct0;
+////			point1Floats[j][2] = dotProduct0;
+//		}
+	}
+	for(uint32 i = 0; i < 8; i++) {
+		vec1s[i]=vec1s[i].load4f(point1Floats[i]);
+		vec2s[i]=vec2s[i].load4f(point2Floats[i]);
+	}
+	Vector pointVector=vec1s[0]+vec1s[1]+vec1s[2]+vec1s[3]+vec1s[4]+vec1s[5]+vec1s[6]+vec1s[7];
+	Vector point=transformMat.transform(pointVector);
+	double passedTime = Time::getTime() - startTime;
+	DEBUG_LOG_TEMP("%f", passedTime);
+	DEBUG_LOG_TEMP("%f %f %f", point[0], point[1], point[2]);
+	DEBUG_LOG_TEMP("%f %f %f", pointVector[0], pointVector[1], pointVector[2]);
+}
+
 static void tests()
 {
 	testSphere();
@@ -312,6 +501,7 @@ static void tests()
 	testMath();
 	testPlane();
 	testIntersects();
+	//performanceTest();
 }
 
 

@@ -12,6 +12,7 @@ public:
 	FORCEINLINE Vector3f(const Vector& vecIn);
 
 	FORCEINLINE float dot(const Vector3f& other) const;
+	FORCEINLINE Vector3f dotToVector(const Vector3f& other) const;
 	FORCEINLINE Vector3f cross(const Vector3f& other) const;
 	FORCEINLINE float dist(const Vector3f& other) const;
 	FORCEINLINE float distSquared(const Vector3f& other) const;
@@ -94,6 +95,11 @@ FORCEINLINE Vector3f::Vector3f(float xIn, float yIn, float zIn) :
 FORCEINLINE float Vector3f::dot(const Vector3f& other) const
 {
 	return vec.dot3(other.vec)[0];
+}
+
+FORCEINLINE Vector3f Vector3f::dotToVector(const Vector3f& other) const
+{
+	return Vector3f(vec.dot3(other.vec));
 }
 
 FORCEINLINE Vector3f Vector3f::cross(const Vector3f& other) const
