@@ -305,7 +305,7 @@ static void testIntersects()
 	assert(Math::equals(boundingSphere.getRadius(), 1.5f, 1.e-4f));
 }
 
-FORCEINLINE void naiveMatrixMultiply(float* output, float* input, float* other)
+inline void naiveMatrixMultiply(float* output, float* input, float* other)
 {
 	float* m = (float*)input;
 	float* r = (float*)other;
@@ -322,7 +322,7 @@ FORCEINLINE void naiveMatrixMultiply(float* output, float* input, float* other)
 	}
 }
 
-FORCEINLINE void naiveCrossProduct(float* output, float* v1, float* v2)
+inline void naiveCrossProduct(float* output, float* v1, float* v2)
 {
 	float out0 = v1[1] * v2[2] - v1[2] * v2[1];
 	float out1 = v1[2] * v2[0] - v1[0] * v2[2];
@@ -332,7 +332,7 @@ FORCEINLINE void naiveCrossProduct(float* output, float* v1, float* v2)
 	output[2] = out2;
 }
 
-FORCEINLINE void naiveQuatMul(float* output, float* a, float* b)
+inline void naiveQuatMul(float* output, float* a, float* b)
 {
 	const float w = (a[3] * b[3]) - (a[0] * b[0]) - (a[1] * b[1]) - (a[2] * b[2]);
 	const float x = (a[0]* b[3]) + (a[3] * b[0]) + (a[1] * b[2]) - (a[2] * b[1]);
@@ -345,7 +345,7 @@ FORCEINLINE void naiveQuatMul(float* output, float* a, float* b)
 	output[3] = w;
 }
 
-FORCEINLINE void naiveQuatRotate(float* output, float* a, float* b)
+inline void naiveQuatRotate(float* output, float* a, float* b)
 {
 	float conjugate[4];
 	float temp[4];
@@ -357,7 +357,7 @@ FORCEINLINE void naiveQuatRotate(float* output, float* a, float* b)
 	naiveQuatMul(output, temp, conjugate);
 }
 
-FORCEINLINE void naiveTransformCreate(float* output, float* translation, float* rotation, float* scale)
+inline void naiveTransformCreate(float* output, float* translation, float* rotation, float* scale)
 {
 	Vector3f translationVec(translation[0],translation[1],translation[2]);
 	Vector3f scaleVec(scale[0],scale[1],scale[2]);

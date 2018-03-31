@@ -10,7 +10,7 @@
 struct StringFuncs
 {
 	template<typename T>
-	static FORCEINLINE String toString(T val)
+	static inline String toString(T val)
 	{
 		std::ostringstream convert;
 		convert << val;

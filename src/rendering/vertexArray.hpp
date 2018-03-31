@@ -6,20 +6,20 @@
 class VertexArray
 {
 public:
-	FORCEINLINE VertexArray(RenderDevice& deviceIn, const IndexedModel& model,
+	inline VertexArray(RenderDevice& deviceIn, const IndexedModel& model,
 			enum RenderDevice::BufferUsage usage) :
 		device(&deviceIn),
 		deviceId(model.createVertexArray(deviceIn, usage)),
 		numIndices(model.getNumIndices()) {}
-	FORCEINLINE ~VertexArray()
+	inline ~VertexArray()
 	{
 		deviceId = device->releaseVertexArray(deviceId);
 	}
 
-	FORCEINLINE void updateBuffer(uint32 bufferIndex, const void* data, uintptr dataSize);
+	inline void updateBuffer(uint32 bufferIndex, const void* data, uintptr dataSize);
 
-	FORCEINLINE uint32 getId();
-	FORCEINLINE uint32 getNumIndices();
+	inline uint32 getId();
+	inline uint32 getNumIndices();
 private:
 	RenderDevice* device;
 	uint32 deviceId;
@@ -28,17 +28,17 @@ private:
 	NULL_COPY_AND_ASSIGN(VertexArray);
 };
 
-FORCEINLINE uint32 VertexArray::getId()
+inline uint32 VertexArray::getId()
 {
 	return deviceId;
 }
 
-FORCEINLINE uint32 VertexArray::getNumIndices()
+inline uint32 VertexArray::getNumIndices()
 {
 	return numIndices;
 }
 
-FORCEINLINE void VertexArray::updateBuffer(uint32 bufferIndex,
+inline void VertexArray::updateBuffer(uint32 bufferIndex,
 		const void* data, uintptr dataSize)
 {
 	return device->updateVertexArrayBuffer(deviceId, bufferIndex, data, dataSize);

@@ -8,16 +8,16 @@
 class RenderContext
 {
 public:
-	FORCEINLINE RenderContext(RenderDevice& deviceIn, RenderTarget& targetIn) :
+	inline RenderContext(RenderDevice& deviceIn, RenderTarget& targetIn) :
 		device(&deviceIn),
 		target(&targetIn) {}
 
-	FORCEINLINE void clear(bool shouldClearColor, bool shouldClearDepth,
+	inline void clear(bool shouldClearColor, bool shouldClearDepth,
 			bool shouldClearStencil, const Color& color, uint32 stencil);
-	FORCEINLINE void clear(const Color& color, bool shouldClearDepth=false);
-	FORCEINLINE void draw(Shader& shader, VertexArray& vertexArray, 
+	inline void clear(const Color& color, bool shouldClearDepth=false);
+	inline void draw(Shader& shader, VertexArray& vertexArray, 
 			enum RenderDevice::PrimitiveType primitive, uint32 numInstances=1);
-	FORCEINLINE void draw(Shader& shader, VertexArray& vertexArray, 
+	inline void draw(Shader& shader, VertexArray& vertexArray, 
 			enum RenderDevice::PrimitiveType primitive, uint32 numInstances,
 			uint32 numIndices);
 
@@ -26,14 +26,14 @@ private:
 	RenderTarget* target;
 };
 
-FORCEINLINE void RenderContext::draw(Shader& shader, VertexArray& vertexArray, 
+inline void RenderContext::draw(Shader& shader, VertexArray& vertexArray, 
 			enum RenderDevice::PrimitiveType primitive, uint32 numInstances)
 {
 	device->draw(target->getId(), shader.getId(), vertexArray.getId(),
 			primitive, numInstances, vertexArray.getNumIndices());
 }
 
-FORCEINLINE void RenderContext::draw(Shader& shader, VertexArray& vertexArray, 
+inline void RenderContext::draw(Shader& shader, VertexArray& vertexArray, 
 			enum RenderDevice::PrimitiveType primitive, uint32 numInstances,
 			uint32 numIndices)
 {
@@ -41,14 +41,14 @@ FORCEINLINE void RenderContext::draw(Shader& shader, VertexArray& vertexArray,
 			primitive, numInstances, numIndices);
 }
 
-FORCEINLINE void RenderContext::clear(bool shouldClearColor, bool shouldClearDepth,
+inline void RenderContext::clear(bool shouldClearColor, bool shouldClearDepth,
 		bool shouldClearStencil, const Color& color, uint32 stencil)
 {
 	device->clear(target->getId(), shouldClearColor, shouldClearDepth, shouldClearStencil,
 			color, stencil);
 }
 
-FORCEINLINE void RenderContext::clear(const Color& color, bool shouldClearDepth)
+inline void RenderContext::clear(const Color& color, bool shouldClearDepth)
 {
 	device->clear(target->getId(), true, shouldClearDepth, false, color, 0);
 }

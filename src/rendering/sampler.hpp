@@ -5,7 +5,7 @@
 class Sampler
 {
 public:
-	FORCEINLINE Sampler(RenderDevice& deviceIn,
+	inline Sampler(RenderDevice& deviceIn,
 			enum RenderDevice::SamplerFilter minFilter
 				= RenderDevice::FILTER_NEAREST_MIPMAP_LINEAR,
 			enum RenderDevice::SamplerFilter magFilter = RenderDevice::FILTER_LINEAR,
@@ -15,12 +15,12 @@ public:
 		device(&deviceIn),
 		deviceId(device->createSampler(minFilter, magFilter,
 				wrapU, wrapV, anisotropy)) {}
-	FORCEINLINE ~Sampler()
+	inline ~Sampler()
 	{
 		deviceId = device->releaseSampler(deviceId);
 	}
 
-	FORCEINLINE uint32 getId();
+	inline uint32 getId();
 private:
 	RenderDevice* device;
 	uint32 deviceId;
@@ -28,7 +28,7 @@ private:
 	NULL_COPY_AND_ASSIGN(Sampler);
 };
 
-FORCEINLINE uint32 Sampler::getId()
+inline uint32 Sampler::getId()
 {
 	return deviceId;
 }

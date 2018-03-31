@@ -8,48 +8,48 @@
 class Matrix
 {
 public:
-	FORCEINLINE Matrix();
-	FORCEINLINE Matrix(const Vector& vecX, const Vector& vecY,
+	inline Matrix();
+	inline Matrix(const Vector& vecX, const Vector& vecY,
 			const Vector& vecZ, const Vector& vecOffset);
 
-	static FORCEINLINE Matrix identity();
-	static FORCEINLINE Matrix translate(const Vector3f& amt);
-	static FORCEINLINE Matrix scale(const Vector3f& amt);
-	static FORCEINLINE Matrix scale(float amt);
-	static FORCEINLINE Matrix ortho(float left, float right,
+	static inline Matrix identity();
+	static inline Matrix translate(const Vector3f& amt);
+	static inline Matrix scale(const Vector3f& amt);
+	static inline Matrix scale(float amt);
+	static inline Matrix ortho(float left, float right,
 			float bottom, float top, float near, float far);
-	static FORCEINLINE Matrix perspective(float halfFov, float aspect,
+	static inline Matrix perspective(float halfFov, float aspect,
 			float nearZ, float farZ);
-	static FORCEINLINE Matrix transformMatrix(const Vector3f& translation,
+	static inline Matrix transformMatrix(const Vector3f& translation,
 			const Quaternion& rotation, const Vector3f& scale);
 
 	void extractFrustumPlanes(Plane* planes) const;
 	Matrix toNormalMatrix() const;
 	
-	FORCEINLINE Matrix operator+ (const Matrix& other) const;
-	FORCEINLINE Matrix& operator+= (const Matrix& other);
-	FORCEINLINE Matrix operator* (const Matrix& other) const;
-	FORCEINLINE Matrix& operator*= (const Matrix& other);
-	FORCEINLINE Matrix operator* (float amt) const;
-	FORCEINLINE Matrix& operator*= (float amt);
-	FORCEINLINE bool operator==(const Matrix& other) const;
-	FORCEINLINE bool operator!=(const Matrix& other) const;
+	inline Matrix operator+ (const Matrix& other) const;
+	inline Matrix& operator+= (const Matrix& other);
+	inline Matrix operator* (const Matrix& other) const;
+	inline Matrix& operator*= (const Matrix& other);
+	inline Matrix operator* (float amt) const;
+	inline Matrix& operator*= (float amt);
+	inline bool operator==(const Matrix& other) const;
+	inline bool operator!=(const Matrix& other) const;
 
-	FORCEINLINE bool equals(const Matrix& other, float errorMargin=1.e-4f) const;
-	FORCEINLINE Vector transform(const Vector& vector) const;
+	inline bool equals(const Matrix& other, float errorMargin=1.e-4f) const;
+	inline Vector transform(const Vector& vector) const;
 
-	FORCEINLINE Matrix transpose() const;
-	FORCEINLINE float determinant4x4() const;
-	FORCEINLINE float determinant3x3() const;
-	FORCEINLINE Matrix inverse() const;
+	inline Matrix transpose() const;
+	inline float determinant4x4() const;
+	inline float determinant3x3() const;
+	inline Matrix inverse() const;
 
-	FORCEINLINE Matrix applyScale(const Vector& scale);
-	FORCEINLINE Vector removeScale(float errorMargin=1.e-8f);
-	FORCEINLINE Vector getScale() const;
+	inline Matrix applyScale(const Vector& scale);
+	inline Vector removeScale(float errorMargin=1.e-8f);
+	inline Vector getScale() const;
 	Quaternion getRotation() const;
-	FORCEINLINE Vector getTranslation() const;
+	inline Vector getTranslation() const;
 
-	FORCEINLINE Vector operator[](uint32 index) const {
+	inline Vector operator[](uint32 index) const {
 		assertCheck(index < 4);
 		return m[index];
 	}
@@ -57,7 +57,7 @@ private:
 	Vector m[4];
 };
 
-FORCEINLINE Matrix Matrix::identity()
+inline Matrix Matrix::identity()
 {
 	return Matrix(
 			Vector::make(1.0f, 0.0f, 0.0f, 0.0f),
@@ -66,7 +66,7 @@ FORCEINLINE Matrix Matrix::identity()
 			Vector::make(0.0f, 0.0f, 0.0f, 1.0f));
 }
 
-FORCEINLINE Matrix Matrix::translate(const Vector3f& amt)
+inline Matrix Matrix::translate(const Vector3f& amt)
 {
 	return Matrix(
 		Vector::make(1.0f, 0.0f, 0.0f, amt[0]),
@@ -75,7 +75,7 @@ FORCEINLINE Matrix Matrix::translate(const Vector3f& amt)
 		Vector::make(0.0f, 0.0f, 0.0f, 1.0f));
 }
 
-FORCEINLINE Matrix Matrix::scale(const Vector3f& amt)
+inline Matrix Matrix::scale(const Vector3f& amt)
 {
 	return Matrix(
 			Vector::make(amt[0], 0.0f, 0.0f, 0.0f),
@@ -84,12 +84,12 @@ FORCEINLINE Matrix Matrix::scale(const Vector3f& amt)
 			Vector::make(0.0f, 0.0f, 0.0f, 1.0f));
 }
 
-FORCEINLINE Matrix Matrix::scale(float amt)
+inline Matrix Matrix::scale(float amt)
 {
 	return scale(Vector3f(amt));
 }
 
-FORCEINLINE Matrix Matrix::ortho(float left, float right,
+inline Matrix Matrix::ortho(float left, float right,
 			float bottom, float top, float near, float far)
 {
 	float rwidth = Math::reciprocal(right - left);
@@ -103,7 +103,7 @@ FORCEINLINE Matrix Matrix::ortho(float left, float right,
 			Vector::make(0.0f, 0.0f, 0.0f, 1.0f));
 }
 
-FORCEINLINE Matrix Matrix::perspective(float halfFov, float aspect,
+inline Matrix Matrix::perspective(float halfFov, float aspect,
 			float nearZ, float farZ)
 {
 	float rtanHalfFov = Math::reciprocal(Math::tan(halfFov));
@@ -117,7 +117,7 @@ FORCEINLINE Matrix Matrix::perspective(float halfFov, float aspect,
 			Vector::make(0.0f, 0.0f, 1.0f, 1.0f));
 }
 
-FORCEINLINE Matrix Matrix::transformMatrix(const Vector3f& translation,
+inline Matrix Matrix::transformMatrix(const Vector3f& translation,
 			const Quaternion& rotation, const Vector3f& scale)
 {
 	Matrix result;
@@ -126,9 +126,9 @@ FORCEINLINE Matrix Matrix::transformMatrix(const Vector3f& translation,
 }
 
 
-FORCEINLINE Matrix::Matrix() {}
+inline Matrix::Matrix() {}
 
-FORCEINLINE Matrix::Matrix(const Vector& vecX, const Vector& vecY,
+inline Matrix::Matrix(const Vector& vecX, const Vector& vecY,
 			const Vector& vecZ, const Vector& vecOffset)
 {
 	m[0] = vecX;
@@ -137,7 +137,7 @@ FORCEINLINE Matrix::Matrix(const Vector& vecX, const Vector& vecY,
 	m[3] = vecOffset;
 }
 	
-FORCEINLINE Matrix Matrix::operator+ (const Matrix& other) const
+inline Matrix Matrix::operator+ (const Matrix& other) const
 {
 	Matrix result;
 	for(uint32 i = 0; i < 4; i++) {
@@ -146,7 +146,7 @@ FORCEINLINE Matrix Matrix::operator+ (const Matrix& other) const
 	return result;
 }
 
-FORCEINLINE Matrix& Matrix::operator+= (const Matrix& other)
+inline Matrix& Matrix::operator+= (const Matrix& other)
 {
 	for(uint32 i = 0; i < 4; i++) {
 		m[i] = m[i] + other.m[i];
@@ -154,20 +154,20 @@ FORCEINLINE Matrix& Matrix::operator+= (const Matrix& other)
 	return *this;
 }
 
-FORCEINLINE Matrix Matrix::operator* (const Matrix& other) const
+inline Matrix Matrix::operator* (const Matrix& other) const
 {
 	Matrix result;
 	Vector::matrixMul(&result, this, &other);
 	return result;
 }
 
-FORCEINLINE Matrix& Matrix::operator*= (const Matrix& other)
+inline Matrix& Matrix::operator*= (const Matrix& other)
 {
 	Vector::matrixMul(this, this, &other);
 	return *this;
 }
 
-FORCEINLINE Matrix Matrix::operator* (float amt) const
+inline Matrix Matrix::operator* (float amt) const
 {
 	Matrix result;
 	Vector vecAmt = Vector::load1f(amt);
@@ -177,7 +177,7 @@ FORCEINLINE Matrix Matrix::operator* (float amt) const
 	return result;
 }
 
-FORCEINLINE Matrix& Matrix::operator*= (float amt)
+inline Matrix& Matrix::operator*= (float amt)
 {
 	Vector vecAmt = Vector::load1f(amt);
 	for(uint32 i = 0; i < 4; i++) {
@@ -186,7 +186,7 @@ FORCEINLINE Matrix& Matrix::operator*= (float amt)
 	return *this;
 }
 
-FORCEINLINE bool Matrix::operator==(const Matrix& other) const
+inline bool Matrix::operator==(const Matrix& other) const
 {
 	for(uint32 i = 0; i < 4; i++) {
 		if(!(m[i] != other.m[i]).isZero4f()) {
@@ -196,13 +196,13 @@ FORCEINLINE bool Matrix::operator==(const Matrix& other) const
 	return true;
 }
 
-FORCEINLINE bool Matrix::operator!=(const Matrix& other) const
+inline bool Matrix::operator!=(const Matrix& other) const
 {
 	return !(*this == other);
 }
 
 
-FORCEINLINE bool Matrix::equals(const Matrix& other, float errorMargin) const
+inline bool Matrix::equals(const Matrix& other, float errorMargin) const
 {
 	for(uint32 i = 0; i < 4; i++) {
 		if(!(m[i].notEquals(other.m[i], errorMargin)).isZero4f()) {
@@ -213,13 +213,13 @@ FORCEINLINE bool Matrix::equals(const Matrix& other, float errorMargin) const
 
 }
 
-FORCEINLINE Vector Matrix::transform(const Vector& vector) const
+inline Vector Matrix::transform(const Vector& vector) const
 {
 	return vector.transform(this);
 }
 
 
-FORCEINLINE Matrix Matrix::transpose() const
+inline Matrix Matrix::transpose() const
 {
 	Matrix result;
 	float m0[4];
@@ -238,17 +238,17 @@ FORCEINLINE Matrix Matrix::transpose() const
 	return result;
 }
 
-FORCEINLINE float Matrix::determinant4x4() const
+inline float Matrix::determinant4x4() const
 {
 	return Vector::matrixDeterminant4x4(nullptr, nullptr, m);
 }
 
-FORCEINLINE float Matrix::determinant3x3() const
+inline float Matrix::determinant3x3() const
 {
 	return Vector::matrixDeterminant3x3Vector(m);
 }
 
-FORCEINLINE Matrix Matrix::inverse() const
+inline Matrix Matrix::inverse() const
 {
 	Matrix result;
 	Vector::matrixInverse(&result, this);
@@ -256,7 +256,7 @@ FORCEINLINE Matrix Matrix::inverse() const
 }
 
 
-FORCEINLINE Vector Matrix::getScale() const
+inline Vector Matrix::getScale() const
 {
 	Vector invScale = VectorConstants::ZERO;
 	for(uint32 i = 0; i < 4; i++) {
@@ -266,7 +266,7 @@ FORCEINLINE Vector Matrix::getScale() const
 	return invScale.reciprocal();
 }
 
-FORCEINLINE Vector Matrix::removeScale(float errorMargin)
+inline Vector Matrix::removeScale(float errorMargin)
 {
 	Vector invScale = VectorConstants::ZERO;
 	for(uint32 i = 0; i < 4; i++) {
@@ -279,12 +279,12 @@ FORCEINLINE Vector Matrix::removeScale(float errorMargin)
 	return invScale.reciprocal();
 }
 
-FORCEINLINE Vector Matrix::getTranslation() const
+inline Vector Matrix::getTranslation() const
 {
 	return Vector::make(m[0][3], m[1][3], m[2][3], m[3][3]);
 }
 
-FORCEINLINE Matrix Matrix::applyScale(const Vector& scale)
+inline Matrix Matrix::applyScale(const Vector& scale)
 {
 	for(uint32 i = 0; i < 4; i++) {
 		m[i] = m[i] * scale;//Vector::make(scale[i], scale[i], scale[i], 0.0f);

@@ -22,7 +22,7 @@ public:
 };
 
 template<>
-FORCEINLINE Vector Math::lerp(const Vector& val1, const Vector& val2,
+inline Vector Math::lerp(const Vector& val1, const Vector& val2,
 		const float& amt)
 {
 	return (val2 - val1) * Vector::load1f(amt) + val1;

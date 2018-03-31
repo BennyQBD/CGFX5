@@ -15,33 +15,33 @@
  */
 struct Memory
 {
-	static FORCEINLINE void* memmove(void* dest, const void* src, uintptr amt)
+	static inline void* memmove(void* dest, const void* src, uintptr amt)
 	{
 		return PlatformMemory::memmove(dest, src, amt);
 	}
 
-	static FORCEINLINE int32 memcmp(const void* dest, const void* src, uintptr amt)
+	static inline int32 memcmp(const void* dest, const void* src, uintptr amt)
 	{
 		return PlatformMemory::memcmp(dest, src, amt);
 	}
 
 	template<typename T>
-	static FORCEINLINE void* memset(void* dest, T val, uintptr amt)
+	static inline void* memset(void* dest, T val, uintptr amt)
 	{
 		return PlatformMemory::memset(dest, val, amt);
 	}
 
-	static FORCEINLINE void* memzero(void* dest, uintptr amt)
+	static inline void* memzero(void* dest, uintptr amt)
 	{
 		return PlatformMemory::memset(dest, 0, amt);
 	}
 
-	static FORCEINLINE void* memcpy(void* dest, const void* src, uintptr amt)
+	static inline void* memcpy(void* dest, const void* src, uintptr amt)
 	{
 		return PlatformMemory::memcpy(dest, src, amt);
 	}
 
-	static FORCEINLINE void memswap(void* a, void* b, uintptr size)
+	static inline void memswap(void* a, void* b, uintptr size)
 	{
 		return PlatformMemory::memswap(a, b, size);
 	}
@@ -58,22 +58,22 @@ struct Memory
 		return PlatformMemory::align(ptr, alignment);
 	}
 
-	static FORCEINLINE void* malloc(uintptr amt, uint32 alignment=DEFAULT_ALIGNMENT)
+	static inline void* malloc(uintptr amt, uint32 alignment=DEFAULT_ALIGNMENT)
 	{
 		return PlatformMemory::malloc(amt, alignment);
 	}
 
-	static FORCEINLINE void* realloc(void* ptr, uintptr amt, uint32 alignment=DEFAULT_ALIGNMENT)
+	static inline void* realloc(void* ptr, uintptr amt, uint32 alignment=DEFAULT_ALIGNMENT)
 	{
 		return PlatformMemory::realloc(ptr, amt, alignment);
 	}
 
-	static FORCEINLINE void* free(void* ptr)
+	static inline void* free(void* ptr)
 	{
 		return PlatformMemory::free(ptr);
 	}
 
-	static FORCEINLINE uintptr getAllocSize(void* ptr)
+	static inline uintptr getAllocSize(void* ptr)
 	{
 		return PlatformMemory::getAllocSize(ptr);
 	}

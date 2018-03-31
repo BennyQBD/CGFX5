@@ -6,7 +6,7 @@
 struct GenericVector
 {
 public:
-	static FORCEINLINE void matrixMul(void* result, const void* mat1, const void* mat2)
+	static inline void matrixMul(void* result, const void* mat1, const void* mat2)
 	{
 		const GenericVector* m1 = (const GenericVector*)mat1;
 		const GenericVector* m2 = (const GenericVector*)mat2;
@@ -39,7 +39,7 @@ public:
 		r[3] = r3;
 	}
 
-	static FORCEINLINE float matrixDeterminant3x3Vector(const GenericVector* m)
+	static inline float matrixDeterminant3x3Vector(const GenericVector* m)
 	{
 		float M[4][4];
 		for(uint32 i = 0; i < 4; i++) {
@@ -51,7 +51,7 @@ public:
 			M[2][0] * (M[0][1] * M[1][2] - M[0][2] * M[1][1]);
 	}
 
-	static FORCEINLINE float matrixDeterminant4x4(float* outS,
+	static inline float matrixDeterminant4x4(float* outS,
 			float* outC, const void* mat)
 	{
 		float sVals[6];
@@ -83,7 +83,7 @@ public:
 		return (s[0] * c[5] - s[1] * c[4] + s[2] * c[3] + s[3] * c[2] - s[4] * c[1] + s[5] * c[0]);
 	}
 
-	static FORCEINLINE void matrixInverse(void* dest, const void* src)
+	static inline void matrixInverse(void* dest, const void* src)
 	{
 		float s[6];
 		float c[6];
@@ -119,7 +119,7 @@ public:
 		Memory::memcpy(dest, result, sizeof(result));
 	}
 
-	static FORCEINLINE void createTransformMatrix(void* dest, const SSEVector& translation, const SSEVector& quatRotation, const SSEVector& scaleVec)
+	static inline void createTransformMatrix(void* dest, const SSEVector& translation, const SSEVector& quatRotation, const SSEVector& scaleVec)
 	{
 		float rotVals[4];
 		quatRotation.store4f(rotVals);
@@ -150,7 +150,7 @@ public:
 		Memory::memcpy(dest, mat, sizeof(mat));
 	}
 	
-	static FORCEINLINE GenericVector make(uint32 x, uint32 y, uint32 z, uint32 w)
+	static inline GenericVector make(uint32 x, uint32 y, uint32 z, uint32 w)
 	{
 		GenericVector vec;
 		((uint32&)vec.v[0]) = x;
@@ -160,7 +160,7 @@ public:
 		return vec;
 	}
 
-	static FORCEINLINE const GenericVector mask(uint32 index)
+	static inline const GenericVector mask(uint32 index)
 	{
 		static const GenericVector masks[4] = {
 			GenericVector::make((uint32)0, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF),
@@ -171,7 +171,7 @@ public:
 		return masks[index];
 	}
 
-	static FORCEINLINE GenericVector make(float x, float y, float z, float w)
+	static inline GenericVector make(float x, float y, float z, float w)
 	{
 		GenericVector vec;
 		vec.v[0] = x;
@@ -181,68 +181,68 @@ public:
 		return vec;
 	}
 
-	static FORCEINLINE GenericVector load4f(const float* vals)
+	static inline GenericVector load4f(const float* vals)
 	{
 		return make(vals[0], vals[1], vals[2], vals[3]);
 	}
 
-	static FORCEINLINE GenericVector load3f(const float* vals, float w)
+	static inline GenericVector load3f(const float* vals, float w)
 	{
 		return make(vals[0], vals[1], vals[2], w);
 	}
 
-	static FORCEINLINE GenericVector load1f(float val)
+	static inline GenericVector load1f(float val)
 	{
 		return make(val, val, val, val);
 	}
 
-	static FORCEINLINE GenericVector loadAligned(const float* vals)
+	static inline GenericVector loadAligned(const float* vals)
 	{
 		return load4f(vals);
 	}
 	
-	static FORCEINLINE GenericVector set(float x, float y, float z)
+	static inline GenericVector set(float x, float y, float z)
 	{
 		return make(x, y, z, 0.0f);
 	}
 
-	static FORCEINLINE GenericVector set(float x, float y, float z, float w)
+	static inline GenericVector set(float x, float y, float z, float w)
 	{
 		return make(x, y, z, w);
 	}
 
-	FORCEINLINE void store4f(float* result) const
+	inline void store4f(float* result) const
 	{
 		Memory::memcpy(result, v, sizeof(v));
 	}
 
-	FORCEINLINE void store3f(float* result) const
+	inline void store3f(float* result) const
 	{
 		Memory::memcpy(result, v, sizeof(float) * 3);
 	}
 
-	FORCEINLINE void store1f(float* result) const
+	inline void store1f(float* result) const
 	{
 		Memory::memcpy(result, v, sizeof(float) * 1);
 	}
 
-	FORCEINLINE void storeAligned(float* result) const
+	inline void storeAligned(float* result) const
 	{
 		return store4f(result);
 	}
 
-	FORCEINLINE void storeAlignedStreamed(float* result) const
+	inline void storeAlignedStreamed(float* result) const
 	{
 		return storeAligned(result);
 	}
 
-	FORCEINLINE GenericVector replicate(uint32 index) const
+	inline GenericVector replicate(uint32 index) const
 	{
 		assertCheck(index <= 3);
 		return make(v[index], v[index], v[index], v[index]);
 	}
 
-	FORCEINLINE GenericVector swizzle(uint32 x, uint32 y, uint32 z, uint32 w) const
+	inline GenericVector swizzle(uint32 x, uint32 y, uint32 z, uint32 w) const
 	{
 		assertCheck(x <= 3);
 		assertCheck(y <= 3);
@@ -251,7 +251,7 @@ public:
 		return make(v[x], v[y], v[z], v[w]);
 	}
 	
-	FORCEINLINE GenericVector abs() const
+	inline GenericVector abs() const
 	{
 		return make(Math::abs(v[0]), Math::abs(v[1]), Math::abs(v[2]), Math::abs(v[3]));
 	}
@@ -263,12 +263,12 @@ private:
 	}
 public:
 
-	FORCEINLINE GenericVector sign() const
+	inline GenericVector sign() const
 	{
 		return make(getSign(v[0]), getSign(v[1]), getSign(v[2]), getSign(v[3]));
 	}
 
-	FORCEINLINE GenericVector min(const GenericVector& other) const
+	inline GenericVector min(const GenericVector& other) const
 	{
 		return make(
 				Math::min(v[0], other.v[0]),
@@ -277,7 +277,7 @@ public:
 				Math::min(v[3], other.v[3]));
 	}
 
-	FORCEINLINE GenericVector max(const GenericVector& other) const
+	inline GenericVector max(const GenericVector& other) const
 	{
 		return make(
 				Math::max(v[0], other.v[0]),
@@ -286,30 +286,30 @@ public:
 				Math::max(v[3], other.v[3]));
 	}
 
-	FORCEINLINE GenericVector neg() const
+	inline GenericVector neg() const
 	{
 		return make(-v[0], -v[1], -v[2], -v[3]);
 	}
 
-	FORCEINLINE GenericVector operator-() const
+	inline GenericVector operator-() const
 	{
 		return neg();
 	}
 
-	FORCEINLINE GenericVector dot3(const GenericVector& other) const
+	inline GenericVector dot3(const GenericVector& other) const
 	{
 		float dot = v[0] * other.v[0] + v[1] * other.v[1] + v[2] * other.v[2];
 		return make(dot, dot, dot, dot);
 	}
 
-	FORCEINLINE GenericVector dot4(const GenericVector& other) const
+	inline GenericVector dot4(const GenericVector& other) const
 	{
 		float dot = v[0] * other.v[0] + v[1] * other.v[1]
 			+ v[2] * other.v[2] + v[3] * other.v[3];
 		return make(dot, dot, dot, dot);
 	}
 
-	FORCEINLINE GenericVector cross3(const GenericVector& other) const
+	inline GenericVector cross3(const GenericVector& other) const
 	{
 		return make(
 				v[1]*other.v[2] - v[2]*other.v[1],
@@ -318,7 +318,7 @@ public:
 				0.0f);
 	}
 
-	FORCEINLINE GenericVector pow(const GenericVector& exp) const
+	inline GenericVector pow(const GenericVector& exp) const
 	{
 		return make(
 				Math::pow(v[0], exp.v[0]),
@@ -327,7 +327,7 @@ public:
 				Math::pow(v[3], exp.v[3]));
 	}
 
-	FORCEINLINE GenericVector rsqrt() const
+	inline GenericVector rsqrt() const
 	{
 		return make(
 				Math::rsqrt(v[0]),
@@ -336,7 +336,7 @@ public:
 				Math::rsqrt(v[3]));
 	}
 
-	FORCEINLINE GenericVector reciprocal() const
+	inline GenericVector reciprocal() const
 	{
 		return make(
 				Math::reciprocal(v[0]),
@@ -345,27 +345,27 @@ public:
 				Math::reciprocal(v[3]));
 	}
 
-	FORCEINLINE GenericVector rlen4() const
+	inline GenericVector rlen4() const
 	{
 		return dot4(*this).rsqrt();
 	}
 
-	FORCEINLINE GenericVector rlen3() const
+	inline GenericVector rlen3() const
 	{
 		return dot3(*this).rsqrt();
 	}
 
-	FORCEINLINE GenericVector normalize4() const
+	inline GenericVector normalize4() const
 	{
 		return *this * rlen4();
 	}
 
-	FORCEINLINE GenericVector normalize3() const
+	inline GenericVector normalize3() const
 	{
 		return *this * rlen3();
 	}
 
-	FORCEINLINE void sincos(GenericVector* outSin, GenericVector* outCos) const
+	inline void sincos(GenericVector* outSin, GenericVector* outCos) const
 	{
 		Math::sincos(&outSin->v[0], &outCos->v[0], (*this)[0]);
 		Math::sincos(&outSin->v[1], &outCos->v[1], (*this)[1]);
@@ -374,7 +374,7 @@ public:
 	}
 
 	// Code adapted from https://stackoverflow.com/questions/22497093/faster-quaternion-vector-multiplication-doesnt-work
-	FORCEINLINE GenericVector quatMul(const GenericVector& other) const
+	inline GenericVector quatMul(const GenericVector& other) const
 	{
 		float t0 = (v[2] - v[1]) * (other.v[1] - other.v[2]);
 		float t1 = (v[3] + v[0]) * (other.v[3] + other.v[0]);
@@ -394,13 +394,13 @@ public:
 				t0 + t9 - t5);
 	}
 
-	FORCEINLINE GenericVector quatRotateVec(const GenericVector& vec) const
+	inline GenericVector quatRotateVec(const GenericVector& vec) const
 	{
 		GenericVector tmp = GenericVector::load1f(2.0f) * cross3(vec);
 		return vec + (tmp * replicate(3)) + cross3(tmp);
 	}
 
-	FORCEINLINE GenericVector mad(const GenericVector& mul, const GenericVector& add) const
+	inline GenericVector mad(const GenericVector& mul, const GenericVector& add) const
 	{
 		return make(
 				Math::mad(v[0], mul.v[0], add.v[0]), 
@@ -409,44 +409,44 @@ public:
 				Math::mad(v[3], mul.v[3], add.v[3]));
 	}
 
-	FORCEINLINE GenericVector transform(const void* matrix) const
+	inline GenericVector transform(const void* matrix) const
 	{
 		const GenericVector* m = (const GenericVector*)matrix;
 		return make(dot4(m[0])[0],dot4(m[1])[0],dot4(m[2])[0],dot4(m[3])[0]);
 	}
 
-	FORCEINLINE GenericVector operator+(const GenericVector& other) const
+	inline GenericVector operator+(const GenericVector& other) const
 	{
 		return make(v[0] + other.v[0], v[1] + other.v[1],
 				v[2] + other.v[2], v[3] + other.v[3]);
 	}
 
-	FORCEINLINE GenericVector operator-(const GenericVector& other) const
+	inline GenericVector operator-(const GenericVector& other) const
 	{
 		return make(v[0] - other.v[0], v[1] - other.v[1],
 				v[2] - other.v[2], v[3] - other.v[3]);
 	}
 
-	FORCEINLINE GenericVector operator*(const GenericVector& other) const
+	inline GenericVector operator*(const GenericVector& other) const
 	{
 		return make(v[0] * other.v[0], v[1] * other.v[1],
 				v[2] * other.v[2], v[3] * other.v[3]);
 	}
 
-	FORCEINLINE GenericVector operator/(const GenericVector& other) const
+	inline GenericVector operator/(const GenericVector& other) const
 	{
 		return make(v[0] / other.v[0], v[1] / other.v[1],
 				v[2] / other.v[2], v[3] / other.v[3]);
 	}
 
-	FORCEINLINE bool isZero3f() const
+	inline bool isZero3f() const
 	{
 		float vals[3];
 		store3f(vals);
 		return (vals[0] == 0.0f) && (vals[1] == 0.0f) && (vals[2] == 0.0f);
 	}
 
-	FORCEINLINE bool isZero4f() const
+	inline bool isZero4f() const
 	{
 		float vals[4];
 		store4f(vals);
@@ -455,7 +455,7 @@ public:
 	}
 
 
-	FORCEINLINE GenericVector operator==(const GenericVector& other) const
+	inline GenericVector operator==(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(v[0] == other.v[0] ? 0xFFFFFFFF : 0),
@@ -464,18 +464,18 @@ public:
 				v[3] == other.v[3] ? 0xFFFFFFFF : 0);
 	}
 
-	FORCEINLINE GenericVector equals(const GenericVector& other, float errorMargin) const
+	inline GenericVector equals(const GenericVector& other, float errorMargin) const
 	{
 		return (*this - other).abs() < GenericVector::load1f(errorMargin);
 	}
 
-	FORCEINLINE GenericVector notEquals(const GenericVector& other, float errorMargin) const
+	inline GenericVector notEquals(const GenericVector& other, float errorMargin) const
 	{
 		return (*this - other).abs() >= GenericVector::load1f(errorMargin);
 	}
 
 
-	FORCEINLINE GenericVector operator!=(const GenericVector& other) const
+	inline GenericVector operator!=(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(v[0] != other.v[0] ? 0xFFFFFFFF : 0),
@@ -484,7 +484,7 @@ public:
 				v[3] != other.v[3] ? 0xFFFFFFFF : 0);
 	}
 
-	FORCEINLINE GenericVector operator>(const GenericVector& other) const
+	inline GenericVector operator>(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(v[0] > other.v[0] ? 0xFFFFFFFF : 0),
@@ -493,7 +493,7 @@ public:
 				v[3] > other.v[3] ? 0xFFFFFFFF : 0);
 	}
 
-	FORCEINLINE GenericVector operator>=(const GenericVector& other) const
+	inline GenericVector operator>=(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(v[0] >= other.v[0] ? 0xFFFFFFFF : 0),
@@ -502,7 +502,7 @@ public:
 				v[3] >= other.v[3] ? 0xFFFFFFFF : 0);
 	}
 
-	FORCEINLINE GenericVector operator<(const GenericVector& other) const
+	inline GenericVector operator<(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(v[0] < other.v[0] ? 0xFFFFFFFF : 0),
@@ -511,7 +511,7 @@ public:
 				v[3] < other.v[3] ? 0xFFFFFFFF : 0);
 	}
 
-	FORCEINLINE GenericVector operator<=(const GenericVector& other) const
+	inline GenericVector operator<=(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(v[0] <= other.v[0] ? 0xFFFFFFFF : 0),
@@ -520,7 +520,7 @@ public:
 				v[3] <= other.v[3] ? 0xFFFFFFFF : 0);
 	}
 
-	FORCEINLINE GenericVector operator|(const GenericVector& other) const
+	inline GenericVector operator|(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(((uint32*)v)[0] | ((uint32*)other.v)[0]),
@@ -529,7 +529,7 @@ public:
 				(uint32)(((uint32*)v)[3] | ((uint32*)other.v)[3]));
 	}
 
-	FORCEINLINE GenericVector operator&(const GenericVector& other) const
+	inline GenericVector operator&(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(((uint32*)v)[0] & ((uint32*)other.v)[0]),
@@ -538,7 +538,7 @@ public:
 				(uint32)(((uint32*)v)[3] & ((uint32*)other.v)[3]));
 	}
 
-	FORCEINLINE GenericVector operator^(const GenericVector& other) const
+	inline GenericVector operator^(const GenericVector& other) const
 	{
 		return make(
 				(uint32)(((uint32*)v)[0] ^ ((uint32*)other.v)[0]),
@@ -547,13 +547,13 @@ public:
 				(uint32)(((uint32*)v)[3] ^ ((uint32*)other.v)[3]));
 	}
 	
-	FORCEINLINE float operator[](uint32 index) const
+	inline float operator[](uint32 index) const
 	{
 		assertCheck(index <= 3);
 		return v[index];
 	}
 
-	FORCEINLINE GenericVector select(const GenericVector& mask, const GenericVector& other) const
+	inline GenericVector select(const GenericVector& mask, const GenericVector& other) const
 	{
 		uint32* m = (uint32*)(&mask.v[0]);
 		return make(

@@ -5,32 +5,32 @@
 class Quaternion
 {
 public:
-	FORCEINLINE Quaternion() {}
-	FORCEINLINE Quaternion(const Vector& quat);
-	FORCEINLINE Quaternion(float x, float y, float z, float w);
-	FORCEINLINE Quaternion(const Vector3f& axis, float angle);
+	inline Quaternion() {}
+	inline Quaternion(const Vector& quat);
+	inline Quaternion(float x, float y, float z, float w);
+	inline Quaternion(const Vector3f& axis, float angle);
 	
-	FORCEINLINE float operator[](uint32 index) const;
-	FORCEINLINE Quaternion operator+(const Quaternion& other) const;
-	FORCEINLINE Quaternion operator+=(const Quaternion& other);
-	FORCEINLINE Quaternion operator-(const Quaternion& other) const;
-	FORCEINLINE Quaternion operator-=(const Quaternion& other);
-	FORCEINLINE Quaternion operator*(const Quaternion& other) const;
-	FORCEINLINE Quaternion operator*=(const Quaternion& other);
-	FORCEINLINE Vector3f operator*(const Vector3f& other) const;
-	FORCEINLINE Quaternion operator*(float amt) const;
-	FORCEINLINE Quaternion operator*=(float amt);
-	FORCEINLINE Quaternion operator/(float amt) const;
-	FORCEINLINE Quaternion operator/=(float amt);
+	inline float operator[](uint32 index) const;
+	inline Quaternion operator+(const Quaternion& other) const;
+	inline Quaternion operator+=(const Quaternion& other);
+	inline Quaternion operator-(const Quaternion& other) const;
+	inline Quaternion operator-=(const Quaternion& other);
+	inline Quaternion operator*(const Quaternion& other) const;
+	inline Quaternion operator*=(const Quaternion& other);
+	inline Vector3f operator*(const Vector3f& other) const;
+	inline Quaternion operator*(float amt) const;
+	inline Quaternion operator*=(float amt);
+	inline Quaternion operator/(float amt) const;
+	inline Quaternion operator/=(float amt);
 
-	FORCEINLINE bool operator==(const Quaternion& other) const;
-	FORCEINLINE bool operator!=(const Quaternion& other) const;
-	FORCEINLINE bool equals(const Quaternion& other, float errorMargin=1.e-4f) const;
+	inline bool operator==(const Quaternion& other) const;
+	inline bool operator!=(const Quaternion& other) const;
+	inline bool equals(const Quaternion& other, float errorMargin=1.e-4f) const;
 
-	FORCEINLINE float dot(const Quaternion& other) const;
+	inline float dot(const Quaternion& other) const;
 
-	FORCEINLINE float length() const;
-	FORCEINLINE float lengthSquared() const;
+	inline float length() const;
+	inline float lengthSquared() const;
 
 	Quaternion normalized(float errorMargin=1.e-8f) const;
 	bool isNormalized(float errorMargin=1.e-4f) const;
@@ -44,16 +44,16 @@ public:
 	Quaternion conjugate() const;
 	Quaternion inverse() const;
 
-	FORCEINLINE Vector3f getAxisX() const;
-	FORCEINLINE Vector3f getAxisY() const;
-	FORCEINLINE Vector3f getAxisZ() const;
-	FORCEINLINE Vector toVector() const;
+	inline Vector3f getAxisX() const;
+	inline Vector3f getAxisY() const;
+	inline Vector3f getAxisZ() const;
+	inline Vector toVector() const;
 private:
 	Vector vec;
 };
 
 template<>
-FORCEINLINE Quaternion Math::lerp(const Quaternion& val1, const Quaternion& val2,
+inline Quaternion Math::lerp(const Quaternion& val1, const Quaternion& val2,
 		const float& amt)
 {
 	float dotAmt = val1.dot(val2);
@@ -61,13 +61,13 @@ FORCEINLINE Quaternion Math::lerp(const Quaternion& val1, const Quaternion& val2
 	return (val2 * amt) + val1 * (dir * (1.0f - amt));
 }
 
-FORCEINLINE Quaternion::Quaternion(const Vector& quat) :
+inline Quaternion::Quaternion(const Vector& quat) :
 	vec(quat) {}
 
-FORCEINLINE Quaternion::Quaternion(float x, float y, float z, float w) :
+inline Quaternion::Quaternion(float x, float y, float z, float w) :
 	vec(Vector::make(x, y, z, w)) {}
 
-FORCEINLINE Quaternion::Quaternion(const Vector3f& axis, float angle)
+inline Quaternion::Quaternion(const Vector3f& axis, float angle)
 {
 	float vals[3];
 	float sinAngle, cosAngle;
@@ -81,82 +81,82 @@ FORCEINLINE Quaternion::Quaternion(const Vector3f& axis, float angle)
 			cosAngle);
 }
 
-FORCEINLINE float Quaternion::operator[](uint32 index) const
+inline float Quaternion::operator[](uint32 index) const
 {
 	return vec[index];
 }
 
-FORCEINLINE Quaternion Quaternion::operator+(const Quaternion& other) const
+inline Quaternion Quaternion::operator+(const Quaternion& other) const
 {
 	return Quaternion(vec + other.vec);
 }
 
-FORCEINLINE Quaternion Quaternion::operator+=(const Quaternion& other)
+inline Quaternion Quaternion::operator+=(const Quaternion& other)
 {
 	vec = vec + other.vec;
 	return *this;
 }
 
-FORCEINLINE Quaternion Quaternion::operator-(const Quaternion& other) const
+inline Quaternion Quaternion::operator-(const Quaternion& other) const
 {
 	return Quaternion(vec - other.vec);
 }
 
-FORCEINLINE Quaternion Quaternion::operator-=(const Quaternion& other)
+inline Quaternion Quaternion::operator-=(const Quaternion& other)
 {
 	vec = vec - other.vec;
 	return *this;
 }
 
-FORCEINLINE Quaternion Quaternion::operator*(const Quaternion& other) const
+inline Quaternion Quaternion::operator*(const Quaternion& other) const
 {
 	return Quaternion(vec.quatMul(other.vec));	
 }
 
-FORCEINLINE Quaternion Quaternion::operator*=(const Quaternion& other)
+inline Quaternion Quaternion::operator*=(const Quaternion& other)
 {
 	vec = vec.quatMul(other.vec);
 	return *this;
 }
 
-FORCEINLINE Vector3f Quaternion::operator*(const Vector3f& other) const
+inline Vector3f Quaternion::operator*(const Vector3f& other) const
 {
 	return rotate(other);
 }
 
-FORCEINLINE Quaternion Quaternion::operator*(float amt) const
+inline Quaternion Quaternion::operator*(float amt) const
 {
 	return Quaternion(vec * Vector::load1f(amt));
 }
 
-FORCEINLINE Quaternion Quaternion::operator*=(float amt) 
+inline Quaternion Quaternion::operator*=(float amt) 
 {
 	vec = vec * Vector::load1f(amt);
 	return *this;
 }
 
-FORCEINLINE Quaternion Quaternion::operator/(float amt) const
+inline Quaternion Quaternion::operator/(float amt) const
 {
 	return *this * Math::reciprocal(amt);
 }
 
-FORCEINLINE Quaternion Quaternion::operator/=(float amt)
+inline Quaternion Quaternion::operator/=(float amt)
 {
 	return *this *= Math::reciprocal(amt);
 }
 
 
-FORCEINLINE bool Quaternion::operator==(const Quaternion& other) const
+inline bool Quaternion::operator==(const Quaternion& other) const
 {
 	return (vec != other.vec).isZero4f();
 }
 
-FORCEINLINE bool Quaternion::operator!=(const Quaternion& other) const
+inline bool Quaternion::operator!=(const Quaternion& other) const
 {
 	return (vec == other.vec).isZero4f();
 }
 
-FORCEINLINE bool Quaternion::equals(const Quaternion& other, float errorMargin) const
+inline bool Quaternion::equals(const Quaternion& other, float errorMargin) const
 {
 	Vector error = Vector::load1f(errorMargin);
 	return ((vec - other.vec).abs() >= error).isZero4f() ||
@@ -164,38 +164,38 @@ FORCEINLINE bool Quaternion::equals(const Quaternion& other, float errorMargin) 
 }
 
 
-FORCEINLINE float Quaternion::dot(const Quaternion& other) const
+inline float Quaternion::dot(const Quaternion& other) const
 {
 	return vec.dot4(other.vec)[0];
 }
 
 
-FORCEINLINE float Quaternion::length() const
+inline float Quaternion::length() const
 {
 	return Math::sqrt(lengthSquared());
 }
 
-FORCEINLINE float Quaternion::lengthSquared() const
+inline float Quaternion::lengthSquared() const
 {
 	return vec.dot4(vec)[0];
 }
 
-FORCEINLINE Vector3f Quaternion::getAxisX() const
+inline Vector3f Quaternion::getAxisX() const
 {
 	return rotate(Vector3f(1.0f, 0.0f, 0.0f));
 }
 
-FORCEINLINE Vector3f Quaternion::getAxisY() const
+inline Vector3f Quaternion::getAxisY() const
 {
 	return rotate(Vector3f(0.0f, 1.0f, 0.0f));
 }
 
-FORCEINLINE Vector3f Quaternion::getAxisZ() const
+inline Vector3f Quaternion::getAxisZ() const
 {
 	return rotate(Vector3f(0.0f, 0.0f, 1.0f));
 }
 
-FORCEINLINE Vector Quaternion::toVector() const
+inline Vector Quaternion::toVector() const
 {
 	return vec;
 }

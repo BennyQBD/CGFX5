@@ -6,7 +6,7 @@
 class Texture
 {
 public:
-	FORCEINLINE Texture(RenderDevice& deviceIn, const ArrayBitmap& texData,
+	inline Texture(RenderDevice& deviceIn, const ArrayBitmap& texData,
 			enum RenderDevice::PixelFormat internalPixelFormat,
 			bool generateMipmaps, bool shouldCompress) :
 		device(&deviceIn),
@@ -16,14 +16,14 @@ public:
 				internalPixelFormat, generateMipmaps, shouldCompress)),
 		width((uint32)texData.getWidth()),
 		height((uint32)texData.getHeight()) {}
-	FORCEINLINE ~Texture()
+	inline ~Texture()
 	{
 		texId = device->releaseTexture2D(texId);
 	}
 
-	FORCEINLINE uint32 getId();
-	FORCEINLINE uint32 getWidth();
-	FORCEINLINE uint32 getHeight();
+	inline uint32 getId();
+	inline uint32 getWidth();
+	inline uint32 getHeight();
 private:
 	RenderDevice* device;
 	uint32 texId;
@@ -33,17 +33,17 @@ private:
 	NULL_COPY_AND_ASSIGN(Texture);
 };
 
-FORCEINLINE uint32 Texture::getId()
+inline uint32 Texture::getId()
 {
 	return texId;
 }
 
-FORCEINLINE uint32 Texture::getWidth()
+inline uint32 Texture::getWidth()
 {
 	return width;
 }
 
-FORCEINLINE uint32 Texture::getHeight()
+inline uint32 Texture::getHeight()
 {
 	return height;
 }
