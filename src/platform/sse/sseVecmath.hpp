@@ -16,7 +16,7 @@
 struct SSEVector
 {
 public:
-	static inline void matrixMul(void* result, const void* mat1, const void* mat2)
+	static FORCEINLINE void matrixMul(void* result, const void* mat1, const void* mat2)
 	{
 		const SSEVector* m1 = (const SSEVector*)mat1;
 		const SSEVector* m2 = (const SSEVector*)mat2;
@@ -49,7 +49,7 @@ public:
 		r[3] = r3;
 	}
 
-	static inline float matrixDeterminant3x3Vector(const SSEVector* m)
+	static FORCEINLINE float matrixDeterminant3x3Vector(const SSEVector* m)
 	{
 		float M[4][4];
 		for(uint32 i = 0; i < 4; i++) {
@@ -61,7 +61,7 @@ public:
 			M[2][0] * (M[0][1] * M[1][2] - M[0][2] * M[1][1]);
 	}
 
-	static inline float matrixDeterminant4x4(float* outS,
+	static FORCEINLINE float matrixDeterminant4x4(float* outS,
 			float* outC, const void* mat)
 	{
 		float sVals[6];
@@ -93,41 +93,50 @@ public:
 		return (s[0] * c[5] - s[1] * c[4] + s[2] * c[3] + s[3] * c[2] - s[4] * c[1] + s[5] * c[0]);
 	}
 
-	static inline void matrixInverse(void* dest, const void* src)
+	// Based on https://lxjk.github.io/2017/09/03/Fast-4x4-Matrix-Inverse-with-SSE-SIMD-Explained.html
+	static FORCEINLINE void matrixInverse(void* dest, const void* src)
 	{
-		float s[6];
-		float c[6];
-		float rdet = Math::reciprocal(matrixDeterminant4x4(s, c, src));
+		__m128* mVec = (__m128*)src;
+		float* m = (float*)src;
+		__m128 A = SSEVector_Shuffle_0101(mVec[0], mVec[1]);
+		__m128 B = SSEVector_Shuffle_2323(mVec[0], mVec[1]);
+		__m128 C = SSEVector_Shuffle_0101(mVec[2], mVec[3]);
+		__m128 D = SSEVector_Shuffle_2323(mVec[2], mVec[3]);
 
-		SSEVector* m = (SSEVector*)src;
-		float M[4][4];
-		for(uint32 i = 0; i < 4; i++) {
-			m[i].store4f(M[i]);
-		}
+		__m128 detA = _mm_set1_ps(m[0*4+0] * m[1*4+1] - m[0*4+1] * m[1*4+0]);
+		__m128 detB = _mm_set1_ps(m[0*4+2] * m[1*4+3] - m[0*4+3] * m[1*4+2]);
+		__m128 detC = _mm_set1_ps(m[2*4+0] * m[3*4+1] - m[2*4+1] * m[3*4+0]);
+		__m128 detD = _mm_set1_ps(m[2*4+2] * m[3*4+3] - m[2*4+3] * m[3*4+2]);
 
-		float* result = (float*)dest;
-		result[0] = ( M[1][1] * c[5] - M[1][2] * c[4] + M[1][3] * c[3]) * rdet;
-		result[1] = (-M[0][1] * c[5] + M[0][2] * c[4] - M[0][3] * c[3]) * rdet;
-		result[2] = ( M[3][1] * s[5] - M[3][2] * s[4] + M[3][3] * s[3]) * rdet;
-		result[3] = (-M[2][1] * s[5] + M[2][2] * s[4] - M[2][3] * s[3]) * rdet;
+		__m128 D_C = mat2AdjMul(D, C);
+		__m128 A_B = mat2AdjMul(A, B);
+		__m128 X_ = _mm_sub_ps(_mm_mul_ps(detD, A), mat2Mul(B, D_C));
+		__m128 W_ = _mm_sub_ps(_mm_mul_ps(detA, D), mat2Mul(C, A_B));
 
-		result[4] = (-M[1][0] * c[5] + M[1][2] * c[2] - M[1][3] * c[1]) * rdet;
-		result[5] = ( M[0][0] * c[5] - M[0][2] * c[2] + M[0][3] * c[1]) * rdet;
-		result[6] = (-M[3][0] * s[5] + M[3][2] * s[2] - M[3][3] * s[1]) * rdet;
-		result[7] = ( M[2][0] * s[5] - M[2][2] * s[2] + M[2][3] * s[1]) * rdet;
+		__m128 detM = _mm_mul_ps(detA, detD);
+		__m128 Y_ = _mm_sub_ps(_mm_mul_ps(detB, C), mat2MulAdj(D, A_B));
+		__m128 Z_ = _mm_sub_ps(_mm_mul_ps(detC, B), mat2MulAdj(A, D_C));
+		detM = _mm_add_ps(detM, _mm_mul_ps(detB, detC));
 
-		result[8] = ( M[1][0] * c[4] - M[1][1] * c[2] + M[1][3] * c[0]) * rdet;
-		result[9] = (-M[0][0] * c[4] + M[0][1] * c[2] - M[0][3] * c[0]) * rdet;
-		result[10] = ( M[3][0] * s[4] - M[3][1] * s[2] + M[3][3] * s[0]) * rdet;
-		result[11] = (-M[2][0] * s[4] + M[2][1] * s[2] - M[2][3] * s[0]) * rdet;
+		__m128 tr = horizontalAdd(_mm_mul_ps(A_B, SSEVector_Swizzle(D_C, 0,2,1,3)));
+		detM = _mm_sub_ps(detM, tr);
 
-		result[12] = (-M[1][0] * c[3] + M[1][1] * c[1] - M[1][2] * c[0]) * rdet;
-		result[13] = ( M[0][0] * c[3] - M[0][1] * c[1] + M[0][2] * c[0]) * rdet;
-		result[14] = (-M[3][0] * s[3] + M[3][1] * s[1] - M[3][2] * s[0]) * rdet;
-		result[15] = ( M[2][0] * s[3] - M[2][1] * s[1] + M[2][2] * s[0]) * rdet;
+		const __m128 adjSignMask = _mm_setr_ps(1.f, -1.f, -1.f, 1.f);
+		__m128 rDetM = _mm_div_ps(adjSignMask, detM);
+
+		X_ = _mm_mul_ps(X_, rDetM);
+		Y_ = _mm_mul_ps(Y_, rDetM);
+		Z_ = _mm_mul_ps(Z_, rDetM);
+		W_ = _mm_mul_ps(W_, rDetM);
+
+		__m128* rmVec = (__m128*)dest;
+		rmVec[0] = SSEVector_Shuffle(X_, Y_, 3,1,3,1);
+		rmVec[1] = SSEVector_Shuffle(X_, Y_, 2,0,2,0);
+		rmVec[2] = SSEVector_Shuffle(Z_, W_, 3,1,3,1);
+		rmVec[3] = SSEVector_Shuffle(Z_, W_, 2,0,2,0);
 	}
 
-	static inline void createTransformMatrix(void* dest, const SSEVector& translation, const SSEVector& quatRotation, const SSEVector& scaleVec)
+	static FORCEINLINE void createTransformMatrix(void* dest, const SSEVector& translation, const SSEVector& quatRotation, const SSEVector& scaleVec)
 	{
 		// NOTE: This can be further vectorized!
 		static const SSEVector MASK_W(SSEVector::make((uint32)0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0));
@@ -157,7 +166,7 @@ public:
 		mat[3] = make(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 	
-	static inline SSEVector make(uint32 x, uint32 y, uint32 z, uint32 w)
+	static FORCEINLINE SSEVector make(uint32 x, uint32 y, uint32 z, uint32 w)
 	{
 		union { __m128 vecf; __m128i veci; } vecData;
 		vecData.veci = _mm_setr_epi32(x, y, z, w);
@@ -166,7 +175,7 @@ public:
 		return result;
 	}
 
-	static inline const SSEVector mask(uint32 index)
+	static FORCEINLINE const SSEVector mask(uint32 index)
 	{
 		static const SSEVector masks[4] = {
 			SSEVector::make((uint32)0, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF),
@@ -177,81 +186,81 @@ public:
 		return masks[index];
 	}
 
-	static inline SSEVector make(float x, float y, float z, float w)
+	static FORCEINLINE SSEVector make(float x, float y, float z, float w)
 	{
 		SSEVector vec;
 		vec.data = _mm_setr_ps(x, y, z, w);
 		return vec;
 	}
 
-	static inline SSEVector load4f(const float* vals)
+	static FORCEINLINE SSEVector load4f(const float* vals)
 	{
 		SSEVector vec;
 		vec.data = _mm_loadu_ps(vals);
 		return vec;
 	}
 
-	static inline SSEVector load3f(const float* vals, float w)
+	static FORCEINLINE SSEVector load3f(const float* vals, float w)
 	{
 		return make(vals[0], vals[1], vals[2], w);
 	}
 
-	static inline SSEVector load1f(float val)
+	static FORCEINLINE SSEVector load1f(float val)
 	{
 		SSEVector vec;
 		vec.data = _mm_set1_ps(val);
 		return vec;
 	}
 
-	static inline SSEVector loadAligned(const float* vals)
+	static FORCEINLINE SSEVector loadAligned(const float* vals)
 	{
 		SSEVector vec;
 		vec.data = _mm_load_ps(vals);
 		return vec;
 	}
 	
-	static inline SSEVector set(float x, float y, float z)
+	static FORCEINLINE SSEVector set(float x, float y, float z)
 	{
 		return make(x, y, z, 0.0f);
 	}
 
-	static inline SSEVector set(float x, float y, float z, float w)
+	static FORCEINLINE SSEVector set(float x, float y, float z, float w)
 	{
 		return make(x, y, z, w);
 	}
 
-	inline void store4f(float* result) const
+	FORCEINLINE void store4f(float* result) const
 	{
 		_mm_storeu_ps(result, data);
 	}
 
-	inline void store3f(float* result) const
+	FORCEINLINE void store3f(float* result) const
 	{
 		Memory::memcpy(result, &data, sizeof(float) * 3);
 	}
 
-	inline void store1f(float* result) const
+	FORCEINLINE void store1f(float* result) const
 	{
 		_mm_store_ss(result, data);
 	}
 
-	inline void storeAligned(float* result) const
+	FORCEINLINE void storeAligned(float* result) const
 	{
 		_mm_store_ps(result, data);
 	}
 
-	inline void storeAlignedStreamed(float* result) const
+	FORCEINLINE void storeAlignedStreamed(float* result) const
 	{
 		_mm_stream_ps(result, data);
 	}
 
-	inline SSEVector replicate(uint32 index) const
+	FORCEINLINE SSEVector replicate(uint32 index) const
 	{
 		assertCheck(index <= 3);
 		return SSEVector::load1f((*this)[index]);
 	}
 
-	inline SSEVector swizzle(const uint32 x, const uint32 y, const uint32 z, const uint32 w) const
+	FORCEINLINE SSEVector swizzle(const uint32 x, const uint32 y, const uint32 z, const uint32 w) const
 	{
 		assertCheck(x <= 3);
 		assertCheck(y <= 3);
@@ -263,7 +272,7 @@ public:
 		return vec;
 	}
 	
-	inline SSEVector abs() const
+	FORCEINLINE SSEVector abs() const
 	{
 		static const SSEVector sign_mask(
 			SSEVector::make((uint32)0x7FFFFFFF, 0x7FFFFFFF, 0x7FFFFFFF, 0x7FFFFFFF));
@@ -272,7 +281,7 @@ public:
 		return vec;
 	}
 
-	inline SSEVector sign() const
+	FORCEINLINE SSEVector sign() const
 	{
 		static const SSEVector sign_mask(
 			SSEVector::make((uint32)0x80000000, 0x80000000, 0x80000000, 0x80000000));
@@ -281,33 +290,33 @@ public:
 		return vec;
 	}
 
-	inline SSEVector min(const SSEVector& other) const
+	FORCEINLINE SSEVector min(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_min_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector max(const SSEVector& other) const
+	FORCEINLINE SSEVector max(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_max_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector neg() const
+	FORCEINLINE SSEVector neg() const
 	{
 		SSEVector vec;
 		vec.data =  _mm_xor_ps(data, _mm_set1_ps(-0.f));
 		return vec;
 	}
 
-	inline SSEVector operator-() const
+	FORCEINLINE SSEVector operator-() const
 	{
 		return neg();
 	}
 
-	inline SSEVector dot3(const SSEVector& other) const
+	FORCEINLINE SSEVector dot3(const SSEVector& other) const
 	{
 		const __m128 mul = _mm_mul_ps(data, other.data);
 		const __m128 x = _mm_shuffle_ps(mul, mul, SSEVector_SHUFFLEMASK(0,0,0,0));
@@ -318,7 +327,7 @@ public:
 		return vec;
 	}
 
-	inline SSEVector dot4(const SSEVector& other) const
+	FORCEINLINE SSEVector dot4(const SSEVector& other) const
 	{
 		const __m128 t0 = _mm_mul_ps(data, other.data);
 		SSEVector vec;
@@ -326,7 +335,7 @@ public:
 		return vec;
 	}
 
-	inline SSEVector cross3(const SSEVector& other) const
+	FORCEINLINE SSEVector cross3(const SSEVector& other) const
 	{
 		const __m128 t0 = _mm_shuffle_ps(data, data, SSEVector_SHUFFLEMASK(1,2,0,3));
 		const __m128 t1 = _mm_shuffle_ps(other.data, other.data, 
@@ -339,7 +348,7 @@ public:
 		return vec;
 	}
 
-	inline SSEVector pow(const SSEVector& exp) const
+	FORCEINLINE SSEVector pow(const SSEVector& exp) const
 	{
 		return make(
 				Math::pow((*this)[0], exp[0]),
@@ -348,7 +357,7 @@ public:
 				Math::pow((*this)[3], exp[3]));
 	}
 
-	inline SSEVector rsqrt() const
+	FORCEINLINE SSEVector rsqrt() const
 	{
 		const SSEVector ONE(SSEVector::load1f(1.0f));
 		SSEVector vec;
@@ -356,7 +365,7 @@ public:
 		return vec;
 	}
 
-	inline SSEVector reciprocal() const
+	FORCEINLINE SSEVector reciprocal() const
 	{
 		const SSEVector ONE(SSEVector::load1f(1.0f));
 		SSEVector vec;
@@ -364,27 +373,27 @@ public:
 		return vec;
 	}
 
-	inline SSEVector rlen4() const
+	FORCEINLINE SSEVector rlen4() const
 	{
 		return dot4(*this).rsqrt();
 	}
 
-	inline SSEVector rlen3() const
+	FORCEINLINE SSEVector rlen3() const
 	{
 		return dot3(*this).rsqrt();
 	}
 
-	inline SSEVector normalize4() const
+	FORCEINLINE SSEVector normalize4() const
 	{
 		return (*this) * rlen4();
 	}
 
-	inline SSEVector normalize3() const
+	FORCEINLINE SSEVector normalize3() const
 	{
 		return (*this) * rlen3();
 	}
 
-	inline void sincos(SSEVector* outSin, SSEVector* outCos) const
+	FORCEINLINE void sincos(SSEVector* outSin, SSEVector* outCos) const
 	{
 		float outSinVals[4];
 		float outCosVals[4];
@@ -396,7 +405,7 @@ public:
 		*outCos = SSEVector::load4f(outCosVals);
 	}
 
-	inline SSEVector quatMul(const SSEVector& other) const
+	FORCEINLINE SSEVector quatMul(const SSEVector& other) const
 	{
 		static const SSEVector mask(SSEVector::make(0.0f,0.0f,0.0f,-0.0f));
 		SSEVector comp1, comp2, comp3;
@@ -406,143 +415,143 @@ public:
 		return replicate(3)*other-comp3+((comp1+comp2) ^ mask);
 	}
 
-	inline SSEVector quatRotateVec(const SSEVector& vec) const
+	FORCEINLINE SSEVector quatRotateVec(const SSEVector& vec) const
 	{
 		SSEVector tmp = SSEVector::load1f(2.0f) * cross3(vec);
 		return vec + (tmp * replicate(3)) + cross3(tmp);
 	}
 
-	inline SSEVector mad(const SSEVector& mul, const SSEVector& add) const
+	FORCEINLINE SSEVector mad(const SSEVector& mul, const SSEVector& add) const
 	{
 		SSEVector vec;
 		vec.data = _mm_add_ps(_mm_mul_ps(data, mul.data), add.data);
 		return vec;
 	}
 
-	inline SSEVector transform(const void* matrix) const
+	FORCEINLINE SSEVector transform(const void* matrix) const
 	{
 		const SSEVector* m = (const SSEVector*)matrix;
 		return make(dot4(m[0])[0],dot4(m[1])[0],dot4(m[2])[0],dot4(m[3])[0]);
 	}
 	
-	inline SSEVector operator+(const SSEVector& other) const
+	FORCEINLINE SSEVector operator+(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_add_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator-(const SSEVector& other) const
+	FORCEINLINE SSEVector operator-(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_sub_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator*(const SSEVector& other) const
+	FORCEINLINE SSEVector operator*(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_mul_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator/(const SSEVector& other) const
+	FORCEINLINE SSEVector operator/(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_div_ps(data, other.data);
 		return vec;
 	}
 
-	inline bool isZero3f() const
+	FORCEINLINE bool isZero3f() const
 	{
 		return !(_mm_movemask_ps(data) & 0x07);
 	}
 
-	inline bool isZero4f() const
+	FORCEINLINE bool isZero4f() const
 	{
 		return !_mm_movemask_ps(data);
 	}
 
-	inline SSEVector operator==(const SSEVector& other) const
+	FORCEINLINE SSEVector operator==(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_cmpeq_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector equals(const SSEVector& other, float errorMargin) const
+	FORCEINLINE SSEVector equals(const SSEVector& other, float errorMargin) const
 	{
 		return (*this - other).abs() < SSEVector::load1f(errorMargin);
 	}
 
-	inline SSEVector notEquals(const SSEVector& other, float errorMargin) const
+	FORCEINLINE SSEVector notEquals(const SSEVector& other, float errorMargin) const
 	{
 		return (*this - other).abs() >= SSEVector::load1f(errorMargin);
 	}
 
-	inline SSEVector operator!=(const SSEVector& other) const
+	FORCEINLINE SSEVector operator!=(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_cmpneq_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator>(const SSEVector& other) const
+	FORCEINLINE SSEVector operator>(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_cmpgt_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator>=(const SSEVector& other) const
+	FORCEINLINE SSEVector operator>=(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_cmpge_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator<(const SSEVector& other) const
+	FORCEINLINE SSEVector operator<(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_cmplt_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator<=(const SSEVector& other) const
+	FORCEINLINE SSEVector operator<=(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_cmple_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator|(const SSEVector& other) const
+	FORCEINLINE SSEVector operator|(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_or_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator&(const SSEVector& other) const
+	FORCEINLINE SSEVector operator&(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_and_ps(data, other.data);
 		return vec;
 	}
 
-	inline SSEVector operator^(const SSEVector& other) const
+	FORCEINLINE SSEVector operator^(const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_xor_ps(data, other.data);
 		return vec;
 	}
 	
-	inline float operator[](uint32 index) const
+	FORCEINLINE float operator[](uint32 index) const
 	{
 		assertCheck(index <= 3);
 		return ((float*)&data)[index];
 	}
 
-	inline SSEVector select(const SSEVector& mask, const SSEVector& other) const
+	FORCEINLINE SSEVector select(const SSEVector& mask, const SSEVector& other) const
 	{
 		SSEVector vec;
 		vec.data = _mm_xor_ps(other.data,
@@ -553,7 +562,7 @@ public:
 private:
 	__m128 data;
 
-	static inline __m128 horizontalAdd(__m128 t0)
+	static FORCEINLINE __m128 horizontalAdd(__m128 t0)
 	{
 	#if SIMD_SUPPORTED_LEVEL >= SIMD_LEVEL_x86_SSSE3
 		const __m128 t1 = _mm_hadd_ps(t0, t0);
@@ -564,6 +573,28 @@ private:
 		const __m128 t3 = _mm_shuffle_ps(t2, t2, SSEVector_SHUFFLEMASK(1,2,3,0));
 		return _mm_add_ps(t3, t2);
 	#endif
+	}
+
+	static FORCEINLINE __m128 mat2Mul(__m128 vec1, __m128 vec2)
+	{
+		return
+			_mm_add_ps(_mm_mul_ps(                     vec1, SSEVector_Swizzle(vec2, 0,3,0,3)),
+					   _mm_mul_ps(SSEVector_Swizzle(vec1, 1,0,3,2), SSEVector_Swizzle(vec2, 2,1,2,1)));
+	}
+	// 2x2 row major Matrix adjugate multiply (A#)*B
+	static FORCEINLINE __m128 mat2AdjMul(__m128 vec1, __m128 vec2)
+	{
+		return
+			_mm_sub_ps(_mm_mul_ps(SSEVector_Swizzle(vec1, 3,3,0,0), vec2),
+					   _mm_mul_ps(SSEVector_Swizzle(vec1, 1,1,2,2), SSEVector_Swizzle(vec2, 2,3,0,1)));
+
+	}
+	// 2x2 row major Matrix multiply adjugate A*(B#)
+	static FORCEINLINE __m128 mat2MulAdj(__m128 vec1, __m128 vec2)
+	{
+		return
+			_mm_sub_ps(_mm_mul_ps(                     vec1, SSEVector_Swizzle(vec2, 3,0,3,0)),
+					   _mm_mul_ps(SSEVector_Swizzle(vec1, 1,0,3,2), SSEVector_Swizzle(vec2, 2,1,2,1)));
 	}
 };
 

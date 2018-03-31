@@ -6,117 +6,117 @@
 class AABB
 {
 public:
-	inline AABB() {}
-	inline AABB(const Vector3f& minExtents, const Vector3f& maxExtents);
+	FORCEINLINE AABB() {}
+	FORCEINLINE AABB(const Vector3f& minExtents, const Vector3f& maxExtents);
 	AABB(Vector3f* points, uint32 amt);
 	AABB(float* points, uint32 amt, uint32 stride=0);
 
 	bool intersectRay(const Vector3f& start, const Vector3f& rayDir, float& point1, float& point2) const;
 	bool intersectLine(const Vector3f& start, const Vector3f& end) const;
-	inline bool intersects(const AABB& other) const;
+	FORCEINLINE bool intersects(const AABB& other) const;
 	AABB transform(const Matrix& transform) const;
 
-	inline AABB expand(float distance) const;
-	inline AABB expand(const Vector3f& amt) const;
-	inline AABB moveTo(const Vector3f& destination) const;
-	inline Vector3f getCenter() const;
-	inline Vector3f getExtents() const;
-	inline Vector3f getMinExtents() const;
-	inline Vector3f getMaxExtents() const;
-	inline void getCenterAndExtents(Vector3f& center, Vector3f& extents) const;
-	inline float getVolume() const;
-	inline AABB overlap(const AABB& other) const;
-	inline bool contains(const Vector3f& point) const;
-	inline bool contains(const AABB& other) const;
+	FORCEINLINE AABB expand(float distance) const;
+	FORCEINLINE AABB expand(const Vector3f& amt) const;
+	FORCEINLINE AABB moveTo(const Vector3f& destination) const;
+	FORCEINLINE Vector3f getCenter() const;
+	FORCEINLINE Vector3f getExtents() const;
+	FORCEINLINE Vector3f getMinExtents() const;
+	FORCEINLINE Vector3f getMaxExtents() const;
+	FORCEINLINE void getCenterAndExtents(Vector3f& center, Vector3f& extents) const;
+	FORCEINLINE float getVolume() const;
+	FORCEINLINE AABB overlap(const AABB& other) const;
+	FORCEINLINE bool contains(const Vector3f& point) const;
+	FORCEINLINE bool contains(const AABB& other) const;
 
-	inline AABB translate(const Vector3f& amt) const;
-	inline AABB scaleFromCenter(const Vector3f& amt) const;
-	inline AABB scaleFromOrigin(const Vector3f& amt) const;
+	FORCEINLINE AABB translate(const Vector3f& amt) const;
+	FORCEINLINE AABB scaleFromCenter(const Vector3f& amt) const;
+	FORCEINLINE AABB scaleFromOrigin(const Vector3f& amt) const;
 
-	inline AABB addPoint(const Vector3f& other) const;
-	inline AABB addAABB(const AABB& other) const;
+	FORCEINLINE AABB addPoint(const Vector3f& other) const;
+	FORCEINLINE AABB addAABB(const AABB& other) const;
 
-	inline bool operator==(const AABB& other) const;
-	inline bool operator!=(const AABB& other) const;
-	inline bool equals(const AABB& other, float errorMargin=1.e-4f) const;
+	FORCEINLINE bool operator==(const AABB& other) const;
+	FORCEINLINE bool operator!=(const AABB& other) const;
+	FORCEINLINE bool equals(const AABB& other, float errorMargin=1.e-4f) const;
 private:
 	Vector3f extents[2];
 };
 
 
-inline AABB::AABB(const Vector3f& minExtents, const Vector3f& maxExtents)
+FORCEINLINE AABB::AABB(const Vector3f& minExtents, const Vector3f& maxExtents)
 {
 	extents[0] = minExtents;
 	extents[1] = maxExtents;
 }
 
-inline bool AABB::intersects(const AABB& other) const
+FORCEINLINE bool AABB::intersects(const AABB& other) const
 {
 	return
 		((extents[0].toVector() >= other.extents[1].toVector()) |
 		 (extents[1].toVector() <= other.extents[0].toVector())).isZero3f();
 }
 
-inline AABB AABB::expand(float distance) const
+FORCEINLINE AABB AABB::expand(float distance) const
 {
 	return expand(Vector3f(distance));
 }
 
-inline AABB AABB::expand(const Vector3f& amt) const
+FORCEINLINE AABB AABB::expand(const Vector3f& amt) const
 {
 	return AABB(extents[0]-amt, extents[1]+amt);
 }
 
-inline AABB AABB::moveTo(const Vector3f& destination) const
+FORCEINLINE AABB AABB::moveTo(const Vector3f& destination) const
 {
 	return translate(destination-getCenter());
 }
 
-inline Vector3f AABB::getCenter() const
+FORCEINLINE Vector3f AABB::getCenter() const
 {
 	return (extents[1]+extents[0]) * 0.5f;
 }
 
-inline Vector3f AABB::getExtents() const
+FORCEINLINE Vector3f AABB::getExtents() const
 {
 	return (extents[1]-extents[0]) * 0.5f;
 }
 
-inline Vector3f AABB::getMinExtents() const
+FORCEINLINE Vector3f AABB::getMinExtents() const
 {
 	return extents[0];
 }
 
-inline Vector3f AABB::getMaxExtents() const
+FORCEINLINE Vector3f AABB::getMaxExtents() const
 {
 	return extents[1];
 }
 
-inline void AABB::getCenterAndExtents(Vector3f& center, Vector3f& extents) const
+FORCEINLINE void AABB::getCenterAndExtents(Vector3f& center, Vector3f& extents) const
 {
 	extents = (this->extents[1]-this->extents[0]) * 0.5f;
 	center = this->extents[0]+extents;
 }
 
-inline float AABB::getVolume() const
+FORCEINLINE float AABB::getVolume() const
 {
 	Vector3f lengths = extents[1]-extents[0];
 	return lengths[0]*lengths[1]*lengths[2];
 }
 
-inline AABB AABB::overlap(const AABB& other) const
+FORCEINLINE AABB AABB::overlap(const AABB& other) const
 {
 	return AABB(extents[0].max(other.extents[0]),
 			extents[1].min(other.extents[1]));
 }
 
-inline bool AABB::contains(const Vector3f& point) const
+FORCEINLINE bool AABB::contains(const Vector3f& point) const
 {
 	return ((point.toVector() <= extents[0].toVector()) |
 	 (point.toVector() >= extents[1].toVector())).isZero3f();
 }
 
-inline bool AABB::contains(const AABB& other) const
+FORCEINLINE bool AABB::contains(const AABB& other) const
 {
 	return
 		((other.extents[0].toVector() <= extents[0].toVector()) |
@@ -125,27 +125,27 @@ inline bool AABB::contains(const AABB& other) const
 	 	(other.extents[1].toVector() >= extents[1].toVector())).isZero3f();
 }
 
-inline AABB AABB::addPoint(const Vector3f& other) const
+FORCEINLINE AABB AABB::addPoint(const Vector3f& other) const
 {
 	return AABB(extents[0].min(other), extents[1].max(other));
 }
 
-inline AABB AABB::addAABB(const AABB& other) const
+FORCEINLINE AABB AABB::addAABB(const AABB& other) const
 {
 	return AABB(extents[0].min(other.extents[0]), extents[1].max(other.extents[1]));
 }
 
-inline AABB AABB::translate(const Vector3f& amt) const
+FORCEINLINE AABB AABB::translate(const Vector3f& amt) const
 {
 	return AABB(extents[0]+amt, extents[1]+amt);
 }
 
-inline AABB AABB::scaleFromOrigin(const Vector3f& amt) const
+FORCEINLINE AABB AABB::scaleFromOrigin(const Vector3f& amt) const
 {
 	return AABB(extents[0]*amt, extents[1]*amt);
 }
 
-inline AABB AABB::scaleFromCenter(const Vector3f& amt) const
+FORCEINLINE AABB AABB::scaleFromCenter(const Vector3f& amt) const
 {
 	Vector3f extents, center;
 	getCenterAndExtents(center, extents);
@@ -153,17 +153,17 @@ inline AABB AABB::scaleFromCenter(const Vector3f& amt) const
 	return AABB(center-extents, center+extents);
 }
 
-inline bool AABB::operator==(const AABB& other) const
+FORCEINLINE bool AABB::operator==(const AABB& other) const
 {
 	return (extents[0] == other.extents[0]) && (extents[1] == other.extents[1]);
 }
 
-inline bool AABB::operator!=(const AABB& other) const
+FORCEINLINE bool AABB::operator!=(const AABB& other) const
 {
 	return (extents[0] != other.extents[0]) && (extents[1] != other.extents[1]);
 }
 
-inline bool AABB::equals(const AABB& other, float errorMargin) const
+FORCEINLINE bool AABB::equals(const AABB& other, float errorMargin) const
 {
 	return
 		extents[0].equals(other.extents[0], errorMargin) && 

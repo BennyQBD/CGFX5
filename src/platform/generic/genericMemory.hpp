@@ -5,18 +5,18 @@
 
 struct GenericMemory
 {
-	static inline void* memmove(void* dest, const void* src, uintptr amt)
+	static FORCEINLINE void* memmove(void* dest, const void* src, uintptr amt)
 	{
 		return ::memmove(dest, src, amt);
 	}
 
-	static inline int32 memcmp(const void* dest, const void* src, uintptr amt)
+	static FORCEINLINE int32 memcmp(const void* dest, const void* src, uintptr amt)
 	{
 		return ::memcmp(dest, src, amt);
 	}
 
 	template<typename T>
-	static inline void* memset(void* destIn, T val, uintptr amt)
+	static FORCEINLINE void* memset(void* destIn, T val, uintptr amt)
 	{
 		T* dest = (T*)destIn;
 		uintptr amtT = amt/sizeof(T);
@@ -28,12 +28,12 @@ struct GenericMemory
 		return destIn;
 	}
 
-	static inline void* memzero(void* dest, uintptr amt)
+	static FORCEINLINE void* memzero(void* dest, uintptr amt)
 	{
 		return ::memset(dest, 0, amt);
 	}
 
-	static inline void* memcpy(void* dest, const void* src, uintptr amt)
+	static FORCEINLINE void* memcpy(void* dest, const void* src, uintptr amt)
 	{
 		return ::memcpy(dest, src, amt);
 	}
@@ -48,7 +48,7 @@ struct GenericMemory
 	}
 
 	template<typename T>
-	static inline CONSTEXPR T align(const T ptr, uintptr alignment)
+	static FORCEINLINE CONSTEXPR T align(const T ptr, uintptr alignment)
 	{
 		return (T)(((intptr)ptr + alignment - 1) & ~(alignment-1));
 	}
@@ -60,7 +60,7 @@ struct GenericMemory
 };
 
 template<>
-inline void* GenericMemory::memset(void* dest, uint8 val, uintptr amt)
+FORCEINLINE void* GenericMemory::memset(void* dest, uint8 val, uintptr amt)
 {
 	return ::memset(dest, val, amt);
 }

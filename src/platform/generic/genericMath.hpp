@@ -28,78 +28,78 @@ struct GenericMath
 	static CONSTEXPR const float RAD_TO_DEG_CONV = 57.2957795130823f; // 180.0f/PI;
 	static CONSTEXPR const float DEG_TO_RAD_CONV = 0.0174532925199433f; // PI/180.0f;
 
-	static CONSTEXPR inline int32 truncToInt(float val)
+	static CONSTEXPR FORCEINLINE int32 truncToInt(float val)
 	{
 		return (int32)val;
 	}
 
-	static CONSTEXPR inline float truncToFloat(float val)
+	static CONSTEXPR FORCEINLINE float truncToFloat(float val)
 	{
 		return (float)truncToInt(val);
 	}
 
-	static inline int32 floorToInt(float val)
+	static FORCEINLINE int32 floorToInt(float val)
 	{
 		return truncToInt(floorToFloat(val));
 	}
 
-	static inline float floorToFloat(float val)
+	static FORCEINLINE float floorToFloat(float val)
 	{
 		return floorf(val);
 	}
 
-	static inline double floorToDouble(double val)
+	static FORCEINLINE double floorToDouble(double val)
 	{
 		return floor(val);
 	}
 
-	static inline int32 roundToInt(float val)
+	static FORCEINLINE int32 roundToInt(float val)
 	{
 		return ceilToInt(val - 0.5f);
 	}
 
-	static inline float roundToFloat(float val)
+	static FORCEINLINE float roundToFloat(float val)
 	{
 		return ceilToFloat(val - 0.5f);
 	}
 
-	static inline int32 ceilToInt(float val)
+	static FORCEINLINE int32 ceilToInt(float val)
 	{
 		return truncToInt(ceilf(val));
 	}
 
-	static inline float ceilToFloat(float val)
+	static FORCEINLINE float ceilToFloat(float val)
 	{
 		return ceilf(val);
 	}
 
-	static inline double ceilToDouble(double val)
+	static FORCEINLINE double ceilToDouble(double val)
 	{
 		return ceil(val);
 	}
 
-	static inline float fractional(float val)
+	static FORCEINLINE float fractional(float val)
 	{
 		return val - truncToFloat(val);
 	}
 
-	static inline float exp(float val) { return expf(val); }
-	static inline float ln(float val) { return logf(val); }
-	static inline float logx(float base, float val) { return ln(val)/ln(base); }
-	static inline float log2(float val) { return ln(val) * R_LN_2; }
+	static FORCEINLINE float exp(float val) { return expf(val); }
+	static FORCEINLINE float ln(float val) { return logf(val); }
+	static FORCEINLINE float logx(float base, float val) { return ln(val)/ln(base); }
+	static FORCEINLINE float log2(float val) { return ln(val) * R_LN_2; }
 
-	static inline float fmod(float num, float den) { return fmodf(num, den); }
-	static inline float sin(float val) { return sinf(val); }
-	static inline float asin(float val) { return asinf(val); }
-	static inline float cos(float val) { return cosf(val); }
-	static inline float acos(float val) { return acosf(val); }
-	static inline float tan(float val) { return tanf(val); }
-	static inline float atan(float val) { return atanf(val); }
-	static inline float atan(float val, float val2) { return atan2f(val, val2); }
-	static inline float pow(float val, float power) { return powf(val, power); }
-	static inline float sqrt(float val) { return sqrtf(val); }
+	static FORCEINLINE float fmod(float num, float den) { return fmodf(num, den); }
+	static FORCEINLINE float sin(float val) { return sinf(val); }
+	static FORCEINLINE float asin(float val) { return asinf(val); }
+	static FORCEINLINE float cos(float val) { return cosf(val); }
+	static FORCEINLINE float acos(float val) { return acosf(val); }
+	static FORCEINLINE float tan(float val) { return tanf(val); }
+	static FORCEINLINE float atan(float val) { return atanf(val); }
+	static FORCEINLINE float atan(float val, float val2) { return atan2f(val, val2); }
+	static FORCEINLINE float pow(float val, float power) { return powf(val, power); }
+	static FORCEINLINE float sqrt(float val) { return sqrtf(val); }
 
-	static inline void sincos(float* outSin, float* outCos, float angle)
+	static FORCEINLINE void sincos(float* outSin, float* outCos, float angle)
 	{
 		// If angle is outside range of [0, 2*pi], adjust it so it is.
 		// Using fmod gives worse precision than the following code
@@ -154,17 +154,17 @@ struct GenericMath
 						a2 + 4.16666418e-02f) * a2 - 4.999999963e-01f) * a2 + 1.0f);
 	}
 
-	static inline float reciprocal(float val)
+	static FORCEINLINE float reciprocal(float val)
 	{
 		return 1.0f/val;
 	}
 
-	static inline float rsqrt(float val)
+	static FORCEINLINE float rsqrt(float val)
 	{
 		return reciprocal(sqrtf(val));
 	}
 
-	static inline bool isNaN(float val)
+	static FORCEINLINE bool isNaN(float val)
 	{
 		union {
 			float f;
@@ -174,7 +174,7 @@ struct GenericMath
 		return (f.i & 0x7FFFFFFF) > 0x7F800000;
 	}
 
-	static inline bool isFinite(float val)
+	static FORCEINLINE bool isFinite(float val)
 	{
 		union {
 			float f;
@@ -184,11 +184,11 @@ struct GenericMath
 		return (f.i & 0x7F800000) != 0x7F800000;
 	}
 
-	static inline int32 rand() { return ::rand(); }
-	static inline void seedRand(int32 seed) { srand((uint32)seed); }
-	static inline float randf() { return ::rand()/(float)RAND_MAX; }
+	static FORCEINLINE int32 rand() { return ::rand(); }
+	static FORCEINLINE void seedRand(int32 seed) { srand((uint32)seed); }
+	static FORCEINLINE float randf() { return ::rand()/(float)RAND_MAX; }
 	
-	static inline uint32 floorLog2(uint32 val)
+	static FORCEINLINE uint32 floorLog2(uint32 val)
 	{
 		uint32 pos = 0;
 		if (val >= 1<<16) { val >>= 16; pos += 16; }
@@ -199,7 +199,7 @@ struct GenericMath
 		return (val == 0) ? 0 : pos;
 	}
 
-	static inline uint32 getNumLeadingZeroes(uint32 val)
+	static FORCEINLINE uint32 getNumLeadingZeroes(uint32 val)
 	{
 		if(val == 0) {
 			return 32;
@@ -207,7 +207,7 @@ struct GenericMath
 		return 31 - floorLog2(val);
 	}
 
-	static inline uint32 ceilLog2(uint32 val)
+	static FORCEINLINE uint32 ceilLog2(uint32 val)
 	{
 		if(val <= 1) {
 			return 0;
@@ -215,13 +215,13 @@ struct GenericMath
 		return floorLog2(val-1)+1;
 	}
 
-	static inline uint32 roundUpToNextPowerOf2(uint32 val)
+	static FORCEINLINE uint32 roundUpToNextPowerOf2(uint32 val)
 	{
 		return 1 << ceilLog2(val);
 	}
 
 	template<typename T>
-	static CONSTEXPR inline T select(const T& cmp,
+	static CONSTEXPR FORCEINLINE T select(const T& cmp,
 			const T& valIfGreaterOrEqualToZero,
 			const T& valIfLessZero)
 	{
@@ -229,75 +229,75 @@ struct GenericMath
 	}
 
 	template<typename T>
-	static CONSTEXPR inline T abs(const T& val)
+	static CONSTEXPR FORCEINLINE T abs(const T& val)
 	{
 		return val >= (T)(0) ? val : -val;
 	}
 
 // WARNING: This behavior is not consistent with Vector sign function!
 //	template<typename T>
-//	static CONSTEXPR inline T sign(const T& val)
+//	static CONSTEXPR FORCEINLINE T sign(const T& val)
 //	{
 //		return (T(0) < val) - (val < T(0));
 //	}
 
 	template<typename T>
-	static CONSTEXPR inline T min(const T& val1, const T& val2)
+	static CONSTEXPR FORCEINLINE T min(const T& val1, const T& val2)
 	{
 		return val1 <= val2 ? val1 : val2;
 	}
 
 	template<typename T>
-	static CONSTEXPR inline T min3(const T& val1, const T& val2, const T& val3)
+	static CONSTEXPR FORCEINLINE T min3(const T& val1, const T& val2, const T& val3)
 	{
 		return min(min(val1, val2), val3);
 	}
 
 	template<typename T>
-	static CONSTEXPR inline T max(const T& val1, const T& val2)
+	static CONSTEXPR FORCEINLINE T max(const T& val1, const T& val2)
 	{
 		return val1 >= val2 ? val1 : val2;
 	}
 
 	template<typename T>
-	static CONSTEXPR inline T max3(const T& val1, const T& val2, const T& val3)
+	static CONSTEXPR FORCEINLINE T max3(const T& val1, const T& val2, const T& val3)
 	{
 		return max(max(val1, val2), val3);
 	}
 
 	template<typename T>
-	static inline T mad(const T& val1, const T& val2, const T& val3)
+	static FORCEINLINE T mad(const T& val1, const T& val2, const T& val3)
 	{
 		return val1 * val2 + val3;
 	}
 
 	template<typename T>
-	static inline T toDegrees(const T& val)
+	static FORCEINLINE T toDegrees(const T& val)
 	{
 		return val * RAD_TO_DEG_CONV;
 	}
 
 	template<typename T>
-	static inline T toRadians(const T& val)
+	static FORCEINLINE T toRadians(const T& val)
 	{
 		return val * DEG_TO_RAD_CONV;
 	}
 
 	template<typename T, typename U>
-	static inline T lerp(const T& val1, const T& val2, const U& amt)
+	static FORCEINLINE T lerp(const T& val1, const T& val2, const U& amt)
 	{
 		return (T)(val1 * ((U)(1) - amt) + val2 * amt);
 	}
 
 	template<typename T, typename U>
-	static inline T cubicLerp(const T& val1, const T& val2, const U& amt)
+	static FORCEINLINE T cubicLerp(const T& val1, const T& val2, const U& amt)
 	{
 		// Cubic interp, assuming tangents are 0 at all points.
 		return lerp(val1, val2, 3*amt*amt - 2*amt*amt*amt);
 	}
 
 	template<typename T, typename U>
-	static inline T cubicInterp(const T& val0, const T& val1, const T& val2, const T& val3, const U& amt)
+	static FORCEINLINE T cubicInterp(const T& val0, const T& val1, const T& val2, const T& val3, const U& amt)
 	{
 		// Using Catmull-Rom tangents
 		U amt2 = amt*amt;
@@ -309,7 +309,7 @@ struct GenericMath
 	}
 
 	template<typename T, typename U>
-	static inline T cubicInterpSpecifyTangents(const T& val1, const T& tan1, const T& val2, const T& tan2, const U& amt)
+	static FORCEINLINE T cubicInterpSpecifyTangents(const T& val1, const T& tan1, const T& val2, const T& tan2, const U& amt)
 	{
 		// Using custom tangents
 		U amt2 = amt*amt;
@@ -321,7 +321,7 @@ struct GenericMath
 	}
 
 	template<typename T, typename U>
-	static inline T bilerp(const T& val00, const T& val10,
+	static FORCEINLINE T bilerp(const T& val00, const T& val10,
 			const T& val01, const T& val11,
 			const U& amtX, const U& amtY)
 	{
@@ -332,7 +332,7 @@ struct GenericMath
 	}
 
 	template<typename T>
-	static inline T clamp(const T& val, const T& min, const T& max)
+	static FORCEINLINE T clamp(const T& val, const T& min, const T& max)
 	{
 		if(val > max) {
 			return max;
@@ -344,25 +344,25 @@ struct GenericMath
 	}
 
 	template<typename T>
-	static inline T saturate(const T& val)
+	static FORCEINLINE T saturate(const T& val)
 	{
 		return clamp(val, (T)(0), (T)(1));
 	}
 
 	template<typename T>
-	static inline T square(const T& val)
+	static FORCEINLINE T square(const T& val)
 	{
 		return val*val;
 	}
 
 	template<typename T>
-	static inline T cube(const T& val)
+	static FORCEINLINE T cube(const T& val)
 	{
 		return val*val*val;
 	}
 
 	template<typename T>
-	static inline bool equals(const T& val1, const T& val2, const T& errorMargin)
+	static FORCEINLINE bool equals(const T& val1, const T& val2, const T& errorMargin)
 	{
 		return abs(val1 - val2) < errorMargin;
 	}
@@ -371,7 +371,7 @@ struct GenericMath
 };
 
 template<>
-inline float GenericMath::abs(const float& val)
+FORCEINLINE float GenericMath::abs(const float& val)
 {
 	return fabsf(val);
 }
