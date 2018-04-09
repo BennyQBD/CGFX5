@@ -21,12 +21,11 @@ varying vec2 texCoord0;
 #if defined(VS_BUILD)
 attribute vec3 position;
 attribute vec2 texCoord;
-
-uniform mat4 T_MVP;
+attribute mat4 transformMat;
 
 void main()
 {
-    gl_Position = T_MVP * vec4(position, 1.0);
+    gl_Position = vec4(position, 1.0) * transformMat;
     texCoord0 = texCoord; 
 }
 

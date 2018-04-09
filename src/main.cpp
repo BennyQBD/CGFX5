@@ -8,29 +8,6 @@
 #include "timing.hpp"
 #include "tests.hpp"
 
-static String shaderText = String("#if defined(VS_BUILD)\n\
-attribute vec3 position;\n\
-attribute vec2 texCoord;\n\
-attribute mat4 transformMat;\n\
-out vec2 out_texCoord;\n\
-void main()\n\
-{\n\
-	out_texCoord = texCoord;\n\
-    gl_Position = vec4(position, 1.0) * transformMat;\n\
-}\n\
-#elif defined(FS_BUILD)\n\
-in vec2 out_texCoord; \n\
-out vec4 fragColor; \n\
-\n\
-uniform sampler2D texSamplerData;\n\
-\n\
-void main()\n\
-{\n\
-	fragColor = texture(texSamplerData, out_texCoord);\n\
-//	fragColor = vec4(1.0, 0.0, 0.0, 0.0);\n\
-}\n\
-#endif\n");
-
 #include "math/sphere.hpp"
 #include "math/aabb.hpp"
 #include "math/plane.hpp"
@@ -69,25 +46,19 @@ static int runApp(Application* app)
 		DEBUG_LOG("Main", LOG_ERROR, "Could not load texture!");
 		return 1;
 	}
-	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, false);
+	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, true);
 //	RenderTarget textureTarget(device, texture);
 //	RenderContext textureContext(device, textureTarget);
 //	textureContext.clear(Color::WHITE);
 
+	String shaderText;
+	StringFuncs::loadTextFileWithIncludes(shaderText, "./res/shaders/basicShader.glsl", "#include");
 	Shader shader(device, shaderText);
-	shader.setSampler("texSamplerData", texture, sampler, 0);
-
-	
-	
-//	UniformBuffer uniformBuffer(device, sizeof(transformMatrix),
-//			RenderDevice::USAGE_DYNAMIC_DRAW);
-
+	shader.setSampler("diffuse", texture, sampler, 0);
 	
 	Matrix perspective(Matrix::perspective(Math::toRadians(70.0f/2.0f),
 				4.0f/3.0f, 0.1f, 1000.0f));
 	float amt = 0.0f;
-//	float amtX = 0.0f;
-//	float amtY = 0.0f;
 	Color color(0.0f, 0.15f, 0.3f);
 	float randZ = 10.0f;
 	float randScaleX = randZ * window.getWidth()/(float)window.getHeight();
@@ -120,23 +91,14 @@ static int runApp(Application* app)
 		fps++;
 
 		app->processMessages(passedTime);
-		//transform.setScale(Vector3f((Math::abs(Math::sin(amt)/4.0f)+0.75f)));
-		//transform.setTranslation(Vector3f(0.0f, Math::cos(amt*6.0f/7.0f)/2.0f, 1.0f));
-		//transform.setTranslation(Vector3f(0.0f, 0.0f, Math::cos(amt*6.0f/7.0f)/2.0f) + 1.0f);
-//		transform.setTranslation(Vector3f(0.0f, 0.0f, -Math::cos(amt/4)*4 + 4.0f));
 		transform.setRotation(Quaternion(Vector3f(1.0f, 1.0f, 1.0f).normalized(), amt*10.0f/11.0f));
 		if(updateTimer >= 1.0/60.0) {
 			for(uint32 i = 0; i < transformMatrixArray.size(); i++) {
 				transform.setTranslation(Vector3f(
-//							amtX, amtY,
 							(Math::randf() * randScaleX)-randScaleX/2.0f,
 							(Math::randf() * randScaleY)-randScaleY/2.0f,
 							randZ));
 				transformMatrixArray[i] = (perspective * transform.toMatrix());
-//				amtX += 12.3357f;
-//				amtX = Math::fmod(amtX + randScaleX, randScaleX*2) - randScaleX;
-//				amtY += 0.12313f;
-//				amtY = Math::fmod(amtY + randScaleY, randScaleY*2) - randScaleY;
 			}
 			vertexArray.updateBuffer(2, &transformMatrixArray[0],
 					transformMatrixArray.size() * sizeof(Matrix));
@@ -144,15 +106,11 @@ static int runApp(Application* app)
 			updateTimer = 0.0;
 		}
 		
-//		uniformBuffer.update(&transformMatrix);
-//		shader.setUniformBuffer("transformData", uniformBuffer);
-
 		context.clear(color);
 		context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
 
 		window.present();
 
-		//
 		amt += (float)passedTime/2.0f;
 	}
 	return 0;

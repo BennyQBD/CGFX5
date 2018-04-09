@@ -86,6 +86,7 @@ typedef uintptr_t uintptr;
 #define LOG_ERROR "Error"
 #define LOG_WARNING "Warning"
 #define LOG_TYPE_RENDERER "Renderer"
+#define LOG_TYPE_IO "IO"
 #define DEBUG_LOG(category, level, message, ...) \
 	fprintf(stderr, "[%s] ", category); \
 	fprintf(stderr, "[%s] (%s:%d): ", level, __FILE__, __LINE__); \

@@ -2,6 +2,7 @@
 
 #include "renderDevice.hpp"
 #include "texture.hpp"
+#include <stdexcept>
 
 class RenderTarget
 {
@@ -18,7 +19,9 @@ public:
 			uint32 attachmentNumber = 0, uint32 mipLevel = 0) :
 		device(&deviceIn),
 		deviceId(device->createRenderTarget(texture.getId(), width, height,
-					attachment, attachmentNumber, mipLevel)) {}
+					attachment, attachmentNumber, mipLevel)) {
+			checkCompressed(texture);
+		}
 	inline RenderTarget(RenderDevice& deviceIn,
 			Texture& texture,
 			enum RenderDevice::FramebufferAttachment attachment
@@ -27,7 +30,20 @@ public:
 		device(&deviceIn),
 		deviceId(device->createRenderTarget(texture.getId(),
 					texture.getWidth(), texture.getHeight(),
-					attachment, attachmentNumber, mipLevel)) {}
+					attachment, attachmentNumber, mipLevel)) {
+			checkCompressed(texture);
+		}
+
+	inline void checkCompressed(const Texture& texture) {
+		if(texture.isCompressed()) {
+			DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "Compressed textures cannot be used as render targets!");
+			throw std::invalid_argument("Compressed textures cannot be used as render targets!");
+		}
+		if(texture.hasMipmaps()) {
+			DEBUG_LOG(LOG_TYPE_RENDERER, LOG_WARNING, "Rendering to a texture with mipmaps will NOT render to all mipmap levels! Unexpected results may occur.");
+		}
+	}
+
 	inline ~RenderTarget()
 	{
 		deviceId = device->releaseRenderTarget(deviceId);

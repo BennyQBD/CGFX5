@@ -18,5 +18,8 @@ struct StringFuncs
 	}
 
 	static Array<String> split(const String& s, char delim);
+	static String getFilePath(const String& fileName);
+	static bool loadTextFileWithIncludes(String& output, const String& fileName,
+		const String& includeKeyword);
 };
 
