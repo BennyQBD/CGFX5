@@ -22,7 +22,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 # lets name the project
-project(3DEngineCpp)
+project(CGFX5)
 
 # add the -c and -Wall flags
 add_definitions(
@@ -47,19 +47,19 @@ add_definitions( -O2 )
 endif ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 
 # Lets LOAD app our headers!
-file(GLOB_RECURSE HDRS ${3DEngineCpp_SOURCE_DIR}/src/*.h)
+file(GLOB_RECURSE HDRS ${CGFX5_SOURCE_DIR}/src/*.h)
 
 # Lets LOAD app our sources!
 file(GLOB_RECURSE SRCS
-	${3DEngineCpp_SOURCE_DIR}/src/*.cpp
-	${3DEngineCpp_SOURCE_DIR}/src/*.c
+	${CGFX5_SOURCE_DIR}/src/*.cpp
+	${CGFX5_SOURCE_DIR}/src/*.c
 )
 
 # Define the executable
-add_executable(3DEngineCpp ${HDRS} ${SRCS})
+add_executable(CGFX5 ${HDRS} ${SRCS})
 
 # We need a CMAKE_DIR with some code to find external dependencies
-SET(3DEngineCpp_CMAKE_DIR "${3DEngineCpp_SOURCE_DIR}/cmake")
+SET(CGFX5_CMAKE_DIR "${CGFX5_SOURCE_DIR}/cmake")
 
 #######################################
 # LOOK for the packages that we need! #
@@ -69,19 +69,19 @@ SET(3DEngineCpp_CMAKE_DIR "${3DEngineCpp_SOURCE_DIR}/cmake")
 find_package(OpenGL REQUIRED)
 
 # GLEW
-INCLUDE(${3DEngineCpp_CMAKE_DIR}/FindGLEW.cmake)
+INCLUDE(${CGFX5_CMAKE_DIR}/FindGLEW.cmake)
 
 # SDL2
-INCLUDE(${3DEngineCpp_CMAKE_DIR}/FindSDL2.cmake)
+INCLUDE(${CGFX5_CMAKE_DIR}/FindSDL2.cmake)
 
 # ASSIMP
-INCLUDE(${3DEngineCpp_CMAKE_DIR}/FindASSIMP.cmake)
+INCLUDE(${CGFX5_CMAKE_DIR}/FindASSIMP.cmake)
 
 # Define the include DIRs
 include_directories(
-	${3DEngineCpp_SOURCE_DIR}/headers
-	${3DEngineCpp_SOURCE_DIR}/sources
-	${3DEngineCpp_SOURCE_DIR}/src
+	${CGFX5_SOURCE_DIR}/headers
+	${CGFX5_SOURCE_DIR}/sources
+	${CGFX5_SOURCE_DIR}/src
 	${OPENGL_INCLUDE_DIRS}
 	${GLEW_INCLUDE_DIRS}
 	${SDL2_INCLUDE_DIRS}
@@ -89,7 +89,7 @@ include_directories(
 )
 
 # Define the link libraries
-target_link_libraries( 3DEngineCpp
+target_link_libraries( CGFX5
 	${OPENGL_LIBRARIES}
 	${GLEW_LIBRARIES}
 	${SDL2_LIBRARIES}

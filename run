@@ -14,5 +14,5 @@
 
 
 cd ./build
-./3DEngineCpp
+./CGFX5
 cd ../
