@@ -1,4 +1,6 @@
 Math:
 + Ray vs. geometry intersections
 + Intersection tests for various geometry
-- Convex Hull (?)
+- Convex Hull (Not until the series)
+
+Inputs! Should be like Dare Engine before the series starts.
