@@ -139,6 +139,7 @@ public:
 	static FORCEINLINE void createTransformMatrix(void* dest, const SSEVector& translation, const SSEVector& quatRotation, const SSEVector& scaleVec)
 	{
 		// NOTE: This can be further vectorized!
+		// NOTE: This may actually be faster without vectorization, but testing is inconclusive.
 		static const SSEVector MASK_W(SSEVector::make((uint32)0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0));
 		SSEVector rot2 = quatRotation + quatRotation;
 		SSEVector rs12 = quatRotation*rot2;

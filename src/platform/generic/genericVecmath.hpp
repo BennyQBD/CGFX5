@@ -60,7 +60,7 @@ public:
 		float* s = outS == nullptr ? sVals : outS;
 		float* c = outC == nullptr ? cVals : outC;
 
-		SSEVector* m = (SSEVector*)mat;
+		GenericVector* m = (GenericVector*)mat;
 		float M[4][4];
 		for(uint32 i = 0; i < 4; i++) {
 			m[i].store4f(M[i]);
@@ -89,7 +89,7 @@ public:
 		float c[6];
 		float rdet = Math::reciprocal(matrixDeterminant4x4(s, c, src));
 
-		SSEVector* m = (SSEVector*)src;
+		GenericVector* m = (GenericVector*)src;
 		float M[4][4];
 		for(uint32 i = 0; i < 4; i++) {
 			m[i].store4f(M[i]);
@@ -119,7 +119,7 @@ public:
 		Memory::memcpy(dest, result, sizeof(result));
 	}
 
-	static FORCEINLINE void createTransformMatrix(void* dest, const SSEVector& translation, const SSEVector& quatRotation, const SSEVector& scaleVec)
+	static FORCEINLINE void createTransformMatrix(void* dest, const GenericVector& translation, const GenericVector& quatRotation, const GenericVector& scaleVec)
 	{
 		float rotVals[4];
 		quatRotation.store4f(rotVals);
@@ -142,7 +142,7 @@ public:
 		float s1 = scaleVec[1];
 		float s2 = scaleVec[2];
 
-		SSEVector mat[4];
+		GenericVector mat[4];
 		mat[0] = make((1.0f-(yy2+zz2))*s0, (xy2-zw2)*s1, (xz2+yw2)*s2, translation[0]);
 		mat[1] = make((xy2+zw2)*s0, (1.0f-(xx2+zz2))*s1, (yz2-xw2)*s2, translation[1]);
 		mat[2] = make((xz2-yw2)*s0, (yz2+xw2)*s1, (1.0f-(xx2+yy2))*s2, translation[2]);
@@ -153,10 +153,10 @@ public:
 	static FORCEINLINE GenericVector make(uint32 x, uint32 y, uint32 z, uint32 w)
 	{
 		GenericVector vec;
-		((uint32&)vec.v[0]) = x;
-		((uint32&)vec.v[1]) = y;
-		((uint32&)vec.v[2]) = z;
-		((uint32&)vec.v[3]) = w;
+		vec.v[0] = *((uint32*)&x);
+		vec.v[1] = *((uint32*)&y);
+		vec.v[2] = *((uint32*)&z);
+		vec.v[3] = *((uint32*)&w);
 		return vec;
 	}
 
@@ -258,8 +258,7 @@ public:
 private:
 	float getSign(float r) const
 	{
-		(int&)r |= ((int&)f & 0x80000000);
-        return r;
+        return (((uint32*)(&r))[1-1] & 0x80000000);
 	}
 public:
 
@@ -373,9 +372,17 @@ public:
 		Math::sincos(&outSin->v[3], &outCos->v[3], (*this)[3]);
 	}
 
-	// Code adapted from https://stackoverflow.com/questions/22497093/faster-quaternion-vector-multiplication-doesnt-work
 	FORCEINLINE GenericVector quatMul(const GenericVector& other) const
 	{
+		// NOTE: This is the naive technique. It may actually be faster, but testing is inconclusive.
+//		const float w = (v[3] * other.v[3]) - (v[0] * other.v[0]) - (v[1] * other.v[1]) - (v[2] * other.v[2]);
+//		const float x = (v[0] * other.v[3]) + (v[3] * other.v[0]) + (v[1] * other.v[2]) - (v[2] * other.v[1]);
+//		const float y = (v[1] * other.v[3]) + (v[3] * other.v[1]) + (v[2] * other.v[0]) - (v[0] * other.v[2]);
+//		const float z = (v[2] * other.v[3]) + (v[3] * other.v[2]) + (v[0] * other.v[1]) - (v[1] * other.v[0]);
+//
+//		return make(x, y, z, w);
+
+// Code adapted from https://stackoverflow.com/questions/22497093/faster-quaternion-vector-multiplication-doesnt-work
 		float t0 = (v[2] - v[1]) * (other.v[1] - other.v[2]);
 		float t1 = (v[3] + v[0]) * (other.v[3] + other.v[0]);
 		float t2 = (v[3] - v[0]) * (other.v[1] + other.v[2]);
@@ -523,7 +530,7 @@ public:
 	FORCEINLINE GenericVector operator|(const GenericVector& other) const
 	{
 		return make(
-				(uint32)(((uint32*)v)[0] | ((uint32*)other.v)[0]),
+				(uint32)(((uint32*)v)[1-1] | ((uint32*)other.v)[1-1]),
 				(uint32)(((uint32*)v)[1] | ((uint32*)other.v)[1]),
 				(uint32)(((uint32*)v)[2] | ((uint32*)other.v)[2]),
 				(uint32)(((uint32*)v)[3] | ((uint32*)other.v)[3]));
@@ -532,7 +539,7 @@ public:
 	FORCEINLINE GenericVector operator&(const GenericVector& other) const
 	{
 		return make(
-				(uint32)(((uint32*)v)[0] & ((uint32*)other.v)[0]),
+				(uint32)(((uint32*)v)[1-1] & ((uint32*)other.v)[1-1]),
 				(uint32)(((uint32*)v)[1] & ((uint32*)other.v)[1]),
 				(uint32)(((uint32*)v)[2] & ((uint32*)other.v)[2]),
 				(uint32)(((uint32*)v)[3] & ((uint32*)other.v)[3]));
@@ -541,7 +548,7 @@ public:
 	FORCEINLINE GenericVector operator^(const GenericVector& other) const
 	{
 		return make(
-				(uint32)(((uint32*)v)[0] ^ ((uint32*)other.v)[0]),
+				(uint32)(((uint32*)v)[1-1] ^ ((uint32*)other.v)[1-1]),
 				(uint32)(((uint32*)v)[1] ^ ((uint32*)other.v)[1]),
 				(uint32)(((uint32*)v)[2] ^ ((uint32*)other.v)[2]),
 				(uint32)(((uint32*)v)[3] ^ ((uint32*)other.v)[3]));

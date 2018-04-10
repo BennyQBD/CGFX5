@@ -449,10 +449,12 @@ void Tests::runPerformanceTests()
 	// Vectorized ~ 1.5x faster
 
 	// 100M sets of 8 cross products = 0.421812 seconds (or 0.816521)
+	// 100M sets of 8 generic cross products = 1.787127 seconds
 	// 100M sets of 8 naive cross products = 1.908947 seconds
 	// Vectorized ~ 2 to 4.5x faster
 
 	// 100M sets of 8 quaternion multiplies = 1.981629 seconds
+	// 100M sets of 8 generic quaternion multiplies = 5.189267 seconds (now replaced with naive method)
 	// 100M sets of 8 naive quaternion multiplies = 4.489309 seconds
 	// Vectorized ~ 2.27x faster
 
@@ -460,18 +462,21 @@ void Tests::runPerformanceTests()
 // could also be applied to the non-vectorized techniques
 
 	// 100M sets of 8 quaternion rotates = 2.076706 seconds
+	// 100M sets of 8 generic quaternion rotates = 5.436006 seconds
 	// 100M sets of 8 naive quaternion rotates = 7.881377 seconds
 	// Vectorized ~ 3.79x faster
 
 	// 100M sets of 2 matrix multiplies = 1.244078 seconds
+	// 100M sets of 2 generic matrix multiplies = 3.678728 seconds
 	// 100M sets of 2 naive matrix multiplies = 32.592669 seconds
 	// Vectorized ~ 26.2x faster
 
-	// 100M sets of 2 transform matrix generations = 1.894565 seconds
+	// 100M sets of 2 transform matrix generations = 0.142155 seconds (???) (Probably more like 1.8 seconds in reality)
 	// 100M sets of 2 naive transform matrix generations = 34.912099 seconds
-	// Vectorized ~ 18.4x faster
+	// Vectorized ~ 245x faster?????  (Probably more like 20x in reality)
 
 	// 100M sets of 2 matrix inverses = 3.439625 seconds
+	// 100M sets of 2 generic matrix inverses = 7.160924 seconds
 	// 100M sets of 2 naive matrix inverses = 26.904145 seconds
 	// 100M sets of 2 UE4 matrix inverses = 6.570406 seconds
 	// 100M sets of 2 algorithmically faster matrix inverses = 6.578339 seconds
@@ -502,6 +507,8 @@ void Tests::runPerformanceTests()
 	float point2Floats[8][4];
 	float temp = 4.0f;
 	for(uint32 i = 0; i < 8; i++) {
+//		vec1s[i] = Vector::make(Math::randf()*2.0f-1.0f, Math::randf()*2.0f-1.0f, Math::randf()*2.0f-1.0f, Math::randf()*2.0f-1.0f);
+//		vec2s[i] = Vector::make(Math::randf()*2.0f-1.0f, Math::randf()*2.0f-1.0f, Math::randf()*2.0f-1.0f, Math::randf()*2.0f-1.0f);
 		vec1s[i] = vec1s[i] / Vector::make(temp,temp,temp,temp);
 		vec2s[i] = vec2s[i] / Vector::make(temp,temp,temp,temp);
 		vec1s[i].store4f(point1Floats[i]);
@@ -526,15 +533,15 @@ void Tests::runPerformanceTests()
 //		Vector::createTransformMatrix(&vec1s[4], vec1s[4], vec2s[4], vec2s[4]);
 //		naiveTransformCreate(point1Floats[0], point1Floats[0], point2Floats[0], point2Floats[0]);
 //		naiveTransformCreate(point1Floats[4], point1Floats[4], point2Floats[4], point2Floats[4]);
-//		vec1s[0] = vec1s[0].cross3(vec2s[0]);
-//		vec1s[0] = vec1s[0].cross3(vec2s[0]);
-//		vec1s[1] = vec1s[1].cross3(vec2s[1]);
-//		vec1s[2] = vec1s[2].cross3(vec2s[2]);
-//		vec1s[3] = vec1s[3].cross3(vec2s[3]);
-//		vec1s[4] = vec1s[4].cross3(vec2s[4]);
-//		vec1s[5] = vec1s[5].cross3(vec2s[5]);
-//		vec1s[6] = vec1s[6].cross3(vec2s[6]);
-//		vec1s[7] = vec1s[7].cross3(vec2s[7]);
+//		vec1s[0] = vec1s[0].quatRotateVec(vec2s[0]);
+//		vec1s[0] = vec1s[0].quatRotateVec(vec2s[0]);
+//		vec1s[1] = vec1s[1].quatRotateVec(vec2s[1]);
+//		vec1s[2] = vec1s[2].quatRotateVec(vec2s[2]);
+//		vec1s[3] = vec1s[3].quatRotateVec(vec2s[3]);
+//		vec1s[4] = vec1s[4].quatRotateVec(vec2s[4]);
+//		vec1s[5] = vec1s[5].quatRotateVec(vec2s[5]);
+//		vec1s[6] = vec1s[6].quatRotateVec(vec2s[6]);
+//		vec1s[7] = vec1s[7].quatRotateVec(vec2s[7]);
 		for(uint32 j = 0; j < 8; j++) {
 //			vec1s[j] = vec1s[j].dot4(vec2s[j]);
 //			float dotProduct0 = point1Floats[j][0]*point2Floats[j][0]+point1Floats[j][1]*point2Floats[j][1]+point1Floats[j][2]*point2Floats[j][2]+point1Floats[j][3]*point2Floats[j][3];
@@ -545,8 +552,8 @@ void Tests::runPerformanceTests()
 		}
 	}
 	for(uint32 i = 0; i < 8; i++) {
-		vec1s[i]=vec1s[i].load4f(point1Floats[i]);
-		vec2s[i]=vec2s[i].load4f(point2Floats[i]);
+//		vec1s[i]=vec1s[i].load4f(point1Floats[i]);
+//		vec2s[i]=vec2s[i].load4f(point2Floats[i]);
 	}
 	Vector pointVector=vec1s[0]+vec1s[1]+vec1s[2]+vec1s[3]+vec1s[4]+vec1s[5]+vec1s[6]+vec1s[7];
 	Vector point=transformMat.transform(pointVector);
