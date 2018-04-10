@@ -1,7 +1,7 @@
 #pragma once
 
 #include "common.hpp"
-#include "../platform/platformMemory.hpp"
+#include "platform/platformMemory.hpp"
 #include <cstring>
 
 /**

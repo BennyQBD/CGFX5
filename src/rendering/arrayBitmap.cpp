@@ -1,5 +1,5 @@
 #include "arrayBitmap.hpp"
-#include "../core/memory.hpp"
+#include "core/memory.hpp"
 #include "staticLibs/stb_image.h"
 
 ArrayBitmap::ArrayBitmap(int32 widthIn, int32 heightIn) :

@@ -81,6 +81,7 @@ INCLUDE(${3DEngineCpp_CMAKE_DIR}/FindASSIMP.cmake)
 include_directories(
 	${3DEngineCpp_SOURCE_DIR}/headers
 	${3DEngineCpp_SOURCE_DIR}/sources
+	${3DEngineCpp_SOURCE_DIR}/src
 	${OPENGL_INCLUDE_DIRS}
 	${GLEW_INCLUDE_DIRS}
 	${SDL2_INCLUDE_DIRS}

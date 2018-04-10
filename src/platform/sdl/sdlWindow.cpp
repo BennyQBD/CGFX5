@@ -1,5 +1,5 @@
 #include "sdlWindow.hpp"
-#include "../../rendering/renderDevice.hpp"
+#include "rendering/renderDevice.hpp"
 
 SDLWindow::SDLWindow(const Application& app,
 		int32 widthIn, int32 heightIn, const String& title) :

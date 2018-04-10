@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../core/common.hpp"
-#include "../../core/application.hpp"
-#include "../../dataStructures/string.hpp"
+#include "core/common.hpp"
+#include "core/application.hpp"
+#include "dataStructures/string.hpp"
 
 #include <SDL2/SDL.h>
 

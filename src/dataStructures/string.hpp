@@ -2,7 +2,7 @@
 
 #include <string>
 #include <sstream>
-#include "../core/common.hpp"
+#include "core/common.hpp"
 #include "array.hpp"
 
 #define String std::string

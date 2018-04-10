@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../core/memory.hpp"
-#include "../../math/math.hpp"
+#include "core/memory.hpp"
+#include "math/math.hpp"
 
 struct GenericVector
 {

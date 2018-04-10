@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../core/memory.hpp"
-#include "../platform/platformVecmath.hpp"
+#include "core/memory.hpp"
+#include "platform/platformVecmath.hpp"
 #include "math.hpp"
 
 typedef PlatformVector Vector;

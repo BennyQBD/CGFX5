@@ -1,5 +1,5 @@
 #include "genericMemory.hpp"
-#include "../../math/math.hpp"
+#include "math/math.hpp"
 #include <cstdlib>
 #include <stdio.h>
 

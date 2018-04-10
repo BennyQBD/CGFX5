@@ -1,6 +1,6 @@
 #include "openGLRenderDevice.hpp"
-#include "../../core/common.hpp"
-#include "../../dataStructures/array.hpp"
+#include "core/common.hpp"
+#include "dataStructures/array.hpp"
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../core/common.hpp"
-#include "../dataStructures/string.hpp"
+#include "core/common.hpp"
+#include "dataStructures/string.hpp"
 
 class ArrayBitmap
 {

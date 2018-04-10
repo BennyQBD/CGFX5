@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../core/memory.hpp"
-#include "../../math/math.hpp"
-#include "../platformSIMDInclude.hpp"
+#include "core/memory.hpp"
+#include "math/math.hpp"
+#include "platform/platformSIMDInclude.hpp"
 
 #define SSEVector_SHUFFLEMASK(a0,a1,b2,b3) ((a0) | ((a1)<<2) | ((b2)<<4) | ((b3)<<6))
 #define SSEVector_Swizzle_0101(vec)               _mm_movelh_ps(vec, vec)

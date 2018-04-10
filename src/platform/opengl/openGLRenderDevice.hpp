@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../core/window.hpp"
-#include "../../math/color.hpp"
-#include "../../dataStructures/map.hpp"
+#include "core/window.hpp"
+#include "math/color.hpp"
+#include "dataStructures/map.hpp"
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 
