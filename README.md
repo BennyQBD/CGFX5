@@ -47,8 +47,8 @@ brew install cmake glew sdl2 assimp
 ### Windows ###
 - Make sure CMake is both installed and added to the system PATH.
 - Run "Windows-GenVisualStudioProject.bat" If this fails for any reason, try using the Manual Build Instructions below.
-- Go to the build folder, and open 3DEngineCpp.sln with Visual Studio 2012 or newer (For older versions of Visual Studio, use manual build instructions)
-- Right click on the 3DEngineCpp project, and select "Set as start up project"
+- Go to the build folder, and open CGFX5.sln with Visual Studio 2012 or newer (For older versions of Visual Studio, use manual build instructions)
+- Right click on the CGFX5 project, and select "Set as start up project"
 - Build and Run
 
 ## Manual Build Instructions ##
@@ -85,7 +85,7 @@ cmake -G "Visual Studio 12" ../
 # open the generated SLN file (or cbp file if using CodeBlocks) and build!
 ```
 - Copy the DLLs in /lib/_bin/ to /build/Debug/ and /build/Release/
-- In Visual Studio, set the Startup project to 3DEngineCpp
+- In Visual Studio, set the Startup project to CGFX5
 - Move the res folder into the build folder
 - Run
 
