@@ -231,3 +231,225 @@ FORCEINLINE Vector Vector3f::toVector() const
 	return vec;
 }
 
+
+class Vector2f
+{
+public:
+	FORCEINLINE Vector2f();
+	FORCEINLINE Vector2f(float val);
+	FORCEINLINE Vector2f(float xIn, float yIn);
+
+	FORCEINLINE float dot(const Vector2f& other) const;
+	FORCEINLINE Vector2f dotToVector(const Vector2f& other) const;
+	FORCEINLINE float cross(const Vector2f& other) const;
+	FORCEINLINE float dist(const Vector2f& other) const;
+	FORCEINLINE float distSquared(const Vector2f& other) const;
+
+	FORCEINLINE Vector2f operator+(const Vector2f& other) const;
+	FORCEINLINE Vector2f operator-(const Vector2f& other) const;
+	FORCEINLINE Vector2f operator*(const Vector2f& other) const;
+	FORCEINLINE Vector2f operator/(const Vector2f& other) const;
+
+	FORCEINLINE Vector2f operator+(float amt) const;
+	FORCEINLINE Vector2f operator-(float amt) const;
+	FORCEINLINE Vector2f operator*(float amt) const;
+	FORCEINLINE Vector2f operator/(float amt) const;
+
+	bool operator==(const Vector2f& other) const;
+	bool operator!=(const Vector2f& other) const;
+	bool equals(const Vector2f& other, float errorMargin=1.e-4f) const;
+	bool equals(float val, float errorMargin=1.e-4f) const;
+
+	FORCEINLINE Vector2f operator-() const;
+	FORCEINLINE Vector2f operator+=(const Vector2f& other);
+	FORCEINLINE Vector2f operator-=(const Vector2f& other);
+	FORCEINLINE Vector2f operator*=(const Vector2f& other);
+	FORCEINLINE Vector2f operator/=(const Vector2f& other);
+
+	FORCEINLINE Vector2f operator+=(float val);
+	FORCEINLINE Vector2f operator-=(float val);
+	FORCEINLINE Vector2f operator*=(float val);
+	FORCEINLINE Vector2f operator/=(float val);
+
+	float operator[](uint32 index) const;
+
+	void set(float x, float y);
+	void set(uint32 index, float val);
+	float max() const;
+	float min() const;
+	float absMax() const;
+	float absMin() const;
+
+	Vector2f abs() const;
+	Vector2f min(const Vector2f& other) const;
+	Vector2f max(const Vector2f& other) const;
+
+	FORCEINLINE float length() const;
+	FORCEINLINE float lengthSquared() const;
+
+	Vector2f normalized(float errorMargin=1.e-8f) const;
+	bool isNormalized(float errorMargin=1.e-4f) const;
+
+	void dirAndLength(Vector2f& dir, float& length, float errorMargin=1.e-8f) const;
+	Vector2f reciprocal() const;
+
+	Vector2f rotate(float angle) const;
+
+	Vector2f reflect(const Vector2f& normal) const;
+	Vector2f refract(const Vector2f& normal, float indexOfRefraction) const;
+
+	Vector2f toDegrees() const;
+	Vector2f toRadians() const;
+
+	Vector toVector() const;
+	Vector toVector(float z, float w) const;
+	Vector toVector(Vector2f other) const;
+private:
+	float vals[2];
+};
+
+FORCEINLINE Vector2f::Vector2f()
+{
+	vals[0]=0.0f;
+	vals[1]=0.0f;
+}
+FORCEINLINE Vector2f::Vector2f(float val)
+{
+	vals[0] = val;
+	vals[1] = val;
+}
+FORCEINLINE Vector2f::Vector2f(float xIn, float yIn)
+{
+	vals[0] = xIn;
+	vals[1] = yIn;
+}
+
+FORCEINLINE float Vector2f::dot(const Vector2f& other) const
+{
+	return vals[0]*other.vals[0]+vals[1]*other.vals[1];
+}
+FORCEINLINE Vector2f Vector2f::dotToVector(const Vector2f& other) const
+{
+	return Vector2f(dot(other));
+}
+
+FORCEINLINE float Vector2f::cross(const Vector2f& other) const
+{
+	return vals[0]*other.vals[1]-vals[1]*other.vals[0];
+}
+
+FORCEINLINE float Vector2f::dist(const Vector2f& other) const
+{
+	return Math::sqrt(distSquared(other));
+}
+
+FORCEINLINE float Vector2f::distSquared(const Vector2f& other) const
+{
+	return (other - *this).lengthSquared();
+}
+
+FORCEINLINE float Vector2f::length() const
+{
+	return Math::sqrt(lengthSquared());
+}
+
+FORCEINLINE float Vector2f::lengthSquared() const
+{
+	return dot(*this);
+}
+
+FORCEINLINE Vector2f Vector2f::operator+(const Vector2f& other) const
+{
+	return Vector2f(vals[0] + other.vals[0], vals[1] + other.vals[1]);
+}
+FORCEINLINE Vector2f Vector2f::operator-(const Vector2f& other) const
+{
+	return Vector2f(vals[0] - other.vals[0], vals[1] - other.vals[1]);
+}
+FORCEINLINE Vector2f Vector2f::operator*(const Vector2f& other) const
+{
+	return Vector2f(vals[0] * other.vals[0], vals[1] * other.vals[1]);
+}
+FORCEINLINE Vector2f Vector2f::operator/(const Vector2f& other) const
+{
+	return Vector2f(vals[0] / other.vals[0], vals[1] / other.vals[1]);
+}
+
+FORCEINLINE Vector2f Vector2f::operator+(float amt) const
+{
+	return Vector2f(vals[0] + amt, vals[1] + amt);
+}
+FORCEINLINE Vector2f Vector2f::operator-(float amt) const
+{
+	return Vector2f(vals[0] - amt, vals[1] - amt);
+}
+FORCEINLINE Vector2f Vector2f::operator*(float amt) const
+{
+	return Vector2f(vals[0] * amt, vals[1] * amt);
+}
+FORCEINLINE Vector2f Vector2f::operator/(float amt) const
+{
+	return Vector2f(vals[0] / amt, vals[1] / amt);
+}
+
+FORCEINLINE Vector2f Vector2f::operator-() const
+{
+	return Vector2f(-vals[0], -vals[1]);
+}
+
+FORCEINLINE Vector2f Vector2f::operator+=(const Vector2f& other)
+{
+	vals[0] += other.vals[0];
+	vals[1] += other.vals[1];
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator-=(const Vector2f& other)
+{
+	vals[0] -= other.vals[0];
+	vals[1] -= other.vals[1];
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator*=(const Vector2f& other)
+{
+	vals[0] *= other.vals[0];
+	vals[1] *= other.vals[1];
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator/=(const Vector2f& other)
+{
+	vals[0] /= other.vals[0];
+	vals[1] /= other.vals[1];
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator+=(float val)
+{
+	vals[0] += val;
+	vals[1] += val;
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator-=(float val)
+{
+	vals[0] -= val;
+	vals[1] -= val;
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator*=(float val)
+{
+	vals[0] *= val;
+	vals[1] *= val;
+	return *this;
+}
+
+FORCEINLINE Vector2f Vector2f::operator/=(float val)
+{
+	vals[0] /= val;
+	vals[1] /= val;
+	return *this;
+}
+

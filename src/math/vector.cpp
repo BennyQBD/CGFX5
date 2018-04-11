@@ -171,3 +171,174 @@ Vector Vector3f::toVector(float w) const
 	return vec.select(VectorConstants::MASK_W, Vector::load1f(w));
 }
 
+
+
+
+bool Vector2f::operator==(const Vector2f& other) const
+{
+	return vals[0] == other.vals[0] && vals[1] == other.vals[1];
+}
+
+bool Vector2f::operator!=(const Vector2f& other) const
+{
+	return vals[0] != other.vals[0] || vals[1] != other.vals[1];
+}
+
+bool Vector2f::equals(const Vector2f& other, float errorMargin) const
+{
+	return (vals[0] - other.vals[0]) < errorMargin &&
+		(vals[1] - other.vals[1]) < errorMargin;
+}
+
+bool Vector2f::equals(float val, float errorMargin) const
+{
+	return (vals[0] - val) < errorMargin &&
+		(vals[1] - val) < errorMargin;
+}
+
+float Vector2f::operator[](uint32 index) const
+{
+	assertCheck(index < 2);
+	return vals[index];
+}
+
+void Vector2f::set(float x, float y)
+{
+	vals[0] = x;
+	vals[1] = y;
+}
+
+void Vector2f::set(uint32 index, float val)
+{
+	assertCheck(index < 2);
+	vals[index] = val;
+}
+
+float Vector2f::max() const
+{
+	return Math::max(vals[0], vals[1]);
+}
+
+float Vector2f::min() const
+{
+	return Math::min(vals[0], vals[1]);
+}
+
+float Vector2f::absMax() const
+{
+	return Math::max(Math::abs(vals[0]), Math::abs(vals[1]));
+}
+
+float Vector2f::absMin() const
+{
+	return Math::min(Math::abs(vals[0]), Math::abs(vals[1]));
+}
+
+Vector2f Vector2f::abs() const
+{
+	return Vector2f(Math::abs(vals[0]), Math::abs(vals[1]));
+}
+
+Vector2f Vector2f::min(const Vector2f& other) const
+{
+	return Vector2f(
+			Math::min(vals[0], other.vals[0]),
+			Math::min(vals[1], other.vals[1]));
+}
+
+Vector2f Vector2f::max(const Vector2f& other) const
+{
+	return Vector2f(
+			Math::max(vals[0], other.vals[0]),
+			Math::max(vals[1], other.vals[1]));
+}
+
+Vector2f Vector2f::normalized(float errorMargin) const
+{
+	float lenSq = lengthSquared();
+	if(lenSq < errorMargin) {
+		return Vector2f(0.0f, 0.0f);
+	}
+	return (*this) * Math::rsqrt(lenSq);
+}
+
+bool Vector2f::isNormalized(float errorMargin) const
+{
+	return Math::abs(1.0f - lengthSquared()) < errorMargin;
+}
+
+void Vector2f::dirAndLength(Vector2f& dir, float& length, float errorMargin) const
+{
+	float lenSq = lengthSquared();
+	if(lenSq < errorMargin) {
+		dir = Vector2f(0.0f,0.0f);
+		length = 0;
+		return;
+	}
+	float rlen = Math::rsqrt(lenSq);
+	dir = (*this) * rlen;
+	length = Math::reciprocal(rlen);
+}
+
+Vector2f Vector2f::reciprocal() const
+{
+	return Vector2f(Math::reciprocal(vals[0]), Math::reciprocal(vals[1]));
+}
+
+Vector2f Vector2f::rotate(float angle) const
+{
+	float sin, cos;
+	Math::sincos(&sin, &cos, angle);
+	return Vector2f(
+		cos * vals[0] - sin * vals[1],
+		sin * vals[0] + cos * vals[1]);
+}
+
+Vector2f Vector2f::reflect(const Vector2f& normal) const
+{
+	Vector2f dotAmt = Vector2f(2.0f * dot(normal));
+	return (*this) - (normal * dotAmt);
+}
+
+Vector2f Vector2f::refract(const Vector2f& normal, float indexOfRefraction) const
+{
+	float cosNormalAngle = dot(normal);
+	float refractanceSquared = 
+		 1.0f - indexOfRefraction * indexOfRefraction *
+		(1.0f - cosNormalAngle * cosNormalAngle);
+	
+	if(refractanceSquared < 0.0f) {
+		return Vector2f(0.0f);
+	}
+
+	float normalScale = indexOfRefraction * cosNormalAngle + Math::sqrt(refractanceSquared);
+	Vector2f normalScaleVec(normalScale);
+	Vector2f indexOfRefractionVec(indexOfRefraction);
+	
+	return (*this) * indexOfRefractionVec - normalScaleVec * normal;
+}
+
+Vector2f Vector2f::toDegrees() const
+{
+	return Vector2f(Math::RAD_TO_DEG_CONV*vals[0], Math::RAD_TO_DEG_CONV*vals[1]);
+}
+
+Vector2f Vector2f::toRadians() const
+{
+	return Vector2f(Math::DEG_TO_RAD_CONV*vals[0], Math::DEG_TO_RAD_CONV*vals[1]);
+}
+
+Vector Vector2f::toVector() const
+{
+	return toVector(0.0f, 0.0f);
+}
+
+Vector Vector2f::toVector(float z, float w) const
+{
+	return toVector(Vector2f(z, w));
+}
+
+Vector Vector2f::toVector(Vector2f other) const
+{
+	return Vector::make(vals[0], vals[1], other.vals[0], other.vals[1]);
+}
