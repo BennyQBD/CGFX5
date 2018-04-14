@@ -1,4 +1,5 @@
-#include "timing.hpp"
+#include "sdltiming.hpp"
+#include <SDL2/SDL.h>
 #include <time.h>
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(_WIN64) || defined(WIN64)
@@ -32,7 +33,7 @@
 	static std::chrono::system_clock::time_point m_epoch = std::chrono::high_resolution_clock::now();
 #endif
 
-double Time::getTime()
+double SDLTiming::getTime()
 {
 	#ifdef OS_WINDOWS
 		if(!g_timerInitialized)
@@ -65,4 +66,9 @@ double Time::getTime()
 	#ifdef OS_OTHER
 		return (double)SDL_GetTicks()/1000.0;
 	#endif
+}
+
+void SDLTiming::sleep(uint32 milliseconds)
+{
+	SDL_Delay(milliseconds);
 }

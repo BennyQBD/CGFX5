@@ -5,7 +5,7 @@
 #include "math/transform.hpp"
 #include "rendering/renderContext.hpp"
 
-#include "timing.hpp"
+#include "core/timing.hpp"
 #include "tests.hpp"
 
 #include "math/sphere.hpp"
@@ -21,6 +21,8 @@ static int runApp(Application* app)
 {
 	Tests::runTests();
 	Window window(*app, 800, 600, "My Window!");
+
+	// Begin scene creation
 	RenderDevice device(window);
 	RenderTarget target(device);
 	RenderContext context(device, target);
@@ -47,9 +49,6 @@ static int runApp(Application* app)
 		return 1;
 	}
 	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, true);
-//	RenderTarget textureTarget(device, texture);
-//	RenderContext textureContext(device, textureTarget);
-//	textureContext.clear(Color::WHITE);
 
 	String shaderText;
 	StringFuncs::loadTextFileWithIncludes(shaderText, "./res/shaders/basicShader.glsl", "#include");
@@ -71,28 +70,33 @@ static int runApp(Application* app)
 	for(uint32 i = 0; i < numInstances; i++) {
 		transformMatrixArray.push_back(Matrix::identity());
 	}
+	// End scene creation
 
 	uint32 fps = 0;
 	double lastTime = Time::getTime();
 	double fpsTimeCounter = 0.0;
 	double updateTimer = 1.0;
+	float frameTime = 1.0/60.0;
 	while(app->isRunning()) {
 		double currentTime = Time::getTime();
 		double passedTime = currentTime - lastTime;
 		lastTime = currentTime;
+
 		fpsTimeCounter += passedTime;
 		updateTimer += passedTime;
+
 		if(fpsTimeCounter >= 1.0) {
 			double msPerFrame = 1000.0/(double)fps;
 			DEBUG_LOG("FPS", "NONE", "%f ms (%d fps)", msPerFrame, fps);
 			fpsTimeCounter = 0;
 			fps = 0;
 		}
-		fps++;
-
-		app->processMessages(passedTime);
-		transform.setRotation(Quaternion(Vector3f(1.0f, 1.0f, 1.0f).normalized(), amt*10.0f/11.0f));
-		if(updateTimer >= 1.0/60.0) {
+		
+		bool shouldRender = false;
+		while(updateTimer >= frameTime) {
+			app->processMessages(frameTime);
+			// Begin scene update
+			transform.setRotation(Quaternion(Vector3f(1.0f, 1.0f, 1.0f).normalized(), amt*10.0f/11.0f));
 			for(uint32 i = 0; i < transformMatrixArray.size(); i++) {
 				transform.setTranslation(Vector3f(
 							(Math::randf() * randScaleX)-randScaleX/2.0f,
@@ -102,16 +106,24 @@ static int runApp(Application* app)
 			}
 			vertexArray.updateBuffer(2, &transformMatrixArray[0],
 					transformMatrixArray.size() * sizeof(Matrix));
+			amt += (float)frameTime/2.0f;
+			// End scene update
 
-			updateTimer = 0.0;
+			updateTimer -= frameTime;
+			shouldRender = true;
 		}
 		
-		context.clear(color);
-		context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
-
-		window.present();
-
-		amt += (float)passedTime/2.0f;
+		if(shouldRender) {
+			// Begin scene render
+			context.clear(color);
+			context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
+			// End scene render
+			
+			window.present();
+			fps++;
+		} else {
+			Time::sleep(1);
+		}
 	}
 	return 0;
 }

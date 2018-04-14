@@ -1,5 +1,5 @@
 #include "tests.hpp"
-#include "timing.hpp"
+#include "core/timing.hpp"
 #include "math/transform.hpp"
 #include "math/sphere.hpp"
 #include "math/aabb.hpp"
