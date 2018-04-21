@@ -77,7 +77,8 @@ uint32 IndexedModel::createVertexArray(RenderDevice& device,
 {
 	Array<const float*> vertexDataArray;
 	for(uint32 i = 0; i < elementSizes.size(); i++) {
-		vertexDataArray.push_back(&(elements[i][0]));
+		if (elements[i].size() > 0)
+			vertexDataArray.push_back(&(elements[i][0]));
 	}
 
 	const float** vertexData = &vertexDataArray[0];

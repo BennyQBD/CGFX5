@@ -128,7 +128,12 @@ static int runApp(Application* app)
 	return 0;
 }
 
+
+#ifdef __GNUC__
 int main(int argc, char** argv)
+#else
+int wmain(int argc, char** argv)
+#endif
 {
 	Application* app = Application::create();
 	int result = runApp(app);
