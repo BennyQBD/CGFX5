@@ -16,17 +16,17 @@
  */
 struct GenericMath
 {
-	static CONSTEXPR const float PI;
-	static CONSTEXPR const float TWO_PI;
-	static CONSTEXPR const float HALF_PI;
-	static CONSTEXPR const float R_PI;
-	static CONSTEXPR const float R_TWO_PI;
-	static CONSTEXPR const float R_HALF_PI;
+	static const float PI;
+	static const float TWO_PI;
+	static const float HALF_PI;
+	static const float R_PI;
+	static const float R_TWO_PI;
+	static const float R_HALF_PI;
 
-	static CONSTEXPR const float E;
-	static CONSTEXPR const float R_LN_2;
-	static CONSTEXPR const float RAD_TO_DEG_CONV; // 180.0f/PI;
-	static CONSTEXPR const float DEG_TO_RAD_CONV; // PI/180.0f;
+	static const float E;
+	static const float R_LN_2;
+	static const float RAD_TO_DEG_CONV; // 180.0f/PI;
+	static const float DEG_TO_RAD_CONV; // PI/180.0f;
 
 	static CONSTEXPR FORCEINLINE int32 truncToInt(float val)
 	{
