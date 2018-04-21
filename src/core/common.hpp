@@ -70,7 +70,11 @@ typedef uintptr_t uintptr;
 	#define assertCheck (void)
 #endif
 
-#define FORCEINLINE inline __attribute__ ((always_inline))
+#ifdef __GNUC__
+	#define FORCEINLINE inline __attribute__ ((always_inline))
+#else
+	#define FORCEINLINE inline
+#endif
 
 #if __cplusplus < 201103L
 	#define nullptr NULL

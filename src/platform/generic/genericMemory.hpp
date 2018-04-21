@@ -40,11 +40,13 @@ struct GenericMemory
 
 	static void memswap(void* a, void* b, uintptr size)
 	{
-		char temp_data[size];
+		char* temp_data = new char[size];
 		void* temp = (void*)&temp_data;
 		GenericMemory::memcpy(temp, a, size);
 		GenericMemory::memcpy(a, b, size);
 		GenericMemory::memcpy(b, temp, size);
+
+		delete[] temp_data;
 	}
 
 	template<typename T>

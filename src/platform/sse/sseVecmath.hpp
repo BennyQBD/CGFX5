@@ -261,17 +261,16 @@ public:
 		return SSEVector::load1f((*this)[index]);
 	}
 
-	FORCEINLINE SSEVector swizzle(const uint32 x, const uint32 y, const uint32 z, const uint32 w) const
-	{
-		assertCheck(x <= 3);
-		assertCheck(y <= 3);
-		assertCheck(z <= 3);
-		assertCheck(w <= 3);
-		SSEVector vec;
-		vec.data = _mm_shuffle_ps(data, data,
-				SSEVector_SHUFFLEMASK(x, y, z, w));
-		return vec;
-	}
+	//FORCEINLINE SSEVector swizzle(const uint32 x, const uint32 y, const uint32 z, const uint32 w) const
+	//{
+	//	assertCheck(x <= 3);
+	//	assertCheck(y <= 3);
+	//	assertCheck(z <= 3);
+	//	assertCheck(w <= 3);
+	//	SSEVector vec;
+	//	vec.data = _mm_shuffle_ps(data, data, ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6)));
+	//	return vec;
+	//}
 	
 	FORCEINLINE SSEVector abs() const
 	{
