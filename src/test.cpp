@@ -276,6 +276,24 @@ static void testIntersects()
 	assert(Math::equals(boundingSphere.getRadius(), 1.5f, 1.e-4f));
 }
 
+void testMemory()
+{
+//	int32 v1[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+//	int32 v2[] = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+//
+//	for(uint32 i = 0; i < ARRAY_SIZE_IN_ELEMENTS(v1); i++) {
+//		DEBUG_LOG_TEMP("%i, %i", v1[i], v2[i]);
+//	}
+//
+//	Memory::memswap(v1, v2, sizeof(v1));
+//	DEBUG_LOG_TEMP("%i", sizeof(v1));
+//
+//	for(uint32 i = 0; i < ARRAY_SIZE_IN_ELEMENTS(v1); i++) {
+//		DEBUG_LOG_TEMP("%i, %i", v1[i], v2[i]);
+//	}
+
+}
+
 
 void Tests::runTests()
 {
@@ -284,7 +302,7 @@ void Tests::runTests()
 	testMath();
 	testPlane();
 	testIntersects();
-
+	testMemory();
 }
 
 inline void naiveMatrixMultiply(float* output, float* input, float* other)

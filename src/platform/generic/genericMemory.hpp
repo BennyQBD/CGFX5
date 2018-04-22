@@ -3,6 +3,8 @@
 #include "core/common.hpp"
 #include <cstring>
 
+#define GENERIC_MEMORY_SMALL_MEMSWAP_MAX 16
+
 struct GenericMemory
 {
 	static FORCEINLINE void* memmove(void* dest, const void* src, uintptr amt)
@@ -40,11 +42,11 @@ struct GenericMemory
 
 	static void memswap(void* a, void* b, uintptr size)
 	{
-		char temp_data[size];
-		void* temp = (void*)&temp_data;
-		GenericMemory::memcpy(temp, a, size);
-		GenericMemory::memcpy(a, b, size);
-		GenericMemory::memcpy(b, temp, size);
+		if(size <= GENERIC_MEMORY_SMALL_MEMSWAP_MAX) {
+			smallmemswap(a, b, size);
+		} else {
+			bigmemswap(a, b, size);
+		}
 	}
 
 	template<typename T>
@@ -57,6 +59,17 @@ struct GenericMemory
 	static void* realloc(void* ptr, uintptr amt, uint32 alignment);
 	static void* free(void* ptr);
 	static uintptr getAllocSize(void* ptr);
+private:
+	static void bigmemswap(void* a, void* b, uintptr size);
+	static void smallmemswap(void* a, void* b, uintptr size)
+	{
+		assertCheck(size <= GENERIC_MEMORY_SMALL_MEMSWAP_MAX);
+		char temp_data[GENERIC_MEMORY_SMALL_MEMSWAP_MAX];
+		void* temp = (void*)&temp_data;
+		GenericMemory::memcpy(temp, a, size);
+		GenericMemory::memcpy(a, b, size);
+		GenericMemory::memcpy(b, temp, size);
+	}
 };
 
 template<>

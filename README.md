@@ -84,6 +84,7 @@ cd build
 cmake -G "Visual Studio 12" ../
 # open the generated SLN file (or cbp file if using CodeBlocks) and build!
 ```
+- Make sure in the SDL2 include directory, the header files are properly nested under an SDL2 sub directory. The directory structure should look something like : `C:\Program Files\SDL2\include\SDL2\`.
 - Copy the DLLs in /lib/_bin/ to /build/Debug/ and /build/Release/
 - In Visual Studio, set the Startup project to CGFX5
 - Move the res folder into the build folder

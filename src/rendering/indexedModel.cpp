@@ -75,18 +75,19 @@ void IndexedModel::setInstancedElementStartIndex(uint32 elementIndex)
 uint32 IndexedModel::createVertexArray(RenderDevice& device,
 		enum RenderDevice::BufferUsage usage) const
 {
-	Array<const float*> vertexDataArray;
-	for(uint32 i = 0; i < elementSizes.size(); i++) {
-		vertexDataArray.push_back(&(elements[i][0]));
-	}
-
-	const float** vertexData = &vertexDataArray[0];
-	const uint32* vertexElementSizes = &elementSizes[0];
 	uint32 numVertexComponents = elementSizes.size();
 	uint32 numInstanceComponents = instancedElementsStartIndex == ((uint32)-1) ?
 		0 : (numVertexComponents - instancedElementsStartIndex);
 	numVertexComponents -= numInstanceComponents;
 
+	Array<const float*> vertexDataArray;
+	for(uint32 i = 0; i < numVertexComponents; i++) {
+		vertexDataArray.push_back(&(elements[i][0]));
+	}
+
+	const float** vertexData = &vertexDataArray[0];
+	const uint32* vertexElementSizes = &elementSizes[0];
+	
 	uint32 numVertices = elements[0].size()/vertexElementSizes[0];
 	uint32 numIndices = indices.size();
 	

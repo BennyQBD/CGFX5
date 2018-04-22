@@ -45,3 +45,18 @@ uintptr GenericMemory::getAllocSize(void* ptr)
 {
 	return *((uintptr*)((uint8*)ptr - sizeof(void*) - sizeof(uintptr)));
 }
+
+void GenericMemory::bigmemswap(void* a, void* b, uintptr size)
+{
+	uint64* ptr1 = (uint64*)a;
+	uint64* ptr2 = (uint64*)b;
+	while(size > GENERIC_MEMORY_SMALL_MEMSWAP_MAX) {
+		uint64 tmp = *ptr1;
+		*ptr1 = *ptr2;
+		*ptr2 = tmp;
+		size -= 8;
+		ptr1++;
+		ptr2++;
+	}
+	smallmemswap(ptr1, ptr2, size);
+}

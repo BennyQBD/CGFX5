@@ -242,14 +242,14 @@ public:
 		return make(v[index], v[index], v[index], v[index]);
 	}
 
-	FORCEINLINE GenericVector swizzle(uint32 x, uint32 y, uint32 z, uint32 w) const
-	{
-		assertCheck(x <= 3);
-		assertCheck(y <= 3);
-		assertCheck(z <= 3);
-		assertCheck(w <= 3);
-		return make(v[x], v[y], v[z], v[w]);
-	}
+//	FORCEINLINE GenericVector swizzle(uint32 x, uint32 y, uint32 z, uint32 w) const
+//	{
+//		assertCheck(x <= 3);
+//		assertCheck(y <= 3);
+//		assertCheck(z <= 3);
+//		assertCheck(w <= 3);
+//		return make(v[x], v[y], v[z], v[w]);
+//	}
 	
 	FORCEINLINE GenericVector abs() const
 	{

@@ -60,7 +60,7 @@ FORCEINLINE Sphere Sphere::moveTo(const Vector3f& destination) const
 FORCEINLINE float Sphere::getVolume() const
 {
 	float radius = data[3];
-	return Math::PI*4.0f/3.0f * radius*radius*radius;
+	return MATH_PI*4.0f/3.0f * radius*radius*radius;
 }
 
 FORCEINLINE float Sphere::getRadius() const

@@ -158,12 +158,12 @@ Vector3f Vector3f::refract(const Vector3f& normal, float indexOfRefraction) cons
 
 Vector3f Vector3f::toDegrees() const
 {
-	return Vector3f(vec * Vector::load1f(Math::RAD_TO_DEG_CONV));
+	return Vector3f(vec * Vector::load1f(MATH_RAD_TO_DEG_CONV));
 }
 
 Vector3f Vector3f::toRadians() const
 {
-	return Vector3f(vec * Vector::load1f(Math::DEG_TO_RAD_CONV));
+	return Vector3f(vec * Vector::load1f(MATH_DEG_TO_RAD_CONV));
 }
 
 Vector Vector3f::toVector(float w) const
@@ -320,12 +320,12 @@ Vector2f Vector2f::refract(const Vector2f& normal, float indexOfRefraction) cons
 
 Vector2f Vector2f::toDegrees() const
 {
-	return Vector2f(Math::RAD_TO_DEG_CONV*vals[0], Math::RAD_TO_DEG_CONV*vals[1]);
+	return Vector2f(MATH_RAD_TO_DEG_CONV*vals[0], MATH_RAD_TO_DEG_CONV*vals[1]);
 }
 
 Vector2f Vector2f::toRadians() const
 {
-	return Vector2f(Math::DEG_TO_RAD_CONV*vals[0], Math::DEG_TO_RAD_CONV*vals[1]);
+	return Vector2f(MATH_DEG_TO_RAD_CONV*vals[0], MATH_DEG_TO_RAD_CONV*vals[1]);
 }
 
 Vector Vector2f::toVector() const

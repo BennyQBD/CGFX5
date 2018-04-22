@@ -16,18 +16,6 @@
  */
 struct GenericMath
 {
-	static CONSTEXPR const float PI = 3.1415926535897932f;
-	static CONSTEXPR const float TWO_PI = 6.28318530717959f;
-	static CONSTEXPR const float HALF_PI = 1.57079632679f;
-	static CONSTEXPR const float R_PI = 0.31830988618f;
-	static CONSTEXPR const float R_TWO_PI = 0.159154943091895f;
-	static CONSTEXPR const float R_HALF_PI = 0.636619772367581f;
-
-	static CONSTEXPR const float E = 2.71828182845904523536f;
-	static CONSTEXPR const float R_LN_2 = 1.44269504088896f;
-	static CONSTEXPR const float RAD_TO_DEG_CONV = 57.2957795130823f; // 180.0f/PI;
-	static CONSTEXPR const float DEG_TO_RAD_CONV = 0.0174532925199433f; // PI/180.0f;
-
 	static CONSTEXPR FORCEINLINE int32 truncToInt(float val)
 	{
 		return (int32)val;
@@ -86,7 +74,7 @@ struct GenericMath
 	static FORCEINLINE float exp(float val) { return expf(val); }
 	static FORCEINLINE float ln(float val) { return logf(val); }
 	static FORCEINLINE float logx(float base, float val) { return ln(val)/ln(base); }
-	static FORCEINLINE float log2(float val) { return ln(val) * R_LN_2; }
+	static FORCEINLINE float log2(float val) { return ln(val) * MATH_R_LN_2; }
 
 	static FORCEINLINE float fmod(float num, float den) { return fmodf(num, den); }
 	static FORCEINLINE float sin(float val) { return sinf(val); }
@@ -103,18 +91,18 @@ struct GenericMath
 	{
 		// If angle is outside range of [0, 2*pi], adjust it so it is.
 		// Using fmod gives worse precision than the following code
-		if((angle < 0.0f) || (angle >= TWO_PI)) {
-			angle -= floorToFloat(angle * R_TWO_PI) * TWO_PI;
+		if((angle < 0.0f) || (angle >= MATH_TWO_PI)) {
+			angle -= floorToFloat(angle * MATH_R_TWO_PI) * MATH_TWO_PI;
 		}
-//		angle = Math::fmod(angle, TWO_PI);
+//		angle = Math::fmod(angle, MATH_TWO_PI);
 
 		// This approximation is only accurate with angles in the range
 		// [-pi/2, pi/2]. If angle is outside that range, convert it to that
 		// range and find the appropriate sign to adjust the result.
-		angle = PI - angle;
+		angle = MATH_PI - angle;
 		float sign = -1.0f;
-		if (fabsf(angle) >= HALF_PI ) {
-			angle = select(angle, PI, -PI) - angle;
+		if (fabsf(angle) >= MATH_HALF_PI ) {
+			angle = select(angle, MATH_PI, -MATH_PI) - angle;
 			sign = 1.0f;
 		}
 
@@ -274,13 +262,13 @@ struct GenericMath
 	template<typename T>
 	static FORCEINLINE T toDegrees(const T& val)
 	{
-		return val * RAD_TO_DEG_CONV;
+		return val * MATH_RAD_TO_DEG_CONV;
 	}
 
 	template<typename T>
 	static FORCEINLINE T toRadians(const T& val)
 	{
-		return val * DEG_TO_RAD_CONV;
+		return val * MATH_DEG_TO_RAD_CONV;
 	}
 
 	template<typename T, typename U>
