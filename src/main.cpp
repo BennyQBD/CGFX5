@@ -128,6 +128,9 @@ static int runApp(Application* app)
 	return 0;
 }
 
+#ifdef main
+#undef main
+#endif
 int main(int argc, char** argv)
 {
 	Application* app = Application::create();
