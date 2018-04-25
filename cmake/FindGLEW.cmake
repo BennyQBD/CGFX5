@@ -21,11 +21,12 @@
 # GLEW_LIBRARIES                            #
 #############################################
 
+SET(_PF86 "PROGRAMFILES(X86)")
 SET( GLEW_SEARCH_PATHS
 	${GLEW_ROOT_DIR}					# GLEW!
 	./lib/glew
 	$ENV{PROGRAMFILES}/GLEW				# WINDOWS
-	"$ENV{PROGRAMFILES(X86)}/GLEW"		# WINDOWS
+	"$ENV{_PF86}/GLEW"		# WINDOWS
 	~/Library/Frameworks				# MAC
 	/Library/Frameworks					# MAC
 	/usr/local							# LINUX/MAC/UNIX

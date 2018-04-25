@@ -21,11 +21,12 @@
 # SDL2_LIBRARIES                            #
 #############################################
 
+SET(_PF86 "PROGRAMFILES(X86)")
 SET( SDL2_SEARCH_PATHS
 	${SDL2_ROOT_DIR}					# SDL2!
 	./lib/SDL2
 	$ENV{PROGRAMFILES}/SDL2				# WINDOWS
-	"$ENV{PROGRAMFILES(X86)}/SDL2"		# WINDOWS
+	"$ENV{_PF86}/SDL2"		# WINDOWS
 	~/Library/Frameworks				# MAC
 	/Library/Frameworks					# MAC
 	/usr/local							# LINUX/MAC/UNIX

@@ -64,3 +64,13 @@
 	#define OPERATING_SYSTEM_OTHER
 #endif
 
+// Detect compiler
+#if defined(__clang__)
+	#define COMPILER_CLANG
+#elif defined(__GNUC__) || defined(__GNUG__)
+	#define COMPILER_GCC
+#elif defined(_MSC_VER)
+	#define COMPILER_MSVC
+#else
+	#define COMPILER_OTHER
+#endif

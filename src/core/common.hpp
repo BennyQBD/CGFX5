@@ -71,10 +71,12 @@ typedef uintptr_t uintptr;
 	#define assertCheck (void)
 #endif
 
-#ifdef OPERATING_SYSTEM_WINDOWS
+#ifdef COMPILER_MSVC
 	#define FORCEINLINE __forceinline
-#else
+#elif defined(COMPILER_GCC) || defined(COMPILER_CLANG)
 	#define FORCEINLINE inline __attribute__ ((always_inline))
+#else
+	#define FORCEINLINE inline
 #endif
 
 #if __cplusplus < 201103L
