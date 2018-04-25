@@ -54,6 +54,9 @@ static int runApp(Application* app)
 	StringFuncs::loadTextFileWithIncludes(shaderText, "./res/shaders/basicShader.glsl", "#include");
 	Shader shader(device, shaderText);
 	shader.setSampler("diffuse", texture, sampler, 0);
+
+	StringFuncs::loadTextFileWithIncludes(shaderText, "./res/shaders/nullShader.glsl", "#include");
+	Shader shader2(device, shaderText);
 	
 	Matrix perspective(Matrix::perspective(Math::toRadians(70.0f/2.0f),
 				4.0f/3.0f, 0.1f, 1000.0f));
@@ -116,7 +119,16 @@ static int runApp(Application* app)
 		if(shouldRender) {
 			// Begin scene render
 			context.clear(color);
-			context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
+			int32 debuggerTemp = 0;
+			if(debuggerTemp == 0) {
+				context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
+			} else if(debuggerTemp == 1) {
+				context.draw(shader2, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
+			} else if(debuggerTemp == 2) {
+				context.draw(shader2, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, 1);
+			} else if(debuggerTemp == 3) {
+				context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, 1);
+			}
 			// End scene render
 			
 			window.present();
