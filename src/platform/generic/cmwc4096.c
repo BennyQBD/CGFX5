@@ -10,8 +10,9 @@ uint32_t rand32(void)
 // Init the state with seed
 void initCMWC(struct cmwc_state *state, unsigned int seed)
 {
+	int i;
 	srand(seed);        
-	for (int i = 0; i < CMWC_CYCLE; i++)
+	for (i = 0; i < CMWC_CYCLE; i++)
 		state->Q[i] = rand32();
 	do
 		state->c = rand32();

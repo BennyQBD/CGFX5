@@ -13,7 +13,7 @@
 :: limitations under the License.
 
 cd build
-cmake -G "Visual Studio 11" ../
+cmake ../
 mkdir Debug
 mkdir Release
 copy ..\lib\_bin\ Debug

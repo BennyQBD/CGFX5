@@ -15,7 +15,7 @@
 BUILT_TARGET="Release"
 
 #First parameter, if any, is used as build target.
-#If no parameter is given, then default to Debug
+#If no parameter is given, then default to Release
 if [ "$#" == 0 ]; then
 	BUILD_TARGET="Release"
 else

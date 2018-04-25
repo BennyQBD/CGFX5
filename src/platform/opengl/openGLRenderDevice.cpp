@@ -645,26 +645,26 @@ static bool checkShaderError(GLuint shader, int flag,
 static void addAllAttributes(GLuint program, const String& vertexShaderText,
 		const String& attributeKeyword)
 {
-	GLint numActiveAttribs = 0;
-	GLint maxAttribNameLength = 0;
-
-	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &numActiveAttribs);
-	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttribNameLength);
-
-//	DEBUG_LOG_TEMP2("Adding attributes!");
-//	DEBUG_LOG_TEMP("%i %i", numActiveAttribs, maxAttribNameLength);
-	Array<GLchar> nameData(maxAttribNameLength);
-	for(GLint attrib = 0; attrib < numActiveAttribs; ++attrib) {
-		GLint arraySize = 0;
-		GLenum type = 0;
-		GLsizei actualLength = 0;
-
-		glGetActiveAttrib(program, attrib, nameData.size(),
-				&actualLength, &arraySize, &type, &nameData[0]);
-		glBindAttribLocation(program, attrib, (char*)&nameData[0]);
-//		DEBUG_LOG_TEMP2("Adding attribute!");
-		//DEBUG_LOG_TEMP("%s: %d", (char*)&nameData[0], attrib);
-	}
+//	GLint numActiveAttribs = 0;
+//	GLint maxAttribNameLength = 0;
+//
+//	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &numActiveAttribs);
+//	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttribNameLength);
+//
+////	DEBUG_LOG_TEMP2("Adding attributes!");
+////	DEBUG_LOG_TEMP("%i %i", numActiveAttribs, maxAttribNameLength);
+//	Array<GLchar> nameData(maxAttribNameLength);
+//	for(GLint attrib = 0; attrib < numActiveAttribs; ++attrib) {
+//		GLint arraySize = 0;
+//		GLenum type = 0;
+//		GLsizei actualLength = 0;
+//
+//		glGetActiveAttrib(program, attrib, nameData.size(),
+//				&actualLength, &arraySize, &type, &nameData[0]);
+//		glBindAttribLocation(program, attrib, (char*)&nameData[0]);
+////		DEBUG_LOG_TEMP2("Adding attribute!");
+//		//DEBUG_LOG_TEMP("%s: %d", (char*)&nameData[0], attrib);
+//	}
 }
 
 static void addShaderUniforms(GLuint shaderProgram, const String& shaderText,
