@@ -25,10 +25,18 @@ cmake_minimum_required(VERSION 2.6)
 project(CGFX5)
 
 # add the -c and -Wall flags
-add_definitions(
-	-c
-	-Wall
-)
+if(MSVC)
+	add_definitions(
+		-c
+		-W4
+	)
+else()
+	add_definitions(
+		-c
+		-Wall
+		-msse2
+	)
+endif()
 
 if ( CMAKE_BUILD_TYPE STREQUAL "" )
 	# CMake defaults to leaving CMAKE_BUILD_TYPE empty. This screws up
