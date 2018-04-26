@@ -87,6 +87,14 @@ struct GenericMath
 	static FORCEINLINE float pow(float val, float power) { return powf(val, power); }
 	static FORCEINLINE float sqrt(float val) { return sqrtf(val); }
 
+	template<typename T>
+	static CONSTEXPR FORCEINLINE T select(const T& cmp,
+			const T& valIfGreaterOrEqualToZero,
+			const T& valIfLessZero)
+	{
+		return cmp >= (T)(0) ? valIfGreaterOrEqualToZero : valIfLessZero;
+	}
+	
 	static FORCEINLINE void sincos(float* outSin, float* outCos, float angle)
 	{
 		// If angle is outside range of [0, 2*pi], adjust it so it is.
@@ -206,14 +214,6 @@ struct GenericMath
 	static FORCEINLINE uint32 roundUpToNextPowerOf2(uint32 val)
 	{
 		return 1 << ceilLog2(val);
-	}
-
-	template<typename T>
-	static CONSTEXPR FORCEINLINE T select(const T& cmp,
-			const T& valIfGreaterOrEqualToZero,
-			const T& valIfLessZero)
-	{
-		return cmp >= (T)(0) ? valIfGreaterOrEqualToZero : valIfLessZero;
 	}
 
 	template<typename T>
