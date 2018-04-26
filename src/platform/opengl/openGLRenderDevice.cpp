@@ -157,6 +157,19 @@ void OpenGLRenderDevice::setVAO(uint32 vao)
 	if(vao == boundVAO) {
 		return;
 	}
+	// NOTE: Shouldn't be needed. Cheap hack to work around
+	// driver bug on some systems.
+	uint32 indexBuffer = 0;
+	Map<uint32, VertexArray>::iterator it = vaoMap.find(vao);
+	if(it == vaoMap.end()) {
+		indexBuffer = 0;
+	} else {
+		// NOTE: This is assuming current convention that index buffer is stored
+		// in final buffer of the VAO
+		indexBuffer = vaoMap[vao].buffers[vaoMap[vao].numBuffers-1];
+	}
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 	glBindVertexArray(vao);
 	boundVAO = vao;
 }
@@ -271,6 +284,9 @@ uint32 OpenGLRenderDevice::createVertexArray(const float** vertexData,
 	vaoData.usage = usage;
 	vaoData.instanceComponentsStartIndex = numVertexComponents;
 	vaoMap[VAO] = vaoData;
+
+	// Bound VAO must be invalidated because of cheap IBO hack
+	boundVAO = 0;
 
 	return VAO;
 }
