@@ -19,9 +19,9 @@
 varying vec2 texCoord0;
 
 #if defined(VS_BUILD)
-attribute vec3 position;
-attribute vec2 texCoord;
-attribute mat4 transformMat;
+Layout(0) attribute vec3 position;
+Layout(1) attribute vec2 texCoord;
+Layout(2) attribute mat4 transformMat;
 
 void main()
 {

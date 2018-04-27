@@ -6,7 +6,7 @@
 
 static bool addShader(GLuint shaderProgram, const String& text, GLenum type,
 		Array<GLuint>* shaders);
-static void addAllAttributes(GLuint program, const String& vertexShaderText);
+static void addAllAttributes(GLuint program, const String& vertexShaderText, uint32 version);
 static bool checkShaderError(GLuint shader, int flag,
 		bool isProgram, const String& errorMessage);
 static void addShaderUniforms(GLuint shaderProgram, const String& shaderText,
@@ -475,7 +475,7 @@ uint32 OpenGLRenderDevice::createShaderProgram(const String& shaderText)
 		return (uint32)-1;
 	}
 
-	addAllAttributes(shaderProgram, vertexShaderText);
+	addAllAttributes(shaderProgram, vertexShaderText, getVersion());
 	addShaderUniforms(shaderProgram, shaderText, programData.uniformMap,
 			programData.samplerMap);
 
@@ -639,8 +639,13 @@ static bool checkShaderError(GLuint shader, int flag,
 	return false;
 }
 
-static void addAllAttributes(GLuint program, const String& vertexShaderText)
+static void addAllAttributes(GLuint program, const String& vertexShaderText, uint32 version)
 {
+	if(version >= 320) {
+		// Layout is enabled. Return.
+		return;
+	}
+
 	GLint numActiveAttribs = 0;
 	GLint maxAttribNameLength = 0;
 

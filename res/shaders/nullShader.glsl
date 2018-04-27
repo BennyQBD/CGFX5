@@ -17,7 +17,7 @@
 #include "common.glh"
 
 #if defined(VS_BUILD)
-attribute vec3 position;
+Layout(0) attribute vec3 position;
 
 void main()
 {

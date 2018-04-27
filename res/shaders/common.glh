@@ -15,8 +15,10 @@
  */
 
 #if (GLSL_VERSION >= 150)
+	#extension GL_ARB_explicit_attrib_location : enable
 	#define DeclareFragOutput(locationNumber, type) out type outputLocation##locationNumber
 	#define SetFragOutput(locationNumber, val) outputLocation##locationNumber = val
+	#define Layout(locationNumber) layout(location=locationNumber)
 	
 	#define texture2D(tex, coord) texture(tex, coord)
 	
@@ -29,6 +31,7 @@
 #else
 	#define DeclareFragOutput(locationNumber)
 	#define SetFragOutput(locationNumber, val) gl_FragData[locationNumber] = val
+	#define Layout(locationNumber)
 #endif
 
 #if (GLSL_VERSION >= 400)
