@@ -6,8 +6,7 @@
 
 static bool addShader(GLuint shaderProgram, const String& text, GLenum type,
 		Array<GLuint>* shaders);
-static void addAllAttributes(GLuint program, const String& vertexShaderText,
-		const String& attributeKeyword);
+static void addAllAttributes(GLuint program, const String& vertexShaderText);
 static bool checkShaderError(GLuint shader, int flag,
 		bool isProgram, const String& errorMessage);
 static void addShaderUniforms(GLuint shaderProgram, const String& shaderText,
@@ -157,19 +156,6 @@ void OpenGLRenderDevice::setVAO(uint32 vao)
 	if(vao == boundVAO) {
 		return;
 	}
-	// NOTE: Shouldn't be needed. Cheap hack to work around
-	// driver bug on some systems.
-	uint32 indexBuffer = 0;
-	Map<uint32, VertexArray>::iterator it = vaoMap.find(vao);
-	if(it == vaoMap.end()) {
-		indexBuffer = 0;
-	} else {
-		// NOTE: This is assuming current convention that index buffer is stored
-		// in final buffer of the VAO
-		indexBuffer = vaoMap[vao].buffers[vaoMap[vao].numBuffers-1];
-	}
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 	glBindVertexArray(vao);
 	boundVAO = vao;
 }
@@ -284,10 +270,6 @@ uint32 OpenGLRenderDevice::createVertexArray(const float** vertexData,
 	vaoData.usage = usage;
 	vaoData.instanceComponentsStartIndex = numVertexComponents;
 	vaoMap[VAO] = vaoData;
-
-	// Bound VAO must be invalidated because of cheap IBO hack
-	boundVAO = 0;
-
 	return VAO;
 }
 
@@ -481,8 +463,6 @@ uint32 OpenGLRenderDevice::createShaderProgram(const String& shaderText)
 		return (uint32)-1;
 	}
 	
-	addAllAttributes(shaderProgram, vertexShaderText, "attribute");
-	
 	glLinkProgram(shaderProgram);
 	if(checkShaderError(shaderProgram, GL_LINK_STATUS,
 				true, "Error linking shader program")) {
@@ -495,6 +475,7 @@ uint32 OpenGLRenderDevice::createShaderProgram(const String& shaderText)
 		return (uint32)-1;
 	}
 
+	addAllAttributes(shaderProgram, vertexShaderText);
 	addShaderUniforms(shaderProgram, shaderText, programData.uniformMap,
 			programData.samplerMap);
 
@@ -658,29 +639,28 @@ static bool checkShaderError(GLuint shader, int flag,
 	return false;
 }
 
-static void addAllAttributes(GLuint program, const String& vertexShaderText,
-		const String& attributeKeyword)
+static void addAllAttributes(GLuint program, const String& vertexShaderText)
 {
-//	GLint numActiveAttribs = 0;
-//	GLint maxAttribNameLength = 0;
-//
-//	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &numActiveAttribs);
-//	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttribNameLength);
-//
-////	DEBUG_LOG_TEMP2("Adding attributes!");
-////	DEBUG_LOG_TEMP("%i %i", numActiveAttribs, maxAttribNameLength);
-//	Array<GLchar> nameData(maxAttribNameLength);
-//	for(GLint attrib = 0; attrib < numActiveAttribs; ++attrib) {
-//		GLint arraySize = 0;
-//		GLenum type = 0;
-//		GLsizei actualLength = 0;
-//
-//		glGetActiveAttrib(program, attrib, nameData.size(),
-//				&actualLength, &arraySize, &type, &nameData[0]);
-//		glBindAttribLocation(program, attrib, (char*)&nameData[0]);
-////		DEBUG_LOG_TEMP2("Adding attribute!");
-//		//DEBUG_LOG_TEMP("%s: %d", (char*)&nameData[0], attrib);
-//	}
+	GLint numActiveAttribs = 0;
+	GLint maxAttribNameLength = 0;
+
+	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &numActiveAttribs);
+	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttribNameLength);
+
+//	DEBUG_LOG_TEMP2("Adding attributes!");
+//	DEBUG_LOG_TEMP("%i %i", numActiveAttribs, maxAttribNameLength);
+	Array<GLchar> nameData(maxAttribNameLength);
+	for(GLint attrib = 0; attrib < numActiveAttribs; ++attrib) {
+		GLint arraySize = 0;
+		GLenum type = 0;
+		GLsizei actualLength = 0;
+
+		glGetActiveAttrib(program, attrib, nameData.size(),
+				&actualLength, &arraySize, &type, &nameData[0]);
+		glBindAttribLocation(program, attrib, (char*)&nameData[0]);
+//		DEBUG_LOG_TEMP2("Adding attribute!");
+//		DEBUG_LOG_TEMP("%s: %d", (char*)&nameData[0], attrib);
+	}
 }
 
 static void addShaderUniforms(GLuint shaderProgram, const String& shaderText,
