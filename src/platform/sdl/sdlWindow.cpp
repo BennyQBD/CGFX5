@@ -1,12 +1,15 @@
 #include "sdlWindow.hpp"
 #include "rendering/renderDevice.hpp"
+#include <stdexcept>
 
 SDLWindow::SDLWindow(const Application& app,
 		int32 widthIn, int32 heightIn, const String& title) :
 	width(widthIn),
 	height(heightIn)
 {
-	RenderDevice::globalInit();
+	if(!RenderDevice::globalInit()) {
+		throw std::runtime_error("Render device could not be initialized");
+	}
 	window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
 }

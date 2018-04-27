@@ -14,31 +14,35 @@ static void addShaderUniforms(GLuint shaderProgram, const String& shaderText,
 
 bool OpenGLRenderDevice::isInitialized = false;
 
-void OpenGLRenderDevice::globalInit()
+bool OpenGLRenderDevice::globalInit()
 {
 	if(isInitialized) {
-		return;
+		return isInitialized;
 	}
 	int32 major = 3;
-	//TODO: Ultimately target OpenGL 3.2
 	int32 minor = 2;
 	
+	isInitialized = true;
 	if(SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
 				SDL_GL_CONTEXT_PROFILE_CORE) != 0) {
 		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_WARNING,
 				"Could not set core OpenGL profile");
+		isInitialized = false;
 	}
 	if(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, major) != 0) {
 		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR,
 				"Could not set major OpenGL version to %d: %s",
 				major, SDL_GetError());
+		isInitialized = false;
 	}
 	if(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minor) != 0) {
 		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR,
 				"Could not set minor OpenGL version to %d: %s",
 				minor, SDL_GetError());
+		isInitialized = false;
 	}
-	isInitialized = true;
+	
+	return isInitialized;
 }
 
 OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
@@ -53,6 +57,7 @@ OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
 	GLenum res = glewInit();
 	if(res != GLEW_OK) {
 		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "%s", glewGetErrorString(res));
+		throw std::runtime_error("Render device could not be initialized");
 	}
 
 	struct FBOData fboWindowData;
@@ -646,6 +651,9 @@ static void addAllAttributes(GLuint program, const String& vertexShaderText, uin
 		return;
 	}
 
+	// FIXME: This code assumes attributes are listed in order, which isn't
+	// true for all compilers. It's safe to ignore for now because OpenGL versions
+	// requiring this aren't being used.
 	GLint numActiveAttribs = 0;
 	GLint maxAttribNameLength = 0;
 

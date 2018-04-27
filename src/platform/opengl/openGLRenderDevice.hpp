@@ -77,7 +77,7 @@ public:
 		ATTACHMENT_STENCIL = GL_STENCIL_ATTACHMENT,
 	};
 	
-	static void globalInit();
+	static bool globalInit();
 	OpenGLRenderDevice(Window& window);
 	virtual ~OpenGLRenderDevice();
 
@@ -169,4 +169,5 @@ private:
 
 	uint32 getVersion();
 	String getShaderVersion();
+	NULL_COPY_AND_ASSIGN(OpenGLRenderDevice)
 };
