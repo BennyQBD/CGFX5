@@ -2,6 +2,7 @@
 
 #include "renderDevice.hpp"
 #include "arrayBitmap.hpp"
+#include "ddstexture.hpp"
 
 class Texture
 {
@@ -18,6 +19,17 @@ public:
 		height((uint32)texData.getHeight()),
    		compressed(shouldCompress),
 		mipmaps(generateMipmaps) {}
+
+	inline Texture(RenderDevice& deviceIn, const DDSTexture& ddsTexture) :
+		device(&deviceIn),
+		texId(device->createDDSTexture2D(ddsTexture.getWidth(), ddsTexture.getHeight(),
+					ddsTexture.getBuffer(), ddsTexture.getFourCC(),
+					ddsTexture.getMipMapCount())),
+		width(ddsTexture.getWidth()),
+		height(ddsTexture.getHeight()),
+		compressed(true),
+		mipmaps(ddsTexture.getMipMapCount() > 1) {}
+		
 	inline ~Texture()
 	{
 		texId = device->releaseTexture2D(texId);

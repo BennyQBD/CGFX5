@@ -406,6 +406,50 @@ uint32 OpenGLRenderDevice::createTexture2D(int32 width, int32 height, const void
 	return textureHandle;
 }
 
+uint32 OpenGLRenderDevice::createDDSTexture2D(uint32 width, uint32 height, const unsigned char* buffer, uint32 fourCC, uint32 mipMapCount)
+{
+	GLint format;
+	switch(fourCC)
+	{
+	case FOURCC_DXT1:
+		format = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+		break;
+	case FOURCC_DXT3:
+		format = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+		break;
+	case FOURCC_DXT5:
+		format = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+		break;
+	default:
+		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "Invalid compression format for DDS texture\n");
+		return 0;
+	}
+	
+    GLuint textureID;
+    glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	unsigned int blockSize = (format == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) ? 8 : 16;
+	unsigned int offset = 0;
+
+	for (unsigned int level = 0; level < mipMapCount && (width || height); ++level)
+	{
+		unsigned int size = ((width+3)/4)*((height+3)/4)*blockSize;
+		glCompressedTexImage2D(GL_TEXTURE_2D, level, format, width, height, 
+			0, size, buffer + offset);
+
+		offset += size;
+		width  /= 2;
+		height /= 2;
+	}
+
+	return textureID;
+}
+
 uint32 OpenGLRenderDevice::releaseTexture2D(uint32 texture2D)
 {
 	if(texture2D == 0) {

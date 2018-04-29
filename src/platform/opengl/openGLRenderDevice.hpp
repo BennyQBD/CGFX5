@@ -6,6 +6,18 @@
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 
+#define MAKEFOURCC(a, b, c, d)                              \
+                ((uint32)(uint8)(a) | ((uint32)(uint8)(b) << 8) |       \
+				((uint32)(uint8)(c) << 16) | ((uint32)(uint8)(d) << 24 ))
+
+#define MAKEFOURCCDXT(a) MAKEFOURCC('D', 'X', 'T', a)
+
+#define FOURCC_DXT1 MAKEFOURCCDXT('1')
+#define FOURCC_DXT2 MAKEFOURCCDXT('2')
+#define FOURCC_DXT3 MAKEFOURCCDXT('3')
+#define FOURCC_DXT4 MAKEFOURCCDXT('4')
+#define FOURCC_DXT5 MAKEFOURCCDXT('5')
+
 typedef SDL_GLContext DeviceContext;
 
 class OpenGLRenderDevice
@@ -107,6 +119,7 @@ public:
 	uint32 createTexture2D(int32 width, int32 height, const void* data,
 			enum PixelFormat dataFormat, enum PixelFormat internalFormat,
 			bool generateMipmaps, bool compress);
+	uint32 createDDSTexture2D(uint32 width, uint32 height, const unsigned char* buffer, uint32 fourCC, uint32 mipMapCount);
 	uint32 releaseTexture2D(uint32 texture2D);
 
 	uint32 createUniformBuffer(const void* data, uintptr dataSize, enum BufferUsage usage);

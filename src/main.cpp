@@ -43,20 +43,23 @@ static int runApp(Application* app)
 	model.addIndices3i(0, 1, 2);
 	VertexArray vertexArray(device, model, RenderDevice::USAGE_STATIC_DRAW);
 	Sampler sampler(device, RenderDevice::FILTER_NEAREST_MIPMAP_LINEAR);
-	ArrayBitmap bitmap;
-	if(!bitmap.load("./res/textures/bricks.jpg")) {
+//	ArrayBitmap bitmap;
+//	if(!bitmap.load("./res/textures/bricks.jpg")) {
+//		DEBUG_LOG("Main", LOG_ERROR, "Could not load texture!");
+//		return 1;
+//	}
+//	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, true);
+	DDSTexture ddsTexture;
+	if(!ddsTexture.load("./res/textures/bricks.dds")) {
 		DEBUG_LOG("Main", LOG_ERROR, "Could not load texture!");
 		return 1;
 	}
-	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, true);
+	Texture texture(device, ddsTexture);
 
 	String shaderText;
 	StringFuncs::loadTextFileWithIncludes(shaderText, "./res/shaders/basicShader.glsl", "#include");
 	Shader shader(device, shaderText);
 	shader.setSampler("diffuse", texture, sampler, 0);
-
-	StringFuncs::loadTextFileWithIncludes(shaderText, "./res/shaders/nullShader.glsl", "#include");
-	Shader shader2(device, shaderText);
 	
 	Matrix perspective(Matrix::perspective(Math::toRadians(70.0f/2.0f),
 				4.0f/3.0f, 0.1f, 1000.0f));
@@ -119,16 +122,7 @@ static int runApp(Application* app)
 		if(shouldRender) {
 			// Begin scene render
 			context.clear(color);
-			int32 debuggerTemp = 0;
-			if(debuggerTemp == 0) {
-				context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
-			} else if(debuggerTemp == 1) {
-				context.draw(shader2, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
-			} else if(debuggerTemp == 2) {
-				context.draw(shader2, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, 1);
-			} else if(debuggerTemp == 3) {
-				context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, 1);
-			}
+			context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
 			// End scene render
 			
 			window.present();
