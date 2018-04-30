@@ -90,16 +90,16 @@ public:
 		FACE_CULL_FRONT_AND_BACK = GL_FRONT_AND_BACK,
 	};
 
-	enum DepthFunc
+	enum DrawFunc
 	{
-		DEPTH_FUNC_NEVER = GL_NEVER,
-		DEPTH_FUNC_ALWAYS = GL_ALWAYS,
-		DEPTH_FUNC_LESS = GL_LESS,
-		DEPTH_FUNC_GREATER = GL_GREATER,
-		DEPTH_FUNC_LEQUAL = GL_LEQUAL,
-		DEPTH_FUNC_GEQUAL = GL_GEQUAL,
-		DEPTH_FUNC_EQUAL = GL_EQUAL,
-		DEPTH_FUNC_NOT_EQUAL = GL_NOTEQUAL,
+		DRAW_FUNC_NEVER = GL_NEVER,
+		DRAW_FUNC_ALWAYS = GL_ALWAYS,
+		DRAW_FUNC_LESS = GL_LESS,
+		DRAW_FUNC_GREATER = GL_GREATER,
+		DRAW_FUNC_LEQUAL = GL_LEQUAL,
+		DRAW_FUNC_GEQUAL = GL_GEQUAL,
+		DRAW_FUNC_EQUAL = GL_EQUAL,
+		DRAW_FUNC_NOT_EQUAL = GL_NOTEQUAL,
 	};
 
 	enum FramebufferAttachment
@@ -119,11 +119,32 @@ public:
 		BLEND_FUNC_DST_ALPHA = GL_DST_ALPHA,
 	};
 
+	enum StencilOp
+	{
+		STENCIL_KEEP = GL_KEEP,
+		STENCIL_ZERO = GL_ZERO,
+		STENCIL_REPLACE = GL_REPLACE,
+		STENICL_INCR = GL_INCR,
+		STENCIL_INCR_WRAP = GL_INCR_WRAP,
+		STENCIL_DECR_WRAP = GL_DECR_WRAP,
+		STENCIL_DECR = GL_DECR,
+		STENCIL_INVERT = GL_INVERT,
+	};
+
 	struct DrawParams
 	{
 		enum PrimitiveType primitiveType = PRIMITIVE_TRIANGLES;
 		enum FaceCulling faceCulling = FACE_CULL_NONE;
-		enum DepthFunc depthFunc = DEPTH_FUNC_ALWAYS;
+		enum DrawFunc depthFunc = DRAW_FUNC_ALWAYS;
+		bool shouldWriteDepth = true;
+		bool useStencilTest = false;
+		enum DrawFunc stencilFunc = DRAW_FUNC_ALWAYS;
+		uint32 stencilTestMask = 0;
+		uint32 stencilWriteMask = 0;
+		int32 stencilComparisonVal = 0;
+		enum StencilOp stencilFail = STENCIL_KEEP;
+		enum StencilOp stencilPassButDepthFail = STENCIL_KEEP;
+		enum StencilOp stencilPass = STENCIL_KEEP;
 		bool useScissorTest = false;
 		uint32 scissorStartX = 0;
 		uint32 scissorStartY = 0;
@@ -136,12 +157,6 @@ public:
 	static bool globalInit();
 	OpenGLRenderDevice(Window& window);
 	virtual ~OpenGLRenderDevice();
-
-	// TODO: Finish this!
-	// NOTE: More detailed comments about what to do and how to do it in the cpp file
-	// - Set scissor rect?
-	// - Depth stencil!
-	// - Blend states?
 
 	uint32 createRenderTarget(uint32 texture, int32 width, int32 height,
 			enum FramebufferAttachment attachment, uint32
@@ -220,19 +235,32 @@ private:
 	uint32 boundVAO;
 	uint32 boundShader;
 	enum FaceCulling currentFaceCulling;
-	enum DepthFunc currentDepthFunc;
+	enum DrawFunc currentDepthFunc;
 	enum BlendFunc currentSourceBlend;
 	enum BlendFunc currentDestBlend;
+	enum DrawFunc currentStencilFunc;
+	uint32 currentStencilTestMask;
+	uint32 currentStencilWriteMask;
+	int32 currentStencilComparisonVal;
+	enum StencilOp currentStencilFail;
+	enum StencilOp currentStencilPassButDepthFail;
+	enum StencilOp currentStencilPass;
 	bool blendingEnabled;
+	bool shouldWriteDepth;
+	bool stencilTestEnabled;
 	bool scissorTestEnabled;
-
+	
 	void setFBO(uint32 fbo);
 	void setViewport(uint32 fbo);
 	void setVAO(uint32 vao);
 	void setShader(uint32 shader);
 	void setFaceCulling(enum FaceCulling faceCulling);
-	void setDepthFunc(enum DepthFunc depthFunc);
+	void setDepthTest(bool shouldWrite, enum DrawFunc depthFunc);
 	void setBlending(enum BlendFunc sourceBlend, enum BlendFunc destBlend);
+	void setStencilTest(bool enable, enum DrawFunc stencilFunc, uint32 stencilTestMask,
+			uint32 stencilWriteMask, int32 stencilComparisonVal, enum StencilOp stencilFail,
+			enum StencilOp stencilPassButDepthFail, enum StencilOp stencilPass);
+	void setStencilWriteMask(uint32 mask);
 	void setScissorTest(bool enable, uint32 startX = 0, uint32 startY = 0,
 			uint32 width = 0, uint32 height = 0);
 

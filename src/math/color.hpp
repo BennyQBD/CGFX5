@@ -34,6 +34,7 @@ public:
 
 	FORCEINLINE float getLuminance() const;
 	FORCEINLINE Color quantized() const;
+	FORCEINLINE int32 toInt() const;
 
 	FORCEINLINE Color contrastAdjust(float contrast) const;
 	FORCEINLINE Color saturationAdjust(float saturation) const;
@@ -136,6 +137,19 @@ FORCEINLINE Color Color::quantized() const
 		vals[i] = Math::roundToFloat(vals[i]);
 	}
 	return Color(Vector::load4f(vals) / conversionAmt);
+}
+
+FORCEINLINE int32 Color::toInt() const
+{
+	float vals[4];
+	Vector conversionAmt(Vector::load1f(255.0f));
+	(data * conversionAmt).store4f(vals);
+	uint32 result = 0;
+	for(uint32 i = 0; i < 4; i++) {
+		vals[i] = Math::clamp(vals[i], 0.0f, 255.0f);
+		result = (result << 8) | (uint32)Math::roundToInt(vals[i]);
+	}
+	return (int32)result;
 }
 
 

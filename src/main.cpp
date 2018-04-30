@@ -52,11 +52,12 @@ static int runApp(Application* app)
 	VertexArray vertexArray(device, models[0], RenderDevice::USAGE_STATIC_DRAW);
 	Sampler sampler(device, RenderDevice::FILTER_LINEAR_MIPMAP_LINEAR);
 //	ArrayBitmap bitmap;
+//	bitmap.set(0,0, Color::WHITE.toInt());
 //	if(!bitmap.load("./res/textures/bricks.jpg")) {
 //		DEBUG_LOG("Main", LOG_ERROR, "Could not load texture!");
 //		return 1;
 //	}
-//	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, true);
+//	Texture texture(device, bitmap, RenderDevice::FORMAT_RGB, true, false);
 	DDSTexture ddsTexture;
 	if(!ddsTexture.load("./res/textures/bricks.dds")) {
 		DEBUG_LOG("Main", LOG_ERROR, "Could not load texture!");
@@ -91,6 +92,14 @@ static int runApp(Application* app)
 		transformMatrixBaseArray.push_back(transform.toMatrix());
 	}
 	transform.setTranslation(Vector3f(0.0f,0.0f,0.0f));
+	
+	RenderDevice::DrawParams drawParams;
+	drawParams.primitiveType = RenderDevice::PRIMITIVE_TRIANGLES;
+	drawParams.faceCulling = RenderDevice::FACE_CULL_BACK;
+	drawParams.shouldWriteDepth = true;
+	drawParams.depthFunc = RenderDevice::DRAW_FUNC_LESS;
+//	drawParams.sourceBlend = RenderDevice::BLEND_FUNC_ONE;
+//	drawParams.destBlend = RenderDevice::BLEND_FUNC_ONE;
 	// End scene creation
 
 	uint32 fps = 0;
@@ -98,7 +107,6 @@ static int runApp(Application* app)
 	double fpsTimeCounter = 0.0;
 	double updateTimer = 1.0;
 	float frameTime = 1.0/60.0;
-	
 	while(app->isRunning()) {
 		double currentTime = Time::getTime();
 		double passedTime = currentTime - lastTime;
@@ -134,12 +142,6 @@ static int runApp(Application* app)
 		if(shouldRender) {
 			// Begin scene render
 			context.clear(color, true);
-			RenderDevice::DrawParams drawParams;
-			drawParams.primitiveType = RenderDevice::PRIMITIVE_TRIANGLES;
-			drawParams.faceCulling = RenderDevice::FACE_CULL_BACK;
-			drawParams.depthFunc = RenderDevice::DEPTH_FUNC_ALWAYS;
-//			drawParams.sourceBlend = RenderDevice::BLEND_FUNC_ONE;
-//			drawParams.destBlend = RenderDevice::BLEND_FUNC_ONE;
 			context.draw(shader, vertexArray, drawParams, numInstances);
 			// End scene render
 			

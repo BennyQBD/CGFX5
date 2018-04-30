@@ -52,10 +52,19 @@ OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
 	boundVAO(0),
 	boundShader(0),
 	currentFaceCulling(FACE_CULL_NONE),
-	currentDepthFunc(DEPTH_FUNC_ALWAYS),
+	currentDepthFunc(DRAW_FUNC_ALWAYS),
 	currentSourceBlend(BLEND_FUNC_NONE),
 	currentDestBlend(BLEND_FUNC_NONE),
+	currentStencilFunc(DRAW_FUNC_ALWAYS),
+	currentStencilTestMask((uint32)0xFFFFFFFF),
+	currentStencilWriteMask((uint32)0xFFFFFFFF),
+	currentStencilComparisonVal(0),
+	currentStencilFail(STENCIL_KEEP),
+	currentStencilPassButDepthFail(STENCIL_KEEP),
+	currentStencilPass(STENCIL_KEEP),
 	blendingEnabled(false),
+	shouldWriteDepth(false),
+	stencilTestEnabled(false),
 	scissorTestEnabled(false)
 {
 	context = SDL_GL_CreateContext(window.getWindowHandle());
@@ -70,6 +79,12 @@ OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
 	fboWindowData.width = window.getWidth();
 	fboWindowData.height = window.getHeight();
 	fboMap[0] = fboWindowData;
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(DRAW_FUNC_ALWAYS);
+	glDepthMask(GL_FALSE);
+//	glEnable(GL_FRAMEBUFFER_SRGB);
+	glFrontFace(GL_CW);
 }
 
 OpenGLRenderDevice::~OpenGLRenderDevice()
@@ -91,11 +106,12 @@ void OpenGLRenderDevice::clear(uint32 fbo, bool shouldClearColor, bool shouldCle
 	}
 	if(shouldClearStencil) {
 		flags |= GL_STENCIL_BUFFER_BIT;
-		glStencilMask(stencil);
+		setStencilWriteMask(stencil);
 	}
 
 	glClear(flags);
 }
+
 
 /*
  * Complete drawing process:
@@ -130,7 +146,7 @@ void OpenGLRenderDevice::draw(uint32 fbo, uint32 shader, uint32 vao,
 			drawParams.scissorStartX, drawParams.scissorStartY,
 			drawParams.scissorWidth, drawParams.scissorHeight);
 	setFaceCulling(drawParams.faceCulling);
-	setDepthFunc(drawParams.depthFunc);
+	setDepthTest(drawParams.shouldWriteDepth, drawParams.depthFunc);
 	setShader(shader);
 	setVAO(vao);
 
@@ -147,6 +163,11 @@ void OpenGLRenderDevice::setFBO(uint32 fbo)
 	if(fbo == boundFBO) {
 		return;
 	}
+//	if(fbo == 0) {
+//		glEnable(GL_FRAMEBUFFER_SRGB);
+//	} else if(boundFBO == 0) {
+//		glDisable(GL_FRAMEBUFFER_SRGB);
+//	}
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	boundFBO = fbo;
 }
@@ -232,16 +253,60 @@ void OpenGLRenderDevice::setFaceCulling(enum FaceCulling cullingMode)
 	currentFaceCulling = cullingMode;
 }
 
-void OpenGLRenderDevice::setDepthFunc(enum DepthFunc depthFunc)
+void OpenGLRenderDevice::setDepthTest(bool shouldWrite, enum DrawFunc depthFunc)
 {
+	if(shouldWrite != shouldWriteDepth) {
+		glDepthMask(shouldWrite ? GL_TRUE : GL_FALSE);
+		shouldWriteDepth = shouldWrite;
+	}
+
 	if(depthFunc == currentDepthFunc) {
 		return;
 	}
-	if(currentDepthFunc == DEPTH_FUNC_ALWAYS) {
-		glEnable(GL_DEPTH_TEST);
-	}
 	glDepthFunc(depthFunc);
 	currentDepthFunc = depthFunc;
+}
+
+void OpenGLRenderDevice::setStencilTest(bool enable, enum DrawFunc stencilFunc,
+		uint32 stencilTestMask, uint32 stencilWriteMask, int32 stencilComparisonVal,
+		enum StencilOp stencilFail, enum StencilOp stencilPassButDepthFail,
+		enum StencilOp stencilPass)
+{
+	if(enable != stencilTestEnabled) {
+		if(enable) {
+			glEnable(GL_STENCIL_TEST);
+		} else {
+			glDisable(GL_STENCIL_TEST);
+		}
+		stencilTestEnabled = enable;
+	}
+
+	if(stencilFunc != currentStencilFunc || stencilTestMask != currentStencilTestMask
+			|| stencilComparisonVal != currentStencilComparisonVal) {
+		glStencilFunc(stencilFunc, stencilTestMask, stencilComparisonVal);
+		currentStencilComparisonVal = stencilComparisonVal;
+		currentStencilTestMask = stencilTestMask;
+		currentStencilFunc = stencilFunc;
+	}
+
+	if(stencilFail != currentStencilFail || stencilPass != currentStencilPass
+			|| stencilPassButDepthFail != currentStencilPassButDepthFail) {
+		glStencilOp(stencilFail, stencilPassButDepthFail, stencilPass);
+		currentStencilFail = stencilFail;
+		currentStencilPass = stencilPass;
+		currentStencilPassButDepthFail = stencilPassButDepthFail;
+	}
+
+	setStencilWriteMask(stencilWriteMask);
+}
+
+void OpenGLRenderDevice::setStencilWriteMask(uint32 mask)
+{
+	if(currentStencilWriteMask == mask) {
+		return;
+	}
+	glStencilMask(mask);
+	currentStencilWriteMask = mask;
 }
 
 
@@ -430,24 +495,42 @@ uint32 OpenGLRenderDevice::releaseSampler(uint32 sampler)
 	return 0;
 }
 
-static GLint getOpenGLFormat(enum OpenGLRenderDevice::PixelFormat format, bool compress)
+static GLint getOpenGLFormat(enum OpenGLRenderDevice::PixelFormat format)
+{
+	switch(format) {
+	case OpenGLRenderDevice::FORMAT_R: return GL_RED;
+	case OpenGLRenderDevice::FORMAT_RG: return GL_RG;
+	case OpenGLRenderDevice::FORMAT_RGB: return GL_RGB;
+	case OpenGLRenderDevice::FORMAT_RGBA: return GL_RGBA;
+	case OpenGLRenderDevice::FORMAT_DEPTH: return GL_DEPTH_COMPONENT;
+	case OpenGLRenderDevice::FORMAT_DEPTH_AND_STENCIL: return GL_DEPTH_STENCIL;
+	default:
+		DEBUG_LOG(LOG_TYPE_RENDERER, LOG_ERROR, "PixelFormat %d is not a valid PixelFormat.",
+				format);
+		return 0;
+	};
+}
+
+static GLint getOpenGLInternalFormat(enum OpenGLRenderDevice::PixelFormat format, bool compress)
 {
 	switch(format) {
 	case OpenGLRenderDevice::FORMAT_R: return GL_RED;
 	case OpenGLRenderDevice::FORMAT_RG: return GL_RG;
 	case OpenGLRenderDevice::FORMAT_RGB: 
 		if(compress) {
-			return GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
+			return GL_COMPRESSED_SRGB_S3TC_DXT1_EXT;
 		} else {
 			return GL_RGB;
+			//return GL_SRGB;
 		}
 	case OpenGLRenderDevice::FORMAT_RGBA:
 		if(compress) {
 			// TODO: Decide on the default RGBA compression scheme
 //			return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
-			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+			return GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT;
 		} else {
 			return GL_RGBA;
+			//return GL_SRGB_ALPHA;
 		}
 	case OpenGLRenderDevice::FORMAT_DEPTH: return GL_DEPTH_COMPONENT;
 	case OpenGLRenderDevice::FORMAT_DEPTH_AND_STENCIL: return GL_DEPTH_STENCIL;
@@ -458,12 +541,13 @@ static GLint getOpenGLFormat(enum OpenGLRenderDevice::PixelFormat format, bool c
 	};
 }
 
+
 uint32 OpenGLRenderDevice::createTexture2D(int32 width, int32 height, const void* data,
 			enum PixelFormat dataFormat, enum PixelFormat internalFormatIn,
 			bool generateMipmaps, bool compress)
 {
-	GLint format = getOpenGLFormat(dataFormat, false);
-	GLint internalFormat = getOpenGLFormat(internalFormatIn, compress);
+	GLint format = getOpenGLFormat(dataFormat);
+	GLint internalFormat = getOpenGLInternalFormat(internalFormatIn, compress);
 	GLenum textureTarget = GL_TEXTURE_2D;
 	GLuint textureHandle;
 
