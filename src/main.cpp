@@ -4,6 +4,7 @@
 #include "core/memory.hpp"
 #include "math/transform.hpp"
 #include "rendering/renderContext.hpp"
+#include "rendering/modelLoader.hpp"
 
 #include "core/timing.hpp"
 #include "tests.hpp"
@@ -27,22 +28,29 @@ static int runApp(Application* app)
 	RenderTarget target(device);
 	RenderContext context(device, target);
 
-	IndexedModel model;
-	model.allocateElement(3); // Positions
-	model.allocateElement(2); // TexCoords
-	model.setInstancedElementStartIndex(2); // Begin instanced data
-	model.allocateElement(16); // Transform matrix
-	
-	model.addElement3f(0, -0.5f, -0.5f, 0.0f);
-	model.addElement3f(0, 0.0f, 0.5f, 0.0f);
-	model.addElement3f(0, 0.5f, -0.5f, 0.0f);
-	model.addElement2f(1, 0.0f, 0.0f);
-	model.addElement2f(1, 0.5f, 1.0f);
-	model.addElement2f(1, 1.0f, 0.0f);
+	Array<IndexedModel> models;
+	Array<uint32> modelMaterialIndices;
+	Array<MaterialSpec> modelMaterials;
+	ModelLoader::loadModels("./res/models/monkey3.obj", models,
+			modelMaterialIndices, modelMaterials);
+//	IndexedModel model;
+//	model.allocateElement(3); // Positions
+//	model.allocateElement(2); // TexCoords
+//	model.allocateElement(3); // Normals
+//	model.allocateElement(3); // Tangents
+//	model.setInstancedElementStartIndex(4); // Begin instanced data
+//	model.allocateElement(16); // Transform matrix
+//	
+//	model.addElement3f(0, -0.5f, -0.5f, 0.0f);
+//	model.addElement3f(0, 0.0f, 0.5f, 0.0f);
+//	model.addElement3f(0, 0.5f, -0.5f, 0.0f);
+//	model.addElement2f(1, 0.0f, 0.0f);
+//	model.addElement2f(1, 0.5f, 1.0f);
+//	model.addElement2f(1, 1.0f, 0.0f);
+//	model.addIndices3i(0, 1, 2);
 
-	model.addIndices3i(0, 1, 2);
-	VertexArray vertexArray(device, model, RenderDevice::USAGE_STATIC_DRAW);
-	Sampler sampler(device, RenderDevice::FILTER_NEAREST_MIPMAP_LINEAR);
+	VertexArray vertexArray(device, models[0], RenderDevice::USAGE_STATIC_DRAW);
+	Sampler sampler(device, RenderDevice::FILTER_LINEAR_MIPMAP_LINEAR);
 //	ArrayBitmap bitmap;
 //	if(!bitmap.load("./res/textures/bricks.jpg")) {
 //		DEBUG_LOG("Main", LOG_ERROR, "Could not load texture!");
@@ -65,17 +73,24 @@ static int runApp(Application* app)
 				4.0f/3.0f, 0.1f, 1000.0f));
 	float amt = 0.0f;
 	Color color(0.0f, 0.15f, 0.3f);
-	float randZ = 10.0f;
+	float randZ = 20.0f;
 	float randScaleX = randZ * window.getWidth()/(float)window.getHeight();
 	float randScaleY = randZ;
 	
 	uint32 numInstances = 1000;
 	Matrix transformMatrix(Matrix::identity());
 	Transform transform;
-	Array<Matrix> transformMatrixArray(numInstances);
+	Array<Matrix> transformMatrixArray;
+	Array<Matrix> transformMatrixBaseArray;
 	for(uint32 i = 0; i < numInstances; i++) {
 		transformMatrixArray.push_back(Matrix::identity());
+		transform.setTranslation(Vector3f(
+					(Math::randf() * randScaleX)-randScaleX/2.0f,
+					(Math::randf() * randScaleY)-randScaleY/2.0f,
+					randZ));
+		transformMatrixBaseArray.push_back(transform.toMatrix());
 	}
+	transform.setTranslation(Vector3f(0.0f,0.0f,0.0f));
 	// End scene creation
 
 	uint32 fps = 0;
@@ -83,6 +98,7 @@ static int runApp(Application* app)
 	double fpsTimeCounter = 0.0;
 	double updateTimer = 1.0;
 	float frameTime = 1.0/60.0;
+	
 	while(app->isRunning()) {
 		double currentTime = Time::getTime();
 		double passedTime = currentTime - lastTime;
@@ -104,13 +120,9 @@ static int runApp(Application* app)
 			// Begin scene update
 			transform.setRotation(Quaternion(Vector3f(1.0f, 1.0f, 1.0f).normalized(), amt*10.0f/11.0f));
 			for(uint32 i = 0; i < transformMatrixArray.size(); i++) {
-				transform.setTranslation(Vector3f(
-							(Math::randf() * randScaleX)-randScaleX/2.0f,
-							(Math::randf() * randScaleY)-randScaleY/2.0f,
-							randZ));
-				transformMatrixArray[i] = (perspective * transform.toMatrix());
+				transformMatrixArray[i] = (perspective * transformMatrixBaseArray[i] * transform.toMatrix());
 			}
-			vertexArray.updateBuffer(2, &transformMatrixArray[0],
+			vertexArray.updateBuffer(4, &transformMatrixArray[0],
 					transformMatrixArray.size() * sizeof(Matrix));
 			amt += (float)frameTime/2.0f;
 			// End scene update
@@ -121,8 +133,14 @@ static int runApp(Application* app)
 		
 		if(shouldRender) {
 			// Begin scene render
-			context.clear(color);
-			context.draw(shader, vertexArray, RenderDevice::PRIMITIVE_TRIANGLES, numInstances);
+			context.clear(color, true);
+			RenderDevice::DrawParams drawParams;
+			drawParams.primitiveType = RenderDevice::PRIMITIVE_TRIANGLES;
+			drawParams.faceCulling = RenderDevice::FACE_CULL_BACK;
+			drawParams.depthFunc = RenderDevice::DEPTH_FUNC_ALWAYS;
+//			drawParams.sourceBlend = RenderDevice::BLEND_FUNC_ONE;
+//			drawParams.destBlend = RenderDevice::BLEND_FUNC_ONE;
+			context.draw(shader, vertexArray, drawParams, numInstances);
 			// End scene render
 			
 			window.present();

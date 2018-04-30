@@ -21,7 +21,7 @@ varying vec2 texCoord0;
 #if defined(VS_BUILD)
 Layout(0) attribute vec3 position;
 Layout(1) attribute vec2 texCoord;
-Layout(2) attribute mat4 transformMat;
+Layout(4) attribute mat4 transformMat;
 
 void main()
 {

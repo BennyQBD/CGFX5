@@ -50,7 +50,13 @@ OpenGLRenderDevice::OpenGLRenderDevice(Window& window) :
 	boundFBO(0),
 	viewportFBO(0),
 	boundVAO(0),
-	boundShader(0)
+	boundShader(0),
+	currentFaceCulling(FACE_CULL_NONE),
+	currentDepthFunc(DEPTH_FUNC_ALWAYS),
+	currentSourceBlend(BLEND_FUNC_NONE),
+	currentDestBlend(BLEND_FUNC_NONE),
+	blendingEnabled(false),
+	scissorTestEnabled(false)
 {
 	context = SDL_GL_CreateContext(window.getWindowHandle());
 	glewExperimental = GL_TRUE;
@@ -93,38 +99,45 @@ void OpenGLRenderDevice::clear(uint32 fbo, bool shouldClearColor, bool shouldCle
 
 /*
  * Complete drawing process:
- * - Ensure appropriate render targets are bound
- * - Ensure appropriate sized rendering viewport
- * - Ensure appropriate blend mode for each render target
- * - Ensure appropriate scissor rect, if any
- * - Ensure appropriate polygon and culling modes
- * - Ensure appropriate depth and stencil modes
- * - Ensure appropriate shader programs are bound
- * - Update appropriate uniform buffers
- * - Bind appropriate textures/samplers
- * - Update shader with appropriate samplers and uniform buffers
- * - Bind the element array buffer and vertex attributes
- * - If only 1 instance is being rendered, issue a draw call to render
+ * + Ensure appropriate render targets are bound
+ * + Ensure appropriate sized rendering viewport
+ * + Ensure appropriate blend mode for each render target
+ * + Ensure appropriate scissor rect, if any
+ * + Ensure appropriate polygon and culling modes
+ * + Ensure appropriate depth modes
+ * - Ensure appropriate stencil modes
+ * + Ensure appropriate shader programs are bound
+ * = Update appropriate uniform buffers
+ * = Bind appropriate textures/samplers
+ * = Update shader with appropriate samplers and uniform buffers
+ * + Bind the element array buffer and vertex attributes
+ * + If only 1 instance is being rendered, issue a draw call to render
  * the indexed primitive array
- * - Otherwise, perform an instanced draw call for the number of desired
+ * + Otherwise, perform an instanced draw call for the number of desired
  * instances
  */
 void OpenGLRenderDevice::draw(uint32 fbo, uint32 shader, uint32 vao,
-		enum PrimitiveType primitiveType, uint32 numInstances, uint32 numElements)
+		const DrawParams& drawParams,
+		uint32 numInstances, uint32 numElements)
 {
 	if(numInstances == 0) {
 		return;
 	}
 	setFBO(fbo);
 	setViewport(fbo);
-//	glBlendMode(...);
+	setBlending(drawParams.sourceBlend, drawParams.destBlend);
+	setScissorTest(drawParams.useScissorTest,
+			drawParams.scissorStartX, drawParams.scissorStartY,
+			drawParams.scissorWidth, drawParams.scissorHeight);
+	setFaceCulling(drawParams.faceCulling);
+	setDepthFunc(drawParams.depthFunc);
 	setShader(shader);
 	setVAO(vao);
 
 	if(numInstances == 1) {
-		glDrawElements(primitiveType, (GLsizei)numElements, GL_UNSIGNED_INT, 0);
+		glDrawElements(drawParams.primitiveType, (GLsizei)numElements, GL_UNSIGNED_INT, 0);
 	} else {
-		glDrawElementsInstanced(primitiveType, (GLsizei)numElements, GL_UNSIGNED_INT, 0,
+		glDrawElementsInstanced(drawParams.primitiveType, (GLsizei)numElements, GL_UNSIGNED_INT, 0,
 				numInstances);
 	}
 }
@@ -164,6 +177,73 @@ void OpenGLRenderDevice::setVAO(uint32 vao)
 	glBindVertexArray(vao);
 	boundVAO = vao;
 }
+
+void OpenGLRenderDevice::setBlending(enum BlendFunc sourceBlend, enum BlendFunc destBlend)
+{
+	if(sourceBlend == currentSourceBlend && destBlend == currentDestBlend) {
+		return;
+	} else if(sourceBlend == BLEND_FUNC_NONE || destBlend == BLEND_FUNC_NONE) {
+		glDisable(GL_BLEND);
+	} else if(currentSourceBlend == BLEND_FUNC_NONE || currentDestBlend == BLEND_FUNC_NONE) {
+		glEnable(GL_BLEND);
+		glBlendFunc(sourceBlend, destBlend);
+	} else {
+		glBlendFunc(sourceBlend, destBlend);
+	}
+
+	currentSourceBlend = sourceBlend;
+	currentDestBlend = destBlend;
+}
+
+
+void OpenGLRenderDevice::setScissorTest(bool enable, uint32 startX, uint32 startY,
+			uint32 width, uint32 height)
+{
+	if(!enable) {
+		if(!scissorTestEnabled) {
+			return;
+		} else {
+			glDisable(GL_SCISSOR_TEST);
+			scissorTestEnabled = false;
+			return;
+		}
+	}
+	if(!scissorTestEnabled) {
+		glEnable(GL_SCISSOR_TEST);
+	}
+	glScissor(startX, startY, width, height);
+	scissorTestEnabled = true;
+}
+
+void OpenGLRenderDevice::setFaceCulling(enum FaceCulling cullingMode)
+{
+	if(cullingMode == currentFaceCulling) {
+		return;
+	}
+	
+	if(cullingMode == FACE_CULL_NONE) { // Face culling is enabled, but needs to be disabled
+		glDisable(GL_CULL_FACE);
+	} else if(currentFaceCulling == FACE_CULL_NONE) { // Face culling is disabled but needs to be enabled
+		glEnable(GL_CULL_FACE);
+		glCullFace(cullingMode);
+	} else { // Only need to change culling state
+		glCullFace(cullingMode);
+	}
+	currentFaceCulling = cullingMode;
+}
+
+void OpenGLRenderDevice::setDepthFunc(enum DepthFunc depthFunc)
+{
+	if(depthFunc == currentDepthFunc) {
+		return;
+	}
+	if(currentDepthFunc == DEPTH_FUNC_ALWAYS) {
+		glEnable(GL_DEPTH_TEST);
+	}
+	glDepthFunc(depthFunc);
+	currentDepthFunc = depthFunc;
+}
+
 
 uint32 OpenGLRenderDevice::createRenderTarget(uint32 texture,
 		int32 width, int32 height,

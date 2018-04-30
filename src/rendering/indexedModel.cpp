@@ -72,6 +72,14 @@ void IndexedModel::setInstancedElementStartIndex(uint32 elementIndex)
 	instancedElementsStartIndex = elementIndex;
 }
 
+//void IndexedModel::clear()
+//{
+//	instancedElementsStartIndex = -1;
+//	indices.clear();
+//	elementSizes.clear();
+//	elements.clear();
+//}
+
 uint32 IndexedModel::createVertexArray(RenderDevice& device,
 		enum RenderDevice::BufferUsage usage) const
 {

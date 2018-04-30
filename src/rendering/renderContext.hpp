@@ -16,9 +16,9 @@ public:
 			bool shouldClearStencil, const Color& color, uint32 stencil);
 	inline void clear(const Color& color, bool shouldClearDepth=false);
 	inline void draw(Shader& shader, VertexArray& vertexArray, 
-			enum RenderDevice::PrimitiveType primitive, uint32 numInstances=1);
+			const RenderDevice::DrawParams& drawParams, uint32 numInstances=1);
 	inline void draw(Shader& shader, VertexArray& vertexArray, 
-			enum RenderDevice::PrimitiveType primitive, uint32 numInstances,
+			const RenderDevice::DrawParams& drawParams, uint32 numInstances,
 			uint32 numIndices);
 
 private:
@@ -27,18 +27,18 @@ private:
 };
 
 inline void RenderContext::draw(Shader& shader, VertexArray& vertexArray, 
-			enum RenderDevice::PrimitiveType primitive, uint32 numInstances)
+			const RenderDevice::DrawParams& drawParams, uint32 numInstances)
 {
 	device->draw(target->getId(), shader.getId(), vertexArray.getId(),
-			primitive, numInstances, vertexArray.getNumIndices());
+			drawParams, numInstances, vertexArray.getNumIndices());
 }
 
 inline void RenderContext::draw(Shader& shader, VertexArray& vertexArray, 
-			enum RenderDevice::PrimitiveType primitive, uint32 numInstances,
+			const RenderDevice::DrawParams& drawParams, uint32 numInstances,
 			uint32 numIndices)
 {
 	device->draw(target->getId(), shader.getId(), vertexArray.getId(),
-			primitive, numInstances, numIndices);
+			drawParams, numInstances, numIndices);
 }
 
 inline void RenderContext::clear(bool shouldClearColor, bool shouldClearDepth,

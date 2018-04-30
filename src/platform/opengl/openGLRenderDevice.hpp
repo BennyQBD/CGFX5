@@ -82,11 +82,55 @@ public:
 		PRIMITIVE_PATCHES = GL_PATCHES,
 	};
 
+	enum FaceCulling
+	{
+		FACE_CULL_NONE,
+		FACE_CULL_BACK = GL_BACK,
+		FACE_CULL_FRONT = GL_FRONT,
+		FACE_CULL_FRONT_AND_BACK = GL_FRONT_AND_BACK,
+	};
+
+	enum DepthFunc
+	{
+		DEPTH_FUNC_NEVER = GL_NEVER,
+		DEPTH_FUNC_ALWAYS = GL_ALWAYS,
+		DEPTH_FUNC_LESS = GL_LESS,
+		DEPTH_FUNC_GREATER = GL_GREATER,
+		DEPTH_FUNC_LEQUAL = GL_LEQUAL,
+		DEPTH_FUNC_GEQUAL = GL_GEQUAL,
+		DEPTH_FUNC_EQUAL = GL_EQUAL,
+		DEPTH_FUNC_NOT_EQUAL = GL_NOTEQUAL,
+	};
+
 	enum FramebufferAttachment
 	{
 		ATTACHMENT_COLOR = GL_COLOR_ATTACHMENT0,
 		ATTACHMENT_DEPTH = GL_DEPTH_ATTACHMENT,
 		ATTACHMENT_STENCIL = GL_STENCIL_ATTACHMENT,
+	};
+
+	enum BlendFunc
+	{
+		BLEND_FUNC_NONE,
+		BLEND_FUNC_ONE = GL_ONE,
+		BLEND_FUNC_SRC_ALPHA = GL_SRC_ALPHA,
+		BLEND_FUNC_ONE_MINUS_SRC_ALPHA = GL_ONE_MINUS_SRC_ALPHA,
+		BLEND_FUNC_ONE_MINUS_DST_ALPHA = GL_ONE_MINUS_DST_ALPHA,
+		BLEND_FUNC_DST_ALPHA = GL_DST_ALPHA,
+	};
+
+	struct DrawParams
+	{
+		enum PrimitiveType primitiveType = PRIMITIVE_TRIANGLES;
+		enum FaceCulling faceCulling = FACE_CULL_NONE;
+		enum DepthFunc depthFunc = DEPTH_FUNC_ALWAYS;
+		bool useScissorTest = false;
+		uint32 scissorStartX = 0;
+		uint32 scissorStartY = 0;
+		uint32 scissorWidth = 0;
+		uint32 scissorHeight = 0;
+		enum BlendFunc sourceBlend = BLEND_FUNC_NONE;
+		enum BlendFunc destBlend = BLEND_FUNC_NONE;
 	};
 	
 	static bool globalInit();
@@ -119,7 +163,8 @@ public:
 	uint32 createTexture2D(int32 width, int32 height, const void* data,
 			enum PixelFormat dataFormat, enum PixelFormat internalFormat,
 			bool generateMipmaps, bool compress);
-	uint32 createDDSTexture2D(uint32 width, uint32 height, const unsigned char* buffer, uint32 fourCC, uint32 mipMapCount);
+	uint32 createDDSTexture2D(uint32 width, uint32 height, const unsigned char* buffer,
+			uint32 fourCC, uint32 mipMapCount);
 	uint32 releaseTexture2D(uint32 texture2D);
 
 	uint32 createUniformBuffer(const void* data, uintptr dataSize, enum BufferUsage usage);
@@ -136,7 +181,7 @@ public:
 	void clear(uint32 fbo,
 			bool shouldClearColor, bool shouldClearDepth, bool shouldClearStencil,
 			const Color& color, uint32 stencil);
-	void draw(uint32 fbo, uint32 shader, uint32 vao, enum PrimitiveType primitiveType,
+	void draw(uint32 fbo, uint32 shader, uint32 vao, const DrawParams& drawParams,
 			uint32 numInstances, uint32 numElements);
 private:
 	struct VertexArray
@@ -174,11 +219,22 @@ private:
 	uint32 viewportFBO;
 	uint32 boundVAO;
 	uint32 boundShader;
+	enum FaceCulling currentFaceCulling;
+	enum DepthFunc currentDepthFunc;
+	enum BlendFunc currentSourceBlend;
+	enum BlendFunc currentDestBlend;
+	bool blendingEnabled;
+	bool scissorTestEnabled;
 
 	void setFBO(uint32 fbo);
 	void setViewport(uint32 fbo);
 	void setVAO(uint32 vao);
 	void setShader(uint32 shader);
+	void setFaceCulling(enum FaceCulling faceCulling);
+	void setDepthFunc(enum DepthFunc depthFunc);
+	void setBlending(enum BlendFunc sourceBlend, enum BlendFunc destBlend);
+	void setScissorTest(bool enable, uint32 startX = 0, uint32 startY = 0,
+			uint32 width = 0, uint32 height = 0);
 
 	uint32 getVersion();
 	String getShaderVersion();
