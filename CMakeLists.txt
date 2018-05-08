@@ -102,5 +102,6 @@ target_link_libraries( CGFX5
 	${GLEW_LIBRARIES}
 	${SDL2_LIBRARIES}
 	${ASSIMP_LIBRARIES}
+	m
 )
 
