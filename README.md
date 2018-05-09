@@ -19,6 +19,7 @@ Base code for new 3D stuff
 	- WINDOWS
 		- [Visual Studio](http://www.visualstudio.com/)
 		- [CodeBlocks](http://www.codeblocks.org/)
+		- [CLion](https://www.jetbrains.com/clion/)
 
 ### NOTES for Dependencies ###
 On Unix/Linux/Mac you can likely install CMAKE, GLEW, SDL2 and ASSIMP with your package manager
