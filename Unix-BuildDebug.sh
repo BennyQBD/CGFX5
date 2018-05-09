@@ -16,6 +16,4 @@
 #it can be used by the Makefile
 cd build
 cmake -DCMAKE_BUILD_TYPE="Debug" ../
-make -j 4 && if [ -d ../res/ ]; then
-	mv ../res/ ./ 2>/dev/null
-fi
+make -j 4

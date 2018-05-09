@@ -24,5 +24,3 @@ fi
 
 cd build
 cmake -DCMAKE_BUILD_TYPE="$BUILD_TARGET" -G "CodeBlocks - Unix Makefiles" ../
-
-mv ../res/ ./

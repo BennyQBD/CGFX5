@@ -26,6 +26,4 @@ fi
 
 cd build
 cmake -DCMAKE_BUILD_TYPE="$BUILD_TARGET" "${@:1}" ../
-make -j 4 && if [ -d ../res/ ]; then
-	mv ../res/ ./
-fi
+make -j 4
