@@ -27,6 +27,9 @@ On Unix/Linux/Mac you can likely install CMAKE, GLEW, SDL2 and ASSIMP with your 
 # On ubuntu just run
 sudo apt install cmake libglew-dev libsdl2-dev libassimp-dev
 
+# On Arch Linux & variants just run
+sudo pacman -S cmake glew sdl2 assimp
+
 # On Mac with HomeBrew just run
 brew install cmake glew sdl2 assimp
 ```
