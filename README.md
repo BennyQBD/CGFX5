@@ -25,7 +25,7 @@ Base code for new 3D stuff
 On Unix/Linux/Mac you can likely install CMAKE, GLEW, SDL2 and ASSIMP with your package manager
 ```shell
 # On ubuntu just run
-sudo apt-get install cmake libglew-dev libsdl2-dev libassimp-dev
+sudo apt install cmake libglew-dev libsdl2-dev libassimp-dev
 
 # On Mac with HomeBrew just run
 brew install cmake glew sdl2 assimp
