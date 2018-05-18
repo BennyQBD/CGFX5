@@ -26,7 +26,7 @@ Layout(4) attribute mat4 transformMat;
 void main()
 {
     gl_Position = vec4(position, 1.0) * transformMat;
-    texCoord0 = texCoord; 
+    texCoord0 = texCoord;
 }
 
 #elif defined(FS_BUILD)
