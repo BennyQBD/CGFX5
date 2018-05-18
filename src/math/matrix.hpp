@@ -114,7 +114,7 @@ FORCEINLINE Matrix Matrix::perspective(float halfFov, float aspect,
 			Vector::make(rtanHalfFov, 0.0f, 0.0f, 0.0f),
 			Vector::make(0.0f, aspect * rtanHalfFov, 0.0f, 0.0f),
 			Vector::make(0.0f, 0.0f, scaleZ, offsetZ),
-			Vector::make(0.0f, 0.0f, 1.0f, 1.0f));
+			Vector::make(0.0f, 0.0f, 1.0f, 0.0f));
 }
 
 FORCEINLINE Matrix Matrix::transformMatrix(const Vector3f& translation,
