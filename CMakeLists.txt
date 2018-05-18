@@ -106,6 +106,6 @@ target_link_libraries( CGFX5
 
 file(GLOB_RECURSE RES RELATIVE ${CGFX5_SOURCE_DIR}/res/ ${CGFX5_SOURCE_DIR}/res/*.*)
 
-foreach(file ${RES})
+foreach(file IN LISTS RES)
 	configure_file(${CGFX5_SOURCE_DIR}/res/${file} ${CGFX5_BINARY_DIR}/res/${file} COPYONLY)
-endforeach(file ${RES})
+endforeach()
