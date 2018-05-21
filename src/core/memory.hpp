@@ -48,7 +48,7 @@ struct Memory
 
 	enum 
 	{
-		DEFAULT_ALIGNMENT = 0,
+		DEFAULT_ALIGNMENT = 16,
 		MIN_ALIGNMENT = 8
 	};
 
