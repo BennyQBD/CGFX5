@@ -12,6 +12,7 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 @echo off
+mkdir build
 cd build
 cmake ../
 mkdir Debug
