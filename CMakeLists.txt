@@ -55,7 +55,10 @@ add_definitions( -O2 )
 endif ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 
 # Lets LOAD app our headers!
-file(GLOB_RECURSE HDRS ${CGFX5_SOURCE_DIR}/src/*.h)
+file(GLOB_RECURSE HDRS
+	${CGFX5_SOURCE_DIR}/src/*.h
+	${CGFX5_SOURCE_DIR}/src/*.hpp
+)
 
 # Lets LOAD app our sources!
 file(GLOB_RECURSE SRCS
@@ -120,5 +123,15 @@ if(NOT EXISTS "${CGFX5_BINARY_DIR}/res")
 	file(GLOB_RECURSE RES RELATIVE ${CGFX5_SOURCE_DIR}/res/ ${CGFX5_SOURCE_DIR}/res/*.*)
 	foreach(file IN LISTS RES)
 		configure_file(${CGFX5_SOURCE_DIR}/res/${file} ${CGFX5_BINARY_DIR}/res/${file} COPYONLY)
+	endforeach()
+endif()
+
+#Create virtual folders to make it look nicer in VS
+if(MSVC_IDE)
+	foreach(source IN LISTS SRCS HDRS)
+		get_filename_component(source_path "${source}" PATH)
+		string(REPLACE "${CGFX5_SOURCE_DIR}" "" relative_source_path "${source_path}")
+		string(REPLACE "/" "\\" source_path_msvc "${relative_source_path}")
+		source_group("${source_path_msvc}" FILES "${source}")
 	endforeach()
 endif()
