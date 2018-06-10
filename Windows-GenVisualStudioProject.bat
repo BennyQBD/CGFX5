@@ -11,10 +11,11 @@
 :: WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
-
+@echo off
 cd build
 cmake ../
 mkdir Debug
 mkdir Release
 copy ..\lib\_bin\ Debug
 copy ..\lib\_bin\ Release
+cd ..

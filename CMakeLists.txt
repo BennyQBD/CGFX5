@@ -104,8 +104,21 @@ target_link_libraries( CGFX5
 	${ASSIMP_LIBRARIES}
 )
 
-file(GLOB_RECURSE RES RELATIVE ${CGFX5_SOURCE_DIR}/res/ ${CGFX5_SOURCE_DIR}/res/*.*)
+if(WIN32)
+	string(REPLACE "/" "\\" source_path_windows "${CGFX5_SOURCE_DIR}/res")
+	string(REPLACE "/" "\\" build_path_windows "${CGFX5_BINARY_DIR}/res")
+	execute_process(COMMAND cmd.exe /c mklink /J "${build_path_windows}" "${source_path_windows}" RESULT_VARIABLE exitcode)
+else()
+	execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CGFX5_SOURCE_DIR}/res ${CGFX5_BINARY_DIR}/res RESULT_VARIABLE exitcode)
+endif()
 
-foreach(file IN LISTS RES)
-	configure_file(${CGFX5_SOURCE_DIR}/res/${file} ${CGFX5_BINARY_DIR}/res/${file} COPYONLY)
-endforeach()
+#Fallback to copying should symlinking fail
+if(NOT EXISTS "${CGFX5_BINARY_DIR}/res")
+	MESSAGE("SYMLINKING FAILED: ${exitcode}")
+	MESSAGE("FALLING BACK TO COPYING")
+
+	file(GLOB_RECURSE RES RELATIVE ${CGFX5_SOURCE_DIR}/res/ ${CGFX5_SOURCE_DIR}/res/*.*)
+	foreach(file IN LISTS RES)
+		configure_file(${CGFX5_SOURCE_DIR}/res/${file} ${CGFX5_BINARY_DIR}/res/${file} COPYONLY)
+	endforeach()
+endif()
