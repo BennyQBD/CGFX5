@@ -14,4 +14,3 @@
 
 @echo off
 rmdir build /s /q
-mkdir build
