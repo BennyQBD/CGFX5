@@ -340,12 +340,11 @@ public:
 	{
 		const __m128 t0 = _mm_shuffle_ps(data, data, SSEVector_SHUFFLEMASK(1,2,0,3));
 		const __m128 t1 = _mm_shuffle_ps(other.data, other.data, 
-				SSEVector_SHUFFLEMASK(2,0,1,3));
-		const __m128 t3 = _mm_shuffle_ps(data, data, SSEVector_SHUFFLEMASK(2,0,1,3));
-		const __m128 t2 = _mm_shuffle_ps(other.data, other.data,
 				SSEVector_SHUFFLEMASK(1,2,0,3));
 		SSEVector vec;
-		vec.data = _mm_sub_ps(_mm_mul_ps(t0, t1), _mm_mul_ps(t2, t3));
+		vec.data = _mm_sub_ps(_mm_mul_ps(data, t1), _mm_mul_ps(other.data, t0));
+		vec.data = _mm_shuffle_ps(vec.data, vec.data,
+				SSEVector_SHUFFLEMASK(1,2,0,3));
 		return vec;
 	}
 
