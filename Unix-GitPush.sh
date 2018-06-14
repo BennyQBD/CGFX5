@@ -12,13 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#Move the res directory back to it's inital position
-mv ./build/res/ ./
-
 #Add everything to a new commit and push it to github
 git add -A
 git commit -S
 git push origin master
-
-#Move the res directory back to the working "build" directory
-mv ./res/ ./build/
