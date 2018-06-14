@@ -115,16 +115,16 @@ else()
 	execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CGFX5_SOURCE_DIR}/res ${CGFX5_BINARY_DIR}/res RESULT_VARIABLE exitcode)
 endif()
 
-#Fallback to copying should symlinking fail
-if(NOT EXISTS "${CGFX5_BINARY_DIR}/res")
+if(NOT ${exitcode} EQUAL 0)
 	MESSAGE("SYMLINKING FAILED: ${exitcode}")
 	MESSAGE("FALLING BACK TO COPYING")
-
-	file(GLOB_RECURSE RES RELATIVE ${CGFX5_SOURCE_DIR}/res/ ${CGFX5_SOURCE_DIR}/res/*.*)
-	foreach(file IN LISTS RES)
-		configure_file(${CGFX5_SOURCE_DIR}/res/${file} ${CGFX5_BINARY_DIR}/res/${file} COPYONLY)
-	endforeach()
 endif()
+
+#Copy file if the build resource folder contains an older version. This is ignored when the symlink was succesful because the files are already the newest version.
+file(GLOB_RECURSE RES RELATIVE ${CGFX5_SOURCE_DIR}/res/ ${CGFX5_SOURCE_DIR}/res/*.*)
+foreach(file IN LISTS RES)
+	configure_file(${CGFX5_SOURCE_DIR}/res/${file} ${CGFX5_BINARY_DIR}/res/${file} COPYONLY)
+endforeach()
 
 #Create virtual folders to make it look nicer in VS
 if(MSVC_IDE)
