@@ -12,12 +12,10 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 
-@echo off
-mkdir build
 cd build
 cmake ../
 mkdir Debug
 mkdir Release
 copy ..\lib\_bin\ Debug
 copy ..\lib\_bin\ Release
-cd ..
+move ..\res res
