@@ -22,6 +22,7 @@ else
 	BUILD_TARGET="$1"
 fi
 
-mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE="$BUILD_TARGET" -G "CodeBlocks - Unix Makefiles" ../
+
+mv ../res/ ./

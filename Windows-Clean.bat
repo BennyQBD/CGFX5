@@ -12,5 +12,6 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 
-@echo off
+move build\res res
 rmdir build /s /q
+mkdir build
