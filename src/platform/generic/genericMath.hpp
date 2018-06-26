@@ -183,6 +183,7 @@ struct GenericMath
 	static FORCEINLINE int32 rand() { return ::rand(); }
 	static FORCEINLINE void seedRand(int32 seed) { srand((uint32)seed); }
 	static FORCEINLINE float randf() { return ::rand()/(float)RAND_MAX; }
+	static FORCEINLINE float randf(float min, float max) { return lerp(min, max, randf()); }
 	
 	static FORCEINLINE uint32 floorLog2(uint32 val)
 	{

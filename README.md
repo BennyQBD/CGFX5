@@ -7,7 +7,7 @@ Base code for new 3D stuff
 - [CMAKE](http://www.cmake.org/)
 - [GLEW](http://glew.sourceforge.net/)
 - [SDL2](http://www.libsdl.org/)
-- [ASSIMP](http://assimp.sourceforge.net/)
+- [ASSIMP](http://http://www.assimp.org/)
 - BUILD TOOLCHAIN (Can be any one of the following, doesn't need to be all of them)
 	- Linux
 		- make, gcc, g++ ( Install with your package manager )

@@ -30,6 +30,7 @@ bool DDSTexture::load(const char* fileName) {
 
 	// Allocate memory for DDS file
 	uint32 bufsize = mipMapCount > 1 ? linearSize * 2 : linearSize;
+	cleanup();
 	buffer = (unsigned char*)Memory::malloc(bufsize * sizeof(unsigned char));
 	fread(buffer, 1, bufsize, fp);
 	fclose(fp);
