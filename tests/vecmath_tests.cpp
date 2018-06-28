@@ -114,16 +114,16 @@ const char* arrange_tests()
 	mu_assert(test2[2] == 4.0f, "Vector replicate failed");
 	mu_assert(test2[3] == 4.0f, "Vector replicate failed");
 
-	test2 = test.swizzle(2, 3, 0, 1);
-	mu_assert(test2[0] == 3.0f, "Vector swizzle failed");
-	mu_assert(test2[1] == 4.0f, "Vector swizzle failed");
-	mu_assert(test2[2] == 1.0f, "Vector swizzle failed");
-	mu_assert(test2[3] == 2.0f, "Vector swizzle failed");
-	test2 = test.swizzle(2, 3, 2, 3);
-	mu_assert(test2[0] == 3.0f, "Vector swizzle failed");
-	mu_assert(test2[1] == 4.0f, "Vector swizzle failed");
-	mu_assert(test2[2] == 3.0f, "Vector swizzle failed");
-	mu_assert(test2[3] == 4.0f, "Vector swizzle failed");
+//	test2 = test.swizzle(2, 3, 0, 1);
+//	mu_assert(test2[0] == 3.0f, "Vector swizzle failed");
+//	mu_assert(test2[1] == 4.0f, "Vector swizzle failed");
+//	mu_assert(test2[2] == 1.0f, "Vector swizzle failed");
+//	mu_assert(test2[3] == 2.0f, "Vector swizzle failed");
+//	test2 = test.swizzle(2, 3, 2, 3);
+//	mu_assert(test2[0] == 3.0f, "Vector swizzle failed");
+//	mu_assert(test2[1] == 4.0f, "Vector swizzle failed");
+//	mu_assert(test2[2] == 3.0f, "Vector swizzle failed");
+//	mu_assert(test2[3] == 4.0f, "Vector swizzle failed");
 	return NULL;
 }
 
