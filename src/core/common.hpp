@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <stdio.h>
+#include <stdexcept>
 #include "platform/platform.hpp"
 
 //Include known-size integer files, based on compiler. Some compilers do not have these
